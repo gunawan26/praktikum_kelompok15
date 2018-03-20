@@ -15,7 +15,15 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'nama_depan',
+        'nama_belakang',
+        'email',
+        'ktp',
+        'no_telp',
+        'username',
+        'password',
+        'role_id'
+
     ];
 
     /**
@@ -24,6 +32,27 @@ class User extends Authenticatable
      * @var array
      */
     protected $hidden = [
-        'password', 'remember_token',
+        
+
     ];
+
+
+    public function role(){
+        return $this->belongsTo(Role::class,'role_id');
+    }
+
+
+    // public function getrole(){
+            
+    //     foreach ($this->getrole as $role){
+    //         if(!$role->role_id){
+    //             return false;
+    //         }
+    //         return $user->role_id;
+    //     }
+
+
+    // }
+    
+
 }
