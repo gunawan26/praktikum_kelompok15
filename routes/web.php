@@ -18,3 +18,16 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::group(['prefix' => 'admin','middleware'=>['auth','role:admin']], function () {
+
+    Route::get('/',function(){
+        return view('admin');
+    });
+    
+});
+Route::group(['prefix' => 'member', 'middleware' => ['auth','role:member']], function(){
+	Route::get('/', function(){
+		return view('member');
+	});
+});

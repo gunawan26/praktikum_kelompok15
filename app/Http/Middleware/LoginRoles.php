@@ -13,14 +13,14 @@ class LoginRoles
      * @param  \Closure  $next
      * @return mixed
      */
-    public function handle($request, Closure $next)
+    public function handle($request, Closure $next,$namaRole)
     {
         //$roles = App\Role::all('nama_role');
         // foreach($roles as $role){
         //     if($request->role()->getRoleUser()===$role){
         //         return redirec;
         //     }
-            if($request->user()->role() == null) {
+            if(!$request->user()->hasRole($namaRole)) {
                
                 return redirect ('/home');
             }

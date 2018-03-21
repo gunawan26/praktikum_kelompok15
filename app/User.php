@@ -37,22 +37,19 @@ class User extends Authenticatable
     ];
 
 
-    public function role(){
+    public function myrole(){
         return $this->belongsTo(Role::class,'role_id');
     }
 
+    public function hasRole($namaRole){
+        $role = $this->myrole;
+            if($role->nama_role === $namaRole){
+                return true;
+            }
+            return false;
+        
 
-    // public function getrole(){
-            
-    //     foreach ($this->getrole as $role){
-    //         if(!$role->role_id){
-    //             return false;
-    //         }
-    //         return $user->role_id;
-    //     }
-
-
-    // }
+    }
     
 
 }
