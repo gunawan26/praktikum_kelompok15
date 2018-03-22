@@ -39,14 +39,14 @@ class LoginController extends Controller
 
     }
     
-    public function authenticated(Request $request){
-        if($request->user()->myrole('admin')){
-            return redirect('/admin/');
+    // public function authenticated(Request $request){
+    //     if($request->user()->myrole('admin')){
+    //         return redirect('/admin/');
 
-        }else if($request->user()->myrole('pemilik_kendaraan')){
-            return redirect('/pemilik/');
-        }else{
-            return redirect('/member/');
-        }
-    }
+    //     }else if($request->user()->myrole('pemilik_kendaraan')){
+    //         return redirect('/pemilik/');
+    //     }else{
+    //         return redirect('/member/');
+    //     }
+    // }
 }

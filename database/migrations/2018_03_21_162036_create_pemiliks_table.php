@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateUsersTable extends Migration
+class CreatePemiliksTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,17 +13,16 @@ class CreateUsersTable extends Migration
      */
     public function up()
     {
-        Schema::create('users', function (Blueprint $table) {
-            $table->bigIncrements('id');
+        Schema::create('pemiliks', function (Blueprint $table) {
+            $table->increments('id');
             $table->string('nama_depan',100);
             $table->string('nama_belakang',100);
             $table->string('email')->unique();
+            $table->bigInteger('ktp');
             $table->string('no_telp',20);
             $table->string('username',30);
             $table->string('password');
-            $table->rememberToken();
             $table->timestamps();
-            
         });
     }
 
@@ -34,6 +33,6 @@ class CreateUsersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('pemiliks');
     }
 }

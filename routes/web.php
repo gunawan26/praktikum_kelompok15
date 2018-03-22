@@ -18,7 +18,12 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-
+Route::get('pemilik_register','RegisterPemilikController@ShowRegisterForm');
+Route::post('pemilik_register','RegisterpemilikController@register');
+Route::get('/pemilik_home', function () {
+    return view('pemilik.home');
+    
+});
 Route::group(['prefix' => 'admin','middleware'=>['auth','role:admin']], function () {
 
     Route::get('/',function(){

@@ -18,12 +18,9 @@ class User extends Authenticatable
         'nama_depan',
         'nama_belakang',
         'email',
-        'ktp',
         'no_telp',
         'username',
         'password',
-        'role_id'
-
     ];
 
     /**
@@ -36,20 +33,22 @@ class User extends Authenticatable
 
     ];
 
-
-    public function myrole(){
-        return $this->belongsTo(Role::class,'role_id');
+    public function user(){
+        return $this;
     }
+    // public function myrole(){
+    //     return $this->belongsTo(Role::class,'role_id');
+    // }
 
-    public function hasRole($namaRole){
-        $role = $this->myrole;
-            if($role->nama_role === $namaRole){
-                return true;
-            }
-            return false;
-        
+    // public function hasRole($namaRole){
+    //     $role = $this->myrole;
+    //         if($role->nama_role === $namaRole){
+    //             return true;
+    //         }
+    //         return false;
+    
 
-    }
+    // }
     
 
 }

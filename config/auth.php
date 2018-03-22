@@ -40,6 +40,10 @@ return [
             'driver' => 'session',
             'provider' => 'users',
         ],
+        'web_pemiliks' => [
+            'driver' => 'session',
+            'provider' => 'pemiliks',
+        ],
 
         'api' => [
             'driver' => 'token',
@@ -69,6 +73,14 @@ return [
             'driver' => 'eloquent',
             'model' => App\User::class,
         ],
+
+
+        'pemiliks'=>[
+            'driver'=>'eloquent',
+            'model' => App\Pemilik::class,
+
+
+        ]
 
         // 'users' => [
         //     'driver' => 'database',

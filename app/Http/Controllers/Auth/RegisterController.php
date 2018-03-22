@@ -52,11 +52,10 @@ class RegisterController extends Controller
             'nama_depan' => 'required|string|max:255',
             'nama_belakang' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
-            'ktp' => 'required|numeric',
             'no_telp' => 'required|string|max:18',
             'username' => 'required|string|max:30|unique:users',
             'password' => 'required|string|min:6|confirmed',
-            'role_id' => 'required|numeric|max:3'
+
         ]);
     }
 
@@ -72,11 +71,9 @@ class RegisterController extends Controller
             'nama_depan' => $data['nama_depan'],
             'nama_belakang' => $data['nama_belakang'],
             'email' => $data['email'],
-            'ktp' => $data['ktp'],
             'no_telp' => $data ['no_telp'],
             'username' => $data ['username'],
             'password' => Hash::make($data['password']),
-            'role_id' => $data['role_id'],
         ]);
     }
 }
