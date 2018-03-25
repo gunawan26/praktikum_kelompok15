@@ -12,7 +12,7 @@ use Auth;
 class RegisterPemilikController extends Controller
 {
 
-    protected $redirectpath ='pemilik_home';
+    protected $redirectpath ='pemilik/home';
     
     public function ShowRegisterForm(){
 
@@ -44,10 +44,10 @@ class RegisterPemilikController extends Controller
         return Validator::make($data, [
             'nama_depan' => 'required|string|max:255',
             'nama_belakang' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users',
+            'email' => 'required|string|email|max:255|unique:pemiliks',
             'ktp' => 'required|numeric',
             'no_telp' => 'required|string|max:18',
-            'username' => 'required|string|max:30|unique:users',
+            'username' => 'required|string|max:30|unique:pemiliks',
             'password' => 'required|string|min:6|confirmed',
  
         ]);

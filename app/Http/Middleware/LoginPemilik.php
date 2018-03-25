@@ -1,10 +1,10 @@
 <?php
 
 namespace App\Http\Middleware;
-
+use Illuminate\Support\Facades\Auth;
 use Closure;
 
-class LoginRoles
+class LoginPemilik
 {
     /**
      * Handle an incoming request.
@@ -13,19 +13,18 @@ class LoginRoles
      * @param  \Closure  $next
      * @return mixed
      */
-    public function handle($request, Closure $next,$namaRole)
+    public function handle($request, Closure $next,$guard = 'web_pemiliks')
     {
         //$roles = App\Role::all('nama_role');
         // foreach($roles as $role){
         //     if($request->role()->getRoleUser()===$role){
         //         return redirec;
         //     }
-            if(!$request->user()->hasRole($namaRole)) {
-               
-                return redirect ('/home');
-            }
-        
+        if (Auth::guard($guard)->check()) {
+            return $next($request);
+        }
+        return redirect('pemilik/login');
 
-        return $next($request);
+
     }
 }

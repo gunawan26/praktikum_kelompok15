@@ -17,6 +17,10 @@ return [
         'guard' => 'web',
         'passwords' => 'users',
     ],
+    // 'defaults' => [
+    //     'guard' => 'web_pemiliks',
+    //     'passwords' => 'pemiliks',
+    // ],
 
     /*
     |--------------------------------------------------------------------------
@@ -106,6 +110,14 @@ return [
     'passwords' => [
         'users' => [
             'provider' => 'users',
+            'table' => 'password_resets',
+            'expire' => 60,
+        ],
+    ],
+
+    'passwords' => [
+        'pemiliks' => [
+            'provider' => 'pemiliks',
             'table' => 'password_resets',
             'expire' => 60,
         ],

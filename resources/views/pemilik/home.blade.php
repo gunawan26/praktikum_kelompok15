@@ -1,17 +1,5 @@
 @extends('pemilik.layout')
 
-@section('content')
-<div class="container">
-    <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-success">
-                <div class="panel-heading">pemilik's Dashboard</div>
-
-                <div class="panel-body">
-                    hellow world penyewa....
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+@section('content') 
+ <h1>soon will be deleted ???</h1>
 @endsection

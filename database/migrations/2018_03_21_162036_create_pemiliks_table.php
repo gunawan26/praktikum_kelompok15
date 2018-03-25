@@ -14,7 +14,7 @@ class CreatePemiliksTable extends Migration
     public function up()
     {
         Schema::create('pemiliks', function (Blueprint $table) {
-            $table->increments('id');
+            $table->bigIncrements('id');
             $table->string('nama_depan',100);
             $table->string('nama_belakang',100);
             $table->string('email')->unique();
@@ -22,6 +22,7 @@ class CreatePemiliksTable extends Migration
             $table->string('no_telp',20);
             $table->string('username',30);
             $table->string('password');
+            $table->rememberToken();
             $table->timestamps();
         });
     }

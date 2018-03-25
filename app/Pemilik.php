@@ -9,7 +9,7 @@ class pemilik extends Authenticatable
 {
     //
     use Notifiable;
-
+    protected $table = 'pemiliks';
 
     protected $fillable =[
         'nama_depan',

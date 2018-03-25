@@ -34,8 +34,8 @@
                     <ul class="navbar-nav ml-auto">
                         <!-- Authentication Links -->
                         @if(Auth::guard('web_pemiliks')->guest())
-                            <li><a class="nav-link" href="{{ url('/pemilik_login') }}">{{ __('Login') }}</a></li>
-                            <li><a class="nav-link" href="{{ url('/pemilik_register') }}">{{ __('Register') }}</a></li>
+                            <li><a class="nav-link" href="{{ url('/pemilik/login') }}">{{ __('Login') }}</a></li>
+                            <li><a class="nav-link" href="{{ url('/pemilik/register') }}">{{ __('Register') }}</a></li>
                         @else
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
@@ -43,13 +43,13 @@
                                 </a>
 
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ url('/pemilik_logout') }}"
+                                    <a class="dropdown-item" href="{{ url('/pemilik/logout') }}"
                                         onclick="event.preventDefault();
                                                         document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}
                                     </a>
 
-                                    <form id="logout-form" action="{{ url('/pemilik_logout') }}" method="POST" style="display: none;">
+                                    <form id="logout-form" action="{{ url('/pemilik/logout') }}" method="POST" style="display: none;">
                                         @csrf
                                     </form>
                                 </div>

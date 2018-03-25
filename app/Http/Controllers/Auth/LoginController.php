@@ -38,6 +38,8 @@ class LoginController extends Controller
         $this->middleware('guest')->except('logout');
 
     }
+
+
     
     // public function authenticated(Request $request){
     //     if($request->user()->myrole('admin')){
