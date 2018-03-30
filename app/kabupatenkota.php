@@ -8,4 +8,15 @@ class kabupatenkota extends Model
 {
     //
     public $timestamps = false;
+    
+    protected $fillable = [
+
+
+
+    ];
+
+    public function provinsi(){
+
+       return $this->belongsTo(provinsi::class);
+    }
 }

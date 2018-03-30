@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddGambarToKendaraans extends Migration
+class AddWarnakendaraanToKendaraans extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,11 @@ class AddGambarToKendaraans extends Migration
      */
     public function up()
     {
+        //
         Schema::table('kendaraans', function (Blueprint $table) {
-            $table->binary('gambar_kendaraan');
-            $table->binary('foto_stnk');
-        });
+            $table->string('warna_kendaraan');
+
+       });
     }
 
     /**
@@ -26,8 +27,6 @@ class AddGambarToKendaraans extends Migration
      */
     public function down()
     {
-        Schema::table('kendaraans', function (Blueprint $table) {
-            //
-        });
+        //
     }
 }

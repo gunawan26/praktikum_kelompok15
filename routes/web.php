@@ -25,11 +25,15 @@ Route::get('pemilik/register','RegisterPemilikController@ShowRegisterForm');
 Route::post('pemilik/register','RegisterpemilikController@register');
 Route::post('pemilik/logout','LoginPemilikController@logout');   
 
-
+//Route::get('/pemilik/test','KendaraanController@getdata');
+//Route::resource('{pemilik}/kendaraan', 'KendaraanController');
+//Route::get('/pemilik/kendaraan/register','KendaraanController@create');
 Route::group(['prefix'=>'pemilik','middleware'=> ['auth:web_pemiliks'] ],function(){
-    Route::get('/dashboard',function(){
-        return view('pemilik.dashboard');
-    });
+    // Route::get('/dashboard',function(){
+    //     return view('pemilik.dashboard');
+    // });
+
+    Route::resource('/kendaraan/{pemilik}', 'KendaraanController');
     // Route::get('/home', function () {
     //     return view('pemilik.home');     
     // });

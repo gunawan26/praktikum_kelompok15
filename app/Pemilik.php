@@ -25,7 +25,9 @@ class pemilik extends Authenticatable
 
     ];
 
-    public function pemilik(){
-        
+    public function kendaraan(){
+
+        return $this->hasMany(kendaraan::class);
     }
+
 }

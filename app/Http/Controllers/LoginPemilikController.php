@@ -15,7 +15,7 @@ class LoginPemilikController extends Controller
 
     //use AuthenticatesUsers;
 
-    protected $redirectTo = '/pemilik/dashboard';
+    protected $redirectTo = 'kendaraan.index';
 
     public function __construct()
     {
@@ -26,24 +26,24 @@ class LoginPemilikController extends Controller
     public function showloginpemilik(){
 
         if ($this->guard()->check()) {
-            return redirect('pemilik/dashboard');
+            return redirect()->route('kendaraan.index');
         }
         return view('pemilik.auth.login');
     }
 
-    public function login(Request $request){
+    // public function login(Request $request){
         
-        $this->attemptlogin();
-    }
+    //     $this->attemptlogin();
+    // }
 
 
-    protected function validateLogin(Request $request)
-    {
-        $this->validate($request, [
-            'email'=> 'required|string',
-            'password' => 'required|string',
-        ]);
-    }
+    // protected function validateLogin(Request $request)
+    // {
+    //     $this->validate($request, [
+    //         'email'=> 'required|string',
+    //         'password' => 'required|string',
+    //     ]);
+    // }
 
     public function attemptlogin (Request $request){
         $this->validate($request, [
@@ -53,7 +53,7 @@ class LoginPemilikController extends Controller
         ]);
 
         if($this->guard()->attempt(['email' =>$request->email, 'password' =>$request->password], $request->filled('remember'))) {
-            return redirect('pemilik/dashboard');
+            return redirect()->route('kendaraan.index');
         }
         return $this->sendFailedLoginResponse($request);
 

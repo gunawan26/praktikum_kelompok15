@@ -49,17 +49,17 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $exception)
     {   
-        $guard = array_get($exception->guards(), 0);
-        if($guard == 'web_pemiliks') return redirect()->guest('pemilik/login');
+        // $guard = array_get($exception->guards(), 0);
+        // if($guard == 'web_pemiliks') return redirect()->guest('pemilik/login');
         return parent::render($request, $exception);
     }
-    // protected function unauthenticated($request, AuthenticationException $exception)
-    // {
-    //     if ()
-    //     if ($request->expectsJson()) {
-    //         return response()->json(['error' => 'Unauthenticated.'], 401);
-    //     }
+    protected function unauthenticated($request, AuthenticationException $exception)
+    {
+        $guard = array_get($exception->guards(), 0);
+        if ($guard == 'web_pemiliks') {
+            return redirect()->guest('pemilik/login');
+        }
 
-    //     return redirect()->guest('pemilik/login'); //<----- Change this
-    // }
+       // return redirect()->guest('pemilik/login'); //<----- Change this
+    }
 }

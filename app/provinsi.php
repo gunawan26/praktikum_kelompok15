@@ -8,5 +8,15 @@ class provinsi extends Model
 {
     //
     public $timestamps = false;
+    
+    protected $fillable = [
+
+
+
+    ];
+    public function kabupatenkota(){
+
+        return $this->hasMany(kabupatenkota::class);
+    }
 
 }

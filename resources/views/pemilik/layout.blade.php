@@ -12,6 +12,7 @@
             'csrfToken' => csrf_token(),
         ]); ?>
     </script>
+    <link href="//rawgithub.com/indrimuska/jquery-editable-select/master/dist/jquery-editable-select.min.css" rel="stylesheet">
 </head>
 <body>
     <div id="app">
@@ -67,5 +68,10 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
+    <script src="//rawgithub.com/indrimuska/jquery-editable-select/master/dist/jquery-editable-select.min.js"></script>
+    <script>
+            $('#editable-select').editableSelect();
+    </script>
+
 </body>
 </html>

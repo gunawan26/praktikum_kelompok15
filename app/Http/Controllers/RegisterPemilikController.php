@@ -12,7 +12,7 @@ use Auth;
 class RegisterPemilikController extends Controller
 {
 
-    protected $redirectpath ='pemilik/home';
+    protected $redirectpath ='pemilik/dashboard';
     
     public function ShowRegisterForm(){
 
