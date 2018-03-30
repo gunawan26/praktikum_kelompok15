@@ -1,18 +1,27 @@
-@extends('layouts.app')
+@extends('layouts.loginlayout')
 
 @section('content')
-<div class="container">
+
+<div class="container" style="margin-top: 30px">
     <div class="row justify-content-center">
         <div class="col-md-8">
+            <div class="row justify-content-center">
+                <h4 a>Daftar Rentcar</h4>
+            </div>
+            <div class="row justify-content-center">
+                 <p>Sudah punya akun Rentcar ? Masuk <a href="{{ url('/login') }}">di sini</a></p>
+            </div>
+        </div>
+        <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Register') }}</div>
+                <div class="card-header" style="text-align: center;background-color:#28a745"><h4 style="color: #fff">Register</h4></div>
 
                 <div class="card-body">
                     <form method="POST" action="{{ route('register') }}">
                         @csrf
 
                         <div class="form-group row">
-                            <label for="nama_depan" class="col-md-4 col-form-label text-md-right">{{ __('Nama depan') }}</label>
+                            <label for="nama_depan" class="col-md-4 col-form-label text-md-right">{{ __('Nama lengkap') }}</label>
 
                             <div class="col-md-6">
                                 <input id="nama_depan" type="text" class="form-control{{ $errors->has('nama_depan') ? ' is-invalid' : '' }}" name="nama_depan" value="{{ old('nama_depan') }}" required autofocus>
@@ -24,15 +33,16 @@
                                 @endif
                             </div>
                         </div>
-                        <div class="form-group row">
-                            <label for="nama_belakang" class="col-md-4 col-form-label text-md-right">{{ __('nama_belakang') }}</label>
+                        
+                         <div class="form-group row">
+                            <label for="ktp" class="col-md-4 col-form-label text-md-right">{{ __('No ktp') }}</label>
 
                             <div class="col-md-6">
-                                <input id="nama_belakang" type="text" class="form-control{{ $errors->has('nama_belakang') ? ' is-invalid' : '' }}" name="nama_belakang" value="{{ old('nama_belakang') }}" required autofocus>
+                                <input id="ktp" type="text" class="form-control{{ $errors->has('ktp') ? ' is-invalid' : '' }}" name="ktp" value="{{ old('ktp') }}" required autofocus>
 
-                                @if ($errors->has('nama_belakang'))
+                                @if ($errors->has('ktp'))
                                     <span class="invalid-feedback">
-                                        <strong>{{ $errors->first('nama_belakang') }}</strong>
+                                        <strong>{{ $errors->first('ktp') }}</strong>
                                     </span>
                                 @endif
                             </div>
@@ -52,27 +62,15 @@
                             </div>
                         </div>
 
-                        {{--  <div class="form-group row">
-                            <label for="ktp" class="col-md-4 col-form-label text-md-right">{{ __('ktp') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="ktp" type="text" class="form-control{{ $errors->has('ktp') ? ' is-invalid' : '' }}" name="ktp" value="{{ old('ktp') }}" required autofocus>
-
-                                @if ($errors->has('ktp'))
-                                    <span class="invalid-feedback">
-                                        <strong>{{ $errors->first('ktp') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>  --}}
+                       
 
                         <div class="form-group row">
-                            <label for="no_telp" class="col-md-4 col-form-label text-md-right">{{ __('no_telp') }}</label>
+                            <label for="no_telp" class="col-md-4 col-form-label text-md-right">{{ __('No telepon') }}</label>
 
                             <div class="col-md-6">
                                 <input id="no_telp" type="text" class="form-control{{ $errors->has('no_telp') ? ' is-invalid' : '' }}" name="no_telp" value="{{ old('no_telp') }}" required autofocus>
 
-                                @if ($errors->has('no_telp'))
+                                @if ($errors->has('No_telp'))
                                     <span class="invalid-feedback">
                                         <strong>{{ $errors->first('no_telp') }}</strong>
                                     </span>
@@ -80,33 +78,6 @@
                             </div>
                         </div>
 
-                        <div class="form-group row">
-                            <label for="username" class="col-md-4 col-form-label text-md-right">{{ __('username') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="username" type="text" class="form-control{{ $errors->has('username') ? ' is-invalid' : '' }}" name="username" value="{{ old('username') }}" required autofocus>
-
-                                @if ($errors->has('username'))
-                                    <span class="invalid-feedback">
-                                        <strong>{{ $errors->first('username') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-
-                        {{--  <div class="form-group row">
-                            <label for="role_id" class="col-md-4 col-form-label text-md-right">{{ __('role_id') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="role_id" type="text" class="form-control{{ $errors->has('role_id') ? ' is-invalid' : '' }}" name="role_id" value="{{ old('role_id') }}" required autofocus>
-
-                                @if ($errors->has('role_id'))
-                                    <span class="invalid-feedback">
-                                        <strong>{{ $errors->first('role_id') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>  --}}
 
                         <div class="form-group row">
                             <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
@@ -132,7 +103,7 @@
 
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
+                                <button type="submit" class="btn btn-success">
                                     {{ __('Register') }}
                                 </button>
                             </div>
