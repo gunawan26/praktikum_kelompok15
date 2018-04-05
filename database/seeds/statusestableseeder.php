@@ -23,5 +23,11 @@ class statusestableseeder extends Seeder
             'nama_status' =>'tidak_tersedia',
 
         ]);
+
+        DB::table('statuses')->insert([
+
+            'nama_status' =>'terhapus',
+
+        ]);
     }
 }

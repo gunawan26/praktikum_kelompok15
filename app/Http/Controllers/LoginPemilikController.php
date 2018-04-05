@@ -53,6 +53,7 @@ class LoginPemilikController extends Controller
         ]);
 
         if($this->guard()->attempt(['email' =>$request->email, 'password' =>$request->password], $request->filled('remember'))) {
+            $pemilik = $this->guard()->user()->id;
             return redirect()->route('kendaraan.index');
         }
         return $this->sendFailedLoginResponse($request);

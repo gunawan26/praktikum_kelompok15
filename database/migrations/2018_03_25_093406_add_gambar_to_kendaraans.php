@@ -14,8 +14,8 @@ class AddGambarToKendaraans extends Migration
     public function up()
     {
         Schema::table('kendaraans', function (Blueprint $table) {
-            $table->binary('gambar_kendaraan');
-            $table->binary('foto_stnk');
+            $table->string('gambar_kendaraan',100);
+            $table->string('foto_stnk',100);
         });
     }
 

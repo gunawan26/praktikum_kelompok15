@@ -7,7 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 class kendaraan extends Model
 {
     //
+    public $timestamps = false;
     protected $fillable = [
+        'id_pemilik',
         'nama_kendaraan',
         'plat_nomor',
         'deskripsi',
@@ -17,6 +19,7 @@ class kendaraan extends Model
         'id_status', 
         'gambar_kendaraan',
         'foto_stnk',
+        'warna_kendaraan',
 
     ];
 
@@ -27,5 +30,12 @@ class kendaraan extends Model
     public function pemilik(){
 
         return $this->belongsTo(pemilik::class);
+    }
+    public function kategori(){
+        return $this->belongsTo(kategori::class);
+    }
+
+    public function namakategori(){
+        return $this->belongsTo(kategori::class,'id_kategori');
     }
 }

@@ -12,4 +12,8 @@ class kategori extends Model
 
 
     ];
+
+    public function kendaraan(){
+        return $this->hasMany(kendaraan::class);
+    }
 }

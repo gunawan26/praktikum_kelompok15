@@ -23,7 +23,7 @@ class CreateKendaraansTable extends Migration
             $table->unsignedSmallInteger('id_kategori');
             $table->unsignedInteger('id_kabupatenkota');
             $table->unsignedTinyInteger('id_status');
-
+            
     
             $table->timestamps();
             Schema::disableForeignKeyConstraints();  

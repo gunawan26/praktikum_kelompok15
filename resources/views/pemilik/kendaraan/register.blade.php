@@ -8,7 +8,7 @@
                 <div class="card-header">{{ __('Register') }}</div>
 
                 <div class="card-body">
-                    <form method="POST" action="{{ url('/pemilik/mobil/register') }}">
+                    <form method="POST" enctype="multipart/form-data" action="{{ route('kendaraan.store') }}">
                         @csrf
 
                         <div class="form-group row">
@@ -87,24 +87,6 @@
                             </div>
                         </div>
 
-{{--  
-
-                        <div class="form-group row">
-                            <label for="id_kabupatenkota" class="col-md-4 col-form-label text-md-right">{{ __('kabupaten/kota asal') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="id_kabupatenkota" type="text" class="form-control{{ $errors->has('id_kabupatenkota') ? ' is-invalid' : '' }}" name="id_kabupatenkota" value="{{ old('id_kabupatenkota') }}" required autofocus>
-
-                                @if ($errors->has('id_kabupatenkota'))
-                                    <span class="invalid-feedback">
-                                        <strong>{{ $errors->first('id_kabupatenkota') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>  --}}
-
-
-
                         <div class="form-group row">
                             <label for="id_status" class="col-md-4 col-form-label text-md-right">{{ __('status') }}</label>
 
@@ -122,32 +104,11 @@
                             </div>
                         </div>
 
-{{--                          
-                        <div class="form-group row">
-                            <label for="id_kabupatenkota" class="col-md-4 col-form-label text-md-right">{{ __('kabupaten/kota asal') }}</label>
-
-                            {{--  <div class="col-md-6">
-                                    <select id="editable-select" class="form-control{{ $errors->has('id_kabupatenkota') ? ' is-invalid' : '' }}" name="id_kabupatenkota" required>
-                                            
-
-                                        @forelse ($kabupatenkotas as $kabupatenkota)
-                                    <option value="{{$kabupatenkota->id_kabupatenkota}}"> {{$kabupatenkota->nama_kabupaten}}</option>
-                                        @empty
-                                            <span class="invalid-feedback">
-                                                <strong>{{ $errors->first('id_kabupatenkota') }}</strong>
-                                            </span>
-                                        @endforelse
-
-                                    </select>
-
-                            </div>
-                        </div>  --}}  
-
                         <div class="form-group row">
                             <label for="id_kabupatenkota" class="col-md-4 col-form-label text-md-right">{{ __('kabupaten/kota asal') }}</label>
 
                             <div class="col-md-6">
-                                    <select id="editable-select" class="form-control{{ $errors->has('id_kabupatenkota') ? ' is-invalid' : '' }}" name="id_kabupatenkota" required>
+                                    <select id="id_kabupatenkota" class="form-control{{ $errors->has('id_kabupatenkota') ? ' is-invalid' : '' }}" name="id_kabupatenkota" required>
                                             
 
                                         @forelse ($kabupatenkotas as $kabupatenkota)
@@ -162,6 +123,21 @@
 
                             </div>
                         </div>
+
+                        <div class="form-group row">
+                            <label for="warna_kendaraan" class="col-md-4 col-form-label text-md-right">{{ __('warna kendaraan') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="warna_kendaraan" type="text" class="form-control{{ $errors->has('warna_kendaraan') ? ' is-invalid' : '' }}" name="warna_kendaraan" value="{{ old('warna_kendaraan') }}" required autofocus>
+
+                                @if ($errors->has('warna_kendaraan'))
+                                    <span class="invalid-feedback">
+                                        <strong>{{ $errors->first('warna_kendaraan') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+                        
 
                         <div class="form-group row">
                             <label for="gambar_kendaraan" class="col-md-4 col-form-label text-md-right">{{ __('foto kendaraan') }}</label>

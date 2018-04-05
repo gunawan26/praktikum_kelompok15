@@ -12,7 +12,7 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('view');
 });
 
 Auth::routes();
@@ -32,24 +32,10 @@ Route::group(['prefix'=>'pemilik','middleware'=> ['auth:web_pemiliks'] ],functio
     // Route::get('/dashboard',function(){
     //     return view('pemilik.dashboard');
     // });
-
-    Route::resource('/kendaraan/{pemilik}', 'KendaraanController');
+    Route::patch('kendaraan/hapus/{kendaraan}','KendaraanController@hapus')->name('kendaraan.hapus');
+    Route::resource('kendaraan', 'KendaraanController');
+    
     // Route::get('/home', function () {
     //     return view('pemilik.home');     
     // });
 });
-
-
-
-// Route::group(['prefix' => 'admin','middleware'=>['auth','role:admin']], function () {
-
-//     Route::get('/',function(){
-//         return view('admin');
-//     });
-    
-// });
-// Route::group(['prefix' => 'member', 'middleware' => ['auth','role:member']], function(){
-// 	Route::get('/', function(){
-// 		return view('member');
-// 	});
-// });

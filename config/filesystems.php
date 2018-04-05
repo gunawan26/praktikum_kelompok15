@@ -48,6 +48,11 @@ return [
             'root' => storage_path('app'),
         ],
 
+        'delete' =>[
+            'driver' => 'local',
+            'root' => storage_path('app/public'). '/gambar_mobil',
+        ],
+
         'public' => [
             'driver' => 'local',
             'root' => storage_path('app/public'),
