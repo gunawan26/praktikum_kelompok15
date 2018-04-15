@@ -12,7 +12,7 @@
 */
 
 Route::get('/', function () {
-    return view('view');
+    return view('menu');
 });
 
 Auth::routes();
@@ -23,19 +23,19 @@ Route::get('pemilik/login','LoginPemilikController@showloginpemilik');
 Route::post('pemilik/login','LoginPemilikController@attemptlogin');
 Route::get('pemilik/register','RegisterPemilikController@ShowRegisterForm');
 Route::post('pemilik/register','RegisterpemilikController@register');
-Route::post('pemilik/logout','LoginPemilikController@logout');   
+Route::post('pemilik/logout','LoginPemilikController@logout'); 
 
-//Route::get('/pemilik/test','KendaraanController@getdata');
-//Route::resource('{pemilik}/kendaraan', 'KendaraanController');
-//Route::get('/pemilik/kendaraan/register','KendaraanController@create');
 Route::group(['prefix'=>'pemilik','middleware'=> ['auth:web_pemiliks'] ],function(){
-    // Route::get('/dashboard',function(){
-    //     return view('pemilik.dashboard');
-    // });
+
     Route::patch('kendaraan/hapus/{kendaraan}','KendaraanController@hapus')->name('kendaraan.hapus');
-    Route::resource('kendaraan', 'KendaraanController');
+    Route::resource('kendaraan', 'KendaraanController');    
     
-    // Route::get('/home', function () {
-    //     return view('pemilik.home');     
-    // });
+});
+
+Route::get('home/kendaraan/detail/{kendaraan}', 'TransaksiController@index')->name('detail.formview');
+Route::group(['prefix' => 'home','middleware'=>['auth']], function () {
+    
+    Route::get('home/kendaraan/detail/{kendaraan}/transaksi', 'TransaksiController@index')->name('transaksi.formview');
+   
+
 });

@@ -58,8 +58,11 @@ class Handler extends ExceptionHandler
         $guard = array_get($exception->guards(), 0);
         if ($guard == 'web_pemiliks') {
             return redirect()->guest('pemilik/login');
+        }else{
+            return redirect()->guest('/login');
         }
-
+       
+       
        // return redirect()->guest('pemilik/login'); //<----- Change this
     }
 }

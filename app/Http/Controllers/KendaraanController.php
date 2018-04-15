@@ -43,7 +43,7 @@ class KendaraanController extends Controller
     {
         //
        
-        $kategoris = kategori::where('id_kategori','<>','3');
+        $kategoris = kategori::all();
         $kabupatenkotas = kabupatenkota::all();
         return view('pemilik.kendaraan.register',compact('kabupatenkotas','kategoris')); 
     }
@@ -90,7 +90,7 @@ class KendaraanController extends Controller
         $kendaraan->gambar_kendaraan =$gambar_kendaraan;
         $kendaraan->foto_stnk =$foto_stnk;    
         $kendaraan->save();
-        return redirect()->route('kendaraan.index');;
+        return redirect()->route('kendaraan.index');
 
         //
     }

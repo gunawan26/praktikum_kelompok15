@@ -12,7 +12,7 @@ use Auth;
 class RegisterPemilikController extends Controller
 {
 
-    protected $redirectpath ='pemilik/dashboard';
+    protected $redirectpath ='pemilik/kendaraan';
     
     public function ShowRegisterForm(){
 
@@ -22,6 +22,7 @@ class RegisterPemilikController extends Controller
 
     public function register(Request $request){
         //validasi data
+        //dd($request);
         $this->validator($request->all())->validate();
 
         //membuat pemilik penyewa

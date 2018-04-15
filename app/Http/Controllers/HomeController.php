@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\kendaraan;
 
 class HomeController extends Controller
 {
@@ -13,7 +14,7 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
+        //$this->middleware('auth');
     }
 
     /**
@@ -23,7 +24,16 @@ class HomeController extends Controller
      */
     public function index()
     {
+        $kendaraans = kendaraan::where('id_status','1')->get();
+        return view('home',compact('kendaraans'));
+    }
+
+
+    public function showKendaraaan(){
+
+
         
-        return view('home');
+
+
     }
 }

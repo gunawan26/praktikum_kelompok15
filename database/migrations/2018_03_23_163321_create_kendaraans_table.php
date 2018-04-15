@@ -14,7 +14,7 @@ class CreateKendaraansTable extends Migration
     public function up()
     {
         Schema::create('kendaraans', function (Blueprint $table) {
-            $table->increments('id');
+            $table->bigIncrements('id');
             $table->string('nama_kendaraan',50);
             $table->unsignedbigInteger('id_pemilik');
             $table->string('plat_nomor',15);
