@@ -14,8 +14,6 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/bootstrap.css') }}" rel="stylesheet">
     <link href="{{ asset('css/style.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/fontawesome.css') }}" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   </head>
 
   <body data-spy="scroll" data-target="#navbar" data-offset="30">
@@ -32,15 +30,15 @@
             <div class="input-group">
               <input type="text" class="form-control" aria-label="Recipient's username" aria-describedby="basic-addon2">
               <div class="input-group-append">
-                <button class="btn btn-success " type="button"><i class="fa fa-search"></i></button>
+                <button class="btn btn-success" type="button">Search</button>
               </div>
             </div>
           </ul>
           <ul class="navbar-nav col-md-1"></ul>
           <ul class="navbar-nav col-md-2">
-            <li><a href="{{ url('/register') }}" class="btn btn-link-success my-3 my-sm-0 ml-lg-3" role="button" aria-pressed="true">Daftar</a></li>
+            <li><a href="#" class="btn btn-link-success my-3 my-sm-0 ml-lg-3" role="button" aria-pressed="true">Daftar</a></li>
             <li>
-             <a href="{{ url('/login') }}" class="btn btn-outline-success my-3 my-sm-0 ml-lg-3" role="button" aria-pressed="true">Masuk</a>
+             <a href="#" class="btn btn-outline-success my-3 my-sm-0 ml-lg-3" role="button" aria-pressed="true">Masuk</a>
            </li>
 
          </ul> 
@@ -53,10 +51,7 @@
 
 
    <header class="bg-gradient" id="home">
-    <div class="container mt-4">
-      <h1 class="text-secondary">Website Rentcar Terbaik Di indonesia </h1>
-      <p class="tagline text-secondary">Sewa aman, jalan aman</p>
-      <button class="btn btn-success">Daftar</button>
+    <div class="container">
       <hr class="featurette-divider">
     </div>
     
