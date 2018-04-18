@@ -21,6 +21,8 @@ class User extends Authenticatable
         'no_telp',
         'username',
         'password',
+        
+
     ];
 
     /**
@@ -33,22 +35,5 @@ class User extends Authenticatable
 
     ];
 
-    public function user(){
-        return $this;
-    }
-    // public function myrole(){
-    //     return $this->belongsTo(Role::class,'role_id');
-    // }
-
-    // public function hasRole($namaRole){
-    //     $role = $this->myrole;
-    //         if($role->nama_role === $namaRole){
-    //             return true;
-    //         }
-    //         return false;
-    
-
-    // }
-    
 
 }

@@ -12,8 +12,9 @@
 
   <!-- Styles -->
   <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-  <link href="{{ asset('css/bootstrap.css') }}" rel="stylesheet">
+  {{-- <link href="{{ asset('css/bootstrap.css') }}" rel="stylesheet"> --}}
   <style type="text/css">
+    
 
 }
 .dropdown.dropdown-lg .dropdown-menu {
@@ -132,7 +133,7 @@ input#textkendaraan2{
       <nav class="navbar navbar-expand-md navbar-light navbar-laravel sticky-top">
         <div class="container">
           <a class="navbar-brand" href="{{ url('/menu') }}">
-            <img  src="{{asset('img/logo.png')}}" alt="homepage')}}" class="dark-logo" style="" /></a>
+            {{-- <img  src="{{asset('img/logo.png')}}" alt="homepage')}}" class="dark-logo" style="" /></a> --}}
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
@@ -295,7 +296,10 @@ input#textkendaraan2{
 
 
     <!-- Scripts -->
+    
     <script src="{{ asset('js/app.js') }}"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 
+    @yield('custom_js')
   </body>
 </html>

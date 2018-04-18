@@ -24,7 +24,8 @@ class RegisterPemilikController extends Controller
         //validasi data
         //dd($request);
         $this->validator($request->all())->validate();
-
+        $foto_ktp = time().$request->ktp->getClientOriginalName();
+        $request->ktp->storeAs('public/gambar_ktp',$foto_ktp);
         //membuat pemilik penyewa
         $pemilik = $this->create($request->all());
 
@@ -46,7 +47,7 @@ class RegisterPemilikController extends Controller
             'nama_depan' => 'required|string|max:255',
             'nama_belakang' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:pemiliks',
-            'ktp' => 'required|numeric',
+            'ktp' => 'required|image|mimes:jpeg,jpg,png,bmp',
             'no_telp' => 'required|string|max:18',
             'username' => 'required|string|max:30|unique:pemiliks',
             'password' => 'required|string|min:6|confirmed',

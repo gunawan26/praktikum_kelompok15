@@ -5,14 +5,14 @@ namespace App\Http\Controllers;
 use App\Transaksi;
 use App\kendaraan;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
+use App\User;
+use Auth;
+use Storage;
 
 class TransaksiController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+        //Return View detail mobil
     public function index(kendaraan $kendaraan)
     {
         //
@@ -21,26 +21,64 @@ class TransaksiController extends Controller
         return view('transaksi.detailform',compact('kendaraan'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+        // return view transaksi
     public function createtransaksi()
     {
         //
-        return view('transaksi.transaksiform');
+        $foto =$this->getKtp();
+
+       
+        return view('transaksi.transaksiform',compact('foto'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function storetransaksi(Request $request)
+    
+    // Get user KTP photos
+    
+    public function getKtp(){
+        $foto_ktp = auth::guard()->user()->ktp;
+        
+        $file = Storage::disk('ktp')->exists($foto_ktp);
+        if($file) return $foto_ktp;
+     
+    }
+    
+    public function storetransaksi(Request $request,kendaraan $kendaraan, user $user)
     {
         //
+        $transaksi = new Transaksi;
+        //$user = new User;
+        
+       $checkKtp  = $this->getKtp();
+
+       if($checkKtp != 'null'){
+           $request->foto_ktp = $checkKtp;
+       }
+       
+        $this->validate($request,[
+
+            'tgl_pesan' => 'required|date',
+            'tgl_rencanakembali' => 'required|date',
+            'foto_ktp' => 'required|image|mimes:jpeg,jpg,png,bmp',
+
+
+        ]);
+        
+        if($checkKtp == 'null'){
+            $user->foto_ktp = $request->foto_ktp;
+            $gambar_kendaraan = $request->gambar_kendaraan->getClientOriginalName();
+            //$request->gambar_kendaraan->storeAs('public/gambar_mobil',$gambar_kendaraan);
+            $dir = public_path('storage/gambar_mobil/'.$gambar_kendaraan);
+            Image::make($request->gambar_kendaraan)->resize(600,400)->save($dir);
+            
+        }
+        $transaksi->id_kendaraan = $kendaraan->id;
+        $transaksi->id_user = auth::guard()->user()->id;
+        $transaksi->tgl_transaksi = Carbon::now();
+        $transaksi->tgl_pesan = $request->tgl_pesan;
+        $transaksi->tgl_rencanakembali = $request->tgl_rencanakembali;
+        $transaksi->save();
+        return redirect()->route('pembayaran ???');
+
     }
 
     /**

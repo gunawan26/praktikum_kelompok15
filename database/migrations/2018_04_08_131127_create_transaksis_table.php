@@ -17,14 +17,14 @@ class CreateTransaksisTable extends Migration
             $table->bigIncrements('id');
             $table->unsignedBigInteger('id_kendaraan');
             $table->unsignedBigInteger('id_user');
-            $table->unsignedBigInteger('id_pemilik');
+            // $table->unsignedBigInteger('id_pemilik');
             $table->timestamp('tgl_transaksi')->default(\DB::raw('CURRENT_TIMESTAMP'));
             $table->timestamp('tgl_pesan')->default(\DB::raw('CURRENT_TIMESTAMP'));
             $table->timestamp('tgl_rencanakembali')->default(\DB::raw('CURRENT_TIMESTAMP'));
 
             $table->foreign('id_kendaraan')->references('id')->on('kendaraans');
             $table->foreign('id_user')->references('id')->on('users');
-            $table->foreign('id_pemilik')->references('id')->on('pemiliks');
+            // $table->foreign('id_pemilik')->references('id')->on('pemiliks');
            
         });
     }

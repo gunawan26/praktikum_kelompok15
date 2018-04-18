@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Input;
-
+use Image;
 class KendaraanController extends Controller
 {
     
@@ -72,9 +72,10 @@ class KendaraanController extends Controller
             'gambar_kendaraan' => 'required|image|mimes:jpeg,jpg,png,bmp',
             'foto_stnk' => 'required|image|mimes:jpeg,jpg,png,bmp',
         ]);
-        $gambar_kendaraan = $request->gambar_kendaraan->getClientOriginalName();
-        $request->gambar_kendaraan->storeAs('public/gambar_mobil',$gambar_kendaraan);
-
+        $gambar_kendaraan = time().$request->gambar_kendaraan->getClientOriginalName(); // buat nama biar ga sama 
+        //$request->gambar_kendaraan->storeAs('public/gambar_mobil',$gambar_kendaraan);
+        $dir = public_path('storage/gambar_mobil/'.$gambar_kendaraan);
+        Image::make($request->gambar_kendaraan)->resize(600,400)->save($dir);
         $foto_stnk =$request->foto_stnk->getClientOriginalName();
         $request->foto_stnk->storeAs('public/gambar_stnk',$foto_stnk);
 
@@ -118,17 +119,19 @@ class KendaraanController extends Controller
         //
         $kategoris = kategori::all();
         $kabupatenkotas = kabupatenkota::all();
-       // $kendaraan_old = kendaraan::where('id',$kendaraan);
-       $pemilik = Auth::guard('web_pemiliks')->user()->id;
+        // $kendaraan_old = kendaraan::where('id',$kendaraan);
+        $dir = public_path('storage/gambar_mobil/'.$gambar_kendaraan);
+        Image::make($request->gambar_kendaraan)->resize(600,400)->save($dir);
+        $pemilik = Auth::guard('web_pemiliks')->user()->id;
 
-       // dd($pemilik);
+        // dd($pemilik);
         if($kendaraan->id_pemilik == $pemilik ){
 
             return view('pemilik.kendaraan.edit',compact('kabupatenkotas','kategoris','kendaraan'));
         }else{
             return 'you dont have acess';
         }
-       
+        
     }
 
 
@@ -158,17 +161,18 @@ class KendaraanController extends Controller
          if($request->hasFile('gambar_kendaraan')){
             
              // tambah foto baru
-             $gambar_kendaraan = $request->gambar_kendaraan->getClientOriginalName();
-             $request->gambar_kendaraan->storeAs('public/gambar_mobil',$gambar_kendaraan);
-            
+            $gambar_kendaraan = $request->gambar_kendaraan->getClientOriginalName();
+            //$request->gambar_kendaraan->storeAs('public/gambar_mobil',$gambar_kendaraan);
+            $dir = public_path('storage/gambar_mobil/'.$gambar_kendaraan);
+            Image::make($request->gambar_kendaraan)->resize(600,400)->save($dir);
             //nama file gambar lama 
-             $old_gambar = $kendaraan->gambar_kendaraan;
-             // update database
-             $kendaraan->gambar_kendaraan =$gambar_kendaraan;
+            $old_gambar = $kendaraan->gambar_kendaraan;
+            // update database
+            $kendaraan->gambar_kendaraan =$gambar_kendaraan;
 
-             // hapus foto lama
-             Storage::disk('delete')->delete($old_gambar);
-         }
+            // hapus foto lama
+            Storage::disk('delete')->delete($old_gambar);
+        }
         
 
          if($request->hasFile('foto_stnk')){
@@ -176,7 +180,7 @@ class KendaraanController extends Controller
            //tambah foto baru
             $foto_stnk =$request->foto_stnk->getClientOriginalName(); 
             $request->foto_stnk->storeAs('public/gambar_stnk',$foto_stnk);
-            // nama file gambar la,ma
+            // nama file gambar lama
             $old_stnk = $kendaraan->foto_stnk;
 
             //update database

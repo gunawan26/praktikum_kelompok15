@@ -46,11 +46,17 @@ return [
         'local' => [
             'driver' => 'local',
             'root' => storage_path('app'),
+            
         ],
 
         'delete' =>[
             'driver' => 'local',
             'root' => storage_path('app/public'). '/gambar_mobil',
+        ],
+
+        'ktp' =>[
+            'driver' => 'local',
+            'root' => storage_path('app/public'). '/gambar_ktp/user',
         ],
 
         'public' => [

@@ -17,11 +17,11 @@
                 <div class="card-header" style="text-align: center;background-color:#28a745"><h4 style="color: #fff">Register</h4></div>
 
                 <div class="card-body">
-                    <form method="POST" action="{{ route('register') }}">
+                    <form method="POST" action="{{ url('register') }}">
                         @csrf
 
                         <div class="form-group row">
-                            <label for="nama_depan" class="col-md-4 col-form-label text-md-right">{{ __('Nama lengkap') }}</label>
+                            <label for="nama_depan" class="col-md-4 col-form-label text-md-right">{{ __('Nama Depan') }}</label>
 
                             <div class="col-md-6">
                                 <input id="nama_depan" type="text" class="form-control{{ $errors->has('nama_depan') ? ' is-invalid' : '' }}" name="nama_depan" value="{{ old('nama_depan') }}" required autofocus>
@@ -34,19 +34,20 @@
                             </div>
                         </div>
                         
-                         <div class="form-group row">
-                            <label for="ktp" class="col-md-4 col-form-label text-md-right">{{ __('No ktp') }}</label>
+                        <div class="form-group row">
+                            <label for="nama_belakang" class="col-md-4 col-form-label text-md-right">{{ __('Nama Belakang') }}</label>
 
                             <div class="col-md-6">
-                                <input id="ktp" type="text" class="form-control{{ $errors->has('ktp') ? ' is-invalid' : '' }}" name="ktp" value="{{ old('ktp') }}" required autofocus>
+                                <input id="nama_belakang" type="text" class="form-control{{ $errors->has('nama_belakang') ? ' is-invalid' : '' }}" name="nama_belakang" value="{{ old('nama_belakang') }}" required autofocus>
 
-                                @if ($errors->has('ktp'))
+                                @if ($errors->has('nama_belakang'))
                                     <span class="invalid-feedback">
-                                        <strong>{{ $errors->first('ktp') }}</strong>
+                                        <strong>{{ $errors->first('nama_belakang') }}</strong>
                                     </span>
                                 @endif
                             </div>
                         </div>
+                        
 
                         <div class="form-group row">
                             <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
@@ -62,7 +63,19 @@
                             </div>
                         </div>
 
-                       
+                        <div class="form-group row">
+                            <label for="username" class="col-md-4 col-form-label text-md-right">{{ __('Username') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="username" type="text" class="form-control{{ $errors->has('username') ? ' is-invalid' : '' }}" name="username" value="{{ old('username') }}" required autofocus>
+
+                                @if ($errors->has('username'))
+                                    <span class="invalid-feedback">
+                                        <strong>{{ $errors->first('username') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
 
                         <div class="form-group row">
                             <label for="no_telp" class="col-md-4 col-form-label text-md-right">{{ __('No telepon') }}</label>

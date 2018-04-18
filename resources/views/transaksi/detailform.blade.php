@@ -8,7 +8,7 @@
 			<div class="row">
 				<div class="col-md-6"><h3>{{$kendaraan->nama_kendaraan}}</h3>
 					<p class="text-warning"><strong>Rp 10.000.000</strong></p></div>
-					<a href="#" class="btn btn-block btn-success">Lanjut ke transaksi</a>
+					<a href="{{route('transaksi.formview',$kendaraan->id)}}" class="btn btn-block btn-success">Lanjut ke transaksi</a>
 				</div>
 				<hr class="featurette-divider">
 				<div class="row">

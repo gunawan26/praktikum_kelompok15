@@ -21,8 +21,7 @@ class CreatePembayaransTable extends Migration
             $table->String('bukti_pembayaran',100); 
             $table->unsignedTinyInteger('id_status_validasi');
             
-
-
+            
             $table->foreign('id_transaksi')->references('id')->on('transaksis');
             $table->foreign('id_status_validasi')->references('id')->on('validasipembayarans');
             $table->timestamps();

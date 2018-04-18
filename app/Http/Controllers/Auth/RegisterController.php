@@ -55,7 +55,7 @@ class RegisterController extends Controller
             'no_telp' => 'required|string|max:18',
             'username' => 'required|string|max:30|unique:users',
             'password' => 'required|string|min:6|confirmed',
-
+            'ktp',
         ]);
     }
 
@@ -74,6 +74,7 @@ class RegisterController extends Controller
             'no_telp' => $data ['no_telp'],
             'username' => $data ['username'],
             'password' => Hash::make($data['password']),
+  
         ]);
     }
 }
