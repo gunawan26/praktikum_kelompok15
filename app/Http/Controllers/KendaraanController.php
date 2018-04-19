@@ -11,6 +11,8 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Input;
 use Image;
+use App\Jenis_bahanbakar;
+use App\provinsi;
 class KendaraanController extends Controller
 {
     
@@ -45,7 +47,9 @@ class KendaraanController extends Controller
        
         $kategoris = kategori::all();
         $kabupatenkotas = kabupatenkota::all();
-        return view('pemilik.kendaraan.register',compact('kabupatenkotas','kategoris')); 
+        $bahanbakars = jenis_bahanbakar::all();
+
+        return view('pemilik.kendaraan.register',compact('kabupatenkotas','kategoris','bahanbakars')); 
     }
 
     /**
@@ -71,6 +75,8 @@ class KendaraanController extends Controller
             'warna_kendaraan' => 'required',
             'gambar_kendaraan' => 'required|image|mimes:jpeg,jpg,png,bmp',
             'foto_stnk' => 'required|image|mimes:jpeg,jpg,png,bmp',
+            'transmisi' =>'required',
+            'id_bahan_bakar' => 'required',
         ]);
         $gambar_kendaraan = time().$request->gambar_kendaraan->getClientOriginalName(); // buat nama biar ga sama 
         //$request->gambar_kendaraan->storeAs('public/gambar_mobil',$gambar_kendaraan);
@@ -89,7 +95,9 @@ class KendaraanController extends Controller
         $kendaraan->id_kabupatenkota = $request->id_kabupatenkota;
         $kendaraan->id_status = $request->id_status;
         $kendaraan->gambar_kendaraan =$gambar_kendaraan;
-        $kendaraan->foto_stnk =$foto_stnk;    
+        $kendaraan->foto_stnk =$foto_stnk;
+        $kendaraan->transmisi = $request->transmisi;
+        $kendaraan->id_bahan_bakar = $request->id_bahan_bakar;    
         $kendaraan->save();
         return redirect()->route('kendaraan.index');
 
@@ -119,15 +127,15 @@ class KendaraanController extends Controller
         //
         $kategoris = kategori::all();
         $kabupatenkotas = kabupatenkota::all();
+        $bahanbakars = Jenis_bahanbakar::all();
         // $kendaraan_old = kendaraan::where('id',$kendaraan);
-        $dir = public_path('storage/gambar_mobil/'.$gambar_kendaraan);
-        Image::make($request->gambar_kendaraan)->resize(600,400)->save($dir);
+        
         $pemilik = Auth::guard('web_pemiliks')->user()->id;
 
         // dd($pemilik);
         if($kendaraan->id_pemilik == $pemilik ){
 
-            return view('pemilik.kendaraan.edit',compact('kabupatenkotas','kategoris','kendaraan'));
+            return view('pemilik.kendaraan.edit',compact('kabupatenkotas','kategoris','kendaraan','bahanbakars'));
         }else{
             return 'you dont have acess';
         }
@@ -156,6 +164,8 @@ class KendaraanController extends Controller
              'warna_kendaraan' => 'required',
              'gambar_kendaraan' => 'image|mimes:jpeg,jpg,png,bmp',
              'foto_stnk' => 'image|mimes:jpeg,jpg,png,bmp',
+             'transmisi' =>'required',
+             'id_bahan_bakar' => 'required',
          ]);
 
          if($request->hasFile('gambar_kendaraan')){
@@ -202,7 +212,8 @@ class KendaraanController extends Controller
         $kendaraan->id_kategori = $request->id_kategori;
         $kendaraan->id_kabupatenkota = $request->id_kabupatenkota;
         $kendaraan->id_status = $request->id_status;
-
+        $kendaraan->transmisi = $request->transmisi;
+        $kendaraan->id_bahan_bakar = $request->id_bahan_bakar;    
         $kendaraan->save();
          
          return redirect()->route('kendaraan.index');

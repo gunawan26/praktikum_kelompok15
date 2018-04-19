@@ -156,20 +156,45 @@
                         @endif
                     </div>
                 </div>
-                
-                {{-- <div class="form-group row">
-                        <label for="foto_stnk" class="col-md-4 col-form-label text-md-right">{{ __('foto STNK') }}</label>
+
+                <div class="form-group row">
+                        <label for="transmisi" class="col-md-4 col-form-label text-md-right">{{ __('Transmisi Kendaraan') }}</label>
+
                         <div class="col-md-6">
-                            <img src="{{asset('storage/gambar_stnk/'.$kendaraan->gambar_kendaraan)}}" alt="foto stnk" class="img-thumbnail" style="max-width:200px">      
-                            <input type="file" class="form-control-file" id="foto_stnk" aria-describedby="fileHelp">
-                            
-                            @if($errors->has('foto_stnk'))
-                                <small id="fileHelp" class="form-text text-muted">error</small>
-    
-                            @endif
-                            
+                                <select id="transmisi" class="form-control{{ $errors->has('transmisi') ? ' is-invalid' : '' }}" name="transmisi" required>
+                                    
+                                            <option value="Manual">Manual</option>
+                                            <option value="Otomatis">Otomatis</option>
+                                        
+                                            <span class="invalid-feedback">
+                                                <strong>{{ $errors->first('transmisi') }}</strong>
+                                            </span>
+                                    
+
+                                    </select>
                         </div>
-                    </div> --}}
+                </div>
+                    
+                <div class="form-group row">
+                        <label for="id_bahan_bakar" class="col-md-4 col-form-label text-md-right">{{ __('Jenis Bahan Bakar') }}</label>
+
+                        <div class="col-md-6">
+                                <select id="id_bahan_bakar" class="form-control{{ $errors->has('id_bahan_bakar') ? ' is-invalid' : '' }}" name="id_bahan_bakar" required>
+                                        
+
+                                    @forelse ($bahanbakars as $bahanbakar)
+                                        <option value="{{$bahanbakar->id}}"> {{$bahanbakar->nama_bahan_bakar}}</option>
+                                    @empty
+                                        <span class="invalid-feedback">
+                                            <strong>{{ $errors->first('id') }}</strong>
+                                        </span>
+                                    @endforelse
+
+                                </select>
+
+                        </div>
+                    </div>
+                    
                 <div class="form-group row">
                     <label for="foto_stnk" class=" col-md-4 col-form-label text-md-right ">{{ __('foto STNK') }}</label>
 

@@ -64,12 +64,15 @@ class TransaksiController extends Controller
         ]);
         
         if($checkKtp == 'null'){
-            $user->foto_ktp = $request->foto_ktp;
-            $gambar_kendaraan = $request->gambar_kendaraan->getClientOriginalName();
-            //$request->gambar_kendaraan->storeAs('public/gambar_mobil',$gambar_kendaraan);
-            $dir = public_path('storage/gambar_mobil/'.$gambar_kendaraan);
-            Image::make($request->gambar_kendaraan)->resize(600,400)->save($dir);
             
+            $foto_ktp =time().$request->foto_ktp->getClientOriginalName();
+            $request->foto_ktp->storeAs('public/gambar_ktp/user',$foto_ktp);
+            //$request->gambar_kendaraan->storeAs('public/gambar_mobil',$gambar_kendaraan);
+            $user->foto_ktp = $foto_ktp;
+            //$dir = public_path('storage/gambar_mobil/'.$foto_ktp);
+            // Image::make($request->gambar_kendaraan)->resize(600,400)->save($dir);
+           
+            $user->save();
         }
         $transaksi->id_kendaraan = $kendaraan->id;
         $transaksi->id_user = auth::guard()->user()->id;
@@ -77,8 +80,9 @@ class TransaksiController extends Controller
         $transaksi->tgl_pesan = $request->tgl_pesan;
         $transaksi->tgl_rencanakembali = $request->tgl_rencanakembali;
         $transaksi->save();
+        
         return redirect()->route('pembayaran ???');
-
+        
     }
 
     /**

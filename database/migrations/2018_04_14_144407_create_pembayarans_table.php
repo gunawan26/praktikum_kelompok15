@@ -18,7 +18,7 @@ class CreatePembayaransTable extends Migration
             $table->unsignedBigInteger('id_transaksi');
             $table->timestamp('tanggal_bayar')->default(\DB::raw('CURRENT_TIMESTAMP'));;
             $table->timestamp('tgl_batasbayar')->default(\DB::raw('CURRENT_TIMESTAMP'));;
-            $table->String('bukti_pembayaran',100); 
+            $table->String('bukti_pembayaran',100)->nullable(); 
             $table->unsignedTinyInteger('id_status_validasi');
             
             

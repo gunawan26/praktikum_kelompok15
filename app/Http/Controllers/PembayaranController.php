@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Pembayaran;
 use Illuminate\Http\Request;
-
+use App\Transaksi;
 class PembayaranController extends Controller
 {
     /**
@@ -26,6 +26,7 @@ class PembayaranController extends Controller
     public function create()
     {
         //
+
     }
 
     /**
@@ -34,9 +35,26 @@ class PembayaranController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request,Transaksi $transaksi)
     {
         //
+        $pembayaran = new Pembayaran;
+        
+         $this->validate($request,[
+ 
+             'tgl_pesan' => 'required|date',
+             'tgl_rencanakembali' => 'required|date',
+             'foto_ktp' => 'required|image|mimes:jpeg,jpg,png,bmp',
+ 
+ 
+         ]);
+         
+        $pembayaran->id_transaksi = $transaksi->id;
+        $pembayaran->tgl_batasbayar = $transaksi->tgl_transaksi->addDays(7);
+        $pembayaran->id_status_validasi = '1';
+        $transaksi->save();
+        return redirect()->route('pembayaran ???');
+
     }
 
     /**
@@ -45,6 +63,8 @@ class PembayaranController extends Controller
      * @param  \App\Pembayaran  $pembayaran
      * @return \Illuminate\Http\Response
      */
+
+     
     public function show(Pembayaran $pembayaran)
     {
         //

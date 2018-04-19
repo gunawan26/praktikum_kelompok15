@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\kendaraan;
-
+use DB;
 class HomeController extends Controller
 {
     /**
@@ -24,8 +24,14 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $kendaraans = kendaraan::where('id_status','1')->get();
-        return view('home',compact('kendaraans'));
+        //$kendaraans = kendaraan::where('id_status','1')->get();
+        $kendaraans = DB::table('kendaraans')
+        ->join('kabupatenkotas','kendaraans.id_kabupatenkota','=','kabupatenkotas.id')
+        ->join('provinsis','kabupatenkotas.provinsi_id','=','provinsis.id')
+        ->select('kendaraans.*','kabupatenkotas.nama_kabupaten','provinsis.nama_provinsi')
+        ->where('id_status','1')
+        ->get();
+        return view('Menu',compact('kendaraans'));
     }
 
 

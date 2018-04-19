@@ -38,4 +38,13 @@ class kendaraan extends Model
     public function namakategori(){
         return $this->belongsTo(kategori::class,'id_kategori');
     }
+
+    public function namakabupaten(){
+        return $this->belongsTo(kabupatenkota::class,'id_kabupatenkota');
+    }
+
+    public function kendaraans(){
+        return $this->hasManyThrough(provinsi::class,kabupatenkota::class,'provinsi_id','id','id','provinsi_id');
+    }
+
 }
