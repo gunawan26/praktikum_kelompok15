@@ -20,6 +20,8 @@ class kendaraan extends Model
         'gambar_kendaraan',
         'foto_stnk',
         'warna_kendaraan',
+        'transmisi',
+        'id_bahan_bakar',
 
     ];
 
@@ -45,6 +47,14 @@ class kendaraan extends Model
 
     public function kendaraans(){
         return $this->hasManyThrough(provinsi::class,kabupatenkota::class,'provinsi_id','id','id','provinsi_id');
+    }
+
+    public function pemiliks(){
+        return $this->belongsTo(pemilik::class,'id_pemilik');
+    }
+
+    public function bahanbakars(){
+        return $this->belongsTo(jenis_bahanbakar::class,'id_bahan_bakar');
     }
 
 }

@@ -6,18 +6,17 @@
       
 
 
-          <form method="post" enctype="multipart/form-data" action="">
+          <form method="post" enctype="multipart/form-data" action="{{route('transaksi.store',$kendaraan->id)}}">
             @csrf
-            
 
             <div class="form-group">
               <label class="col-form-label" for="inputDefault">tanggal pesan</label>
-              <input type="date" class="form-control" placeholder="Default input" id="datepesan">
+              <input type="date" class="form-control" placeholder="Default input" id="datepesan" name="tgl_pesan">
             </div>
            
             <div class="form-group">
               <label class="col-form-label" for="inputDefault">tanggal kembali</label>
-              <input type="date" class="form-control" placeholder="Default input" id="datekembali">
+              <input type="date" class="form-control" placeholder="Default input" id="datekembali" name="tgl_rencanakembali">
             </div>
             <div>
               <div id="previewImage"></div>
@@ -26,15 +25,15 @@
 
                   
           
-            <label for="image-input">input gambae</label>
-           <input type="file" name="image_post[]" id="image-input" multiple="" accept="image/*" >
-
+            
             @if ($foto == null)
-               
+            <label for="image-input">input gambar</label>
+            <input type="file" name="foto_ktp" id="image-input" multiple="" accept="image/*" >
+ 
             @else
           
             @endif
-
+            <button type="submit">Submit</button>
 
           </form>
 
@@ -54,7 +53,7 @@
 {{-- <script type="text/javascript" src="{{ asset('js/jquery.fancybox.min.js') }}"></script> --}}
 <script type="text/javascript" async>
 
-  function previewImage(input){
+  function previewImage(input){ 
     if(input){
       var i = 0;
       for(i ; i < input.files.length; i++){

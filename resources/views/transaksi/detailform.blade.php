@@ -11,13 +11,14 @@
 					<a href="{{route('transaksi.formview',$kendaraan->id)}}" class="btn btn-block btn-success">Lanjut ke transaksi</a>
 				</div>
 				<hr class="featurette-divider">
-				<div class="row">
-					<div class="col-md-3">Manual</div>
-					<div class="col-md-3">Manual</div>
-					<div class="col-md-3">bensin</div>
-					<div class="col-md-3">1300cc</div>
-				</div>
-				<hr class="featurette-divider">
+				{{-- <div class="row">
+					<div class="col-md-3">Transmisi</div>
+					<div class="col-md-3">{{$kendaraan->transmisi}}</div>
+					<div class="col-md-3">Bahan bakar</div>	
+					<div class="col-md-3">{{$kendaraan->bahanbakars->nama_bahan_bakar}}</div>
+
+				</div> --}}
+				{{-- <hr class="featurette-divider"> --}}
 				<div id="accordion">
 					<div class="card">
 						<div class="card-header" id="headingOne">
@@ -32,69 +33,29 @@
 							<div class="card-body">
 								<table class="table">
 									<tr>
-										<th scope="row">Warna</td>
-											<td>Hitam</td>
-										</tr>
-										<tr>
-											<th scope="row">Pintu</td>
-												<td>5</td>
-											</tr>
-										</table>
-									</div>
-								</div>
+										<th scope="row">Transmisi</th>
+										<td>{{$kendaraan->transmisi}}</td>
+									</tr>
+									<tr>
+										<th scope="row">Bahan bakar</th>
+										<td>{{$kendaraan->bahanbakars->nama_bahan_bakar}}</td>
+									</tr>
+									<tr>
+										<th scope="row">Deskripsi</th>
+										<td>{{$kendaraan->deskripsi}}</td>
+									</tr>
+								</table>
 							</div>
-							<div class="card">
-								<div class="card-header" id="headingTwo">
-									<h5 class="mb-0">
-										<button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-											Interior
-										</button>
-									</h5>
-								</div>
-								<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
-									<div class="card-body">
-										<table class="table">
-											<tr>
-												<th scope="row">Airbag Pengemudi</td>
-													<td>Ya</td>
-												</tr>
-												<tr>
-													<th scope="row">Airbag Penumpang</td>
-														<td>Ya</td>
-													</tr>
-												</table>
-											</div>
-										</div>
-									</div>
-									<div class="card">
-										<div class="card-header" id="headingThree">
-											<h5 class="mb-0">
-												<button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-													Eksternal
-												</button>
-											</h5>
-										</div>
-										<div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
-											<div class="card-body">
-												<table class="table">
-													<tr>
-														<th scope="row">Lampu kabut</td>
-															<td>Ya</td>
-														</tr>
-														<tr>
-															<th scope="row">Lampu utama</td>
-																<td>Ya</td>
-															</tr>
-														</table>
-													</div>
-												</div>
-											</div>
+						</div>
+					</div>
+
+
 										</div>
 									</div>
 
 									<div class="col-md-4">
 										<div class="row row">
-											<div class="col-md-6"><h4>IPIP Corporation</h4>
+											<div class="col-md-6"><h4>{{$kendaraan->pemiliks->nama_depan}} RentCar</h4>
 												<hr class="featurette-divider">
 												<p class="text-warning">Pemilik terpercaya</p>
 												<p><small>Nusa dua badung denpasar</small>  </p>

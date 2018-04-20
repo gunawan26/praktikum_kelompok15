@@ -9,7 +9,7 @@ use Carbon\Carbon;
 use App\User;
 use Auth;
 use Storage;
-
+use App\Rules\checkKtpstatus;
 class TransaksiController extends Controller
 {
         //Return View detail mobil
@@ -22,13 +22,16 @@ class TransaksiController extends Controller
     }
 
         // return view transaksi
-    public function createtransaksi()
+    public function createtransaksi(kendaraan $kendaraan)
     {
         //
-        $foto =$this->getKtp();
+        
+       
+            $foto = auth::guard()->user()->ktp;
+       
 
        
-        return view('transaksi.transaksiform',compact('foto'));
+        return view('transaksi.transaksiform',compact('foto','kendaraan'));
     }
 
     
@@ -38,7 +41,8 @@ class TransaksiController extends Controller
         $foto_ktp = auth::guard()->user()->ktp;
         
         $file = Storage::disk('ktp')->exists($foto_ktp);
-        if($file) return $foto_ktp;
+        
+        return $file;
      
     }
     
@@ -46,32 +50,43 @@ class TransaksiController extends Controller
     {
         //
         $transaksi = new Transaksi;
+        $foto_ktp = auth::guard()->user()->ktp;
         //$user = new User;
         
        $checkKtp  = $this->getKtp();
-
-       if($checkKtp != 'null'){
-           $request->foto_ktp = $checkKtp;
-       }
-       
+       //    dd($checkKtp);
+    //    if($checkKtp == true){
+    //        $request['foto_ktp'] = $foto_ktp;
+    //    }
+        $tgl_sekarang = Carbon::now();
         $this->validate($request,[
 
-            'tgl_pesan' => 'required|date',
-            'tgl_rencanakembali' => 'required|date',
-            'foto_ktp' => 'required|image|mimes:jpeg,jpg,png,bmp',
+            'tgl_pesan' => 'required|date|after_or_equal:now',
+            'tgl_rencanakembali' => 'required|date|after:tgl_pesan',
+            'foto_ktp' => [new checkKtpstatus,'image','mimes:jpeg,jpg,png,bmp'],
 
 
         ]);
-        
-        if($checkKtp == 'null'){
-            
+  
+
+        // dd($request);
+        // if($request->tgl_pesan < $tgl_sekarang  && $request->tgl_pesan > $request->tgl_rencanakembali  ){
+
+        //     return "salah kentod";
+
+        // }
+
+
+
+        if($checkKtp == false){
+            $user = auth::guard()->user();
             $foto_ktp =time().$request->foto_ktp->getClientOriginalName();
             $request->foto_ktp->storeAs('public/gambar_ktp/user',$foto_ktp);
             //$request->gambar_kendaraan->storeAs('public/gambar_mobil',$gambar_kendaraan);
-            $user->foto_ktp = $foto_ktp;
+            $user->ktp = $foto_ktp;
             //$dir = public_path('storage/gambar_mobil/'.$foto_ktp);
             // Image::make($request->gambar_kendaraan)->resize(600,400)->save($dir);
-           
+
             $user->save();
         }
         $transaksi->id_kendaraan = $kendaraan->id;
@@ -81,7 +96,7 @@ class TransaksiController extends Controller
         $transaksi->tgl_rencanakembali = $request->tgl_rencanakembali;
         $transaksi->save();
         
-        return redirect()->route('pembayaran ???');
+        return redirect()->route('pembayaran.formview',$kendaraan->id);
         
     }
 

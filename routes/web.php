@@ -37,6 +37,8 @@ Route::group(['prefix'=>'pemilik','middleware'=> ['auth:web_pemiliks'] ],functio
 Route::get('home/kendaraan/detail/{kendaraan}', 'TransaksiController@index')->name('detail.formview');
 Route::group(['prefix' => 'home','middleware'=>['auth']], function () {
     
-    Route::get('home/kendaraan/detail/{kendaraan}/transaksi', 'TransaksiController@createtransaksi')->name('transaksi.formview');
-    
+    Route::get('kendaraan/detail/{kendaraan}/transaksi', 'TransaksiController@createtransaksi')->name('transaksi.formview');
+    Route::post('kendaraan/detail/{kendaraan}/transaksi','TransaksiController@storetransaksi')->name('transaksi.store');
+    Route::get('kendaraan/detail/{kendaraan}/pembayaran','PembayaranController@index')->name('pembayaran.formview');
+    Route::post('kendaraan/detail/{kendaraan}/pembayaran','PembayaranController@store')->name('pembayaran.store');
 });

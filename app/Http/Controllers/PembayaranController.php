@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Pembayaran;
 use Illuminate\Http\Request;
 use App\Transaksi;
+use App\kendaraan;
 class PembayaranController extends Controller
 {
     /**
@@ -12,10 +13,10 @@ class PembayaranController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(kendaraan $kendaraan)
     {
         //
-        return view('transaksi.pembayaran');
+        return view('transaksi.pembayaran',compact('kendaraan'));
     }
 
     /**
@@ -45,8 +46,6 @@ class PembayaranController extends Controller
              'tgl_pesan' => 'required|date',
              'tgl_rencanakembali' => 'required|date',
              'foto_ktp' => 'required|image|mimes:jpeg,jpg,png,bmp',
- 
- 
          ]);
          
         $pembayaran->id_transaksi = $transaksi->id;
