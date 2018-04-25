@@ -10,6 +10,7 @@ use App\User;
 use Auth;
 use Storage;
 use App\Rules\checkKtpstatus;
+use DB;
 class TransaksiController extends Controller
 {
         //Return View detail mobil
@@ -17,8 +18,56 @@ class TransaksiController extends Controller
     {
         //
 
-        
         return view('transaksi.detailform',compact('kendaraan'));
+    }
+
+    public function validasiTransaksi(){
+        $id = auth::guard()->user()->id;
+        //      select count(transaksis.id) from transaksis left join pembayarans on pembayarans.`id_transaksi` = transaksis.`id` where id_user = 2  and pembayarans.`id` is null or pembayarans.`id_status_validasi` = 1
+        $valid_Trans = DB::table('transaksis')
+                            ->leftJoin('pembayarans','pembayarans.id_transaksi','=','transaksis.id')
+                            ->where('id_user',$id)
+                            ->where(function($query){
+                                $query->whereNull('pembayarans.id')
+                                    ->orWhere('pembayarans.id_status_validasi',1);
+                            }) 
+                            ->get()->count();
+
+        if($valid_Trans > 5){
+            return "error transaksi maksimal hanya sampai 5";
+        }
+
+    }
+
+    public function validasiMobilTersedia($mobilId,Request $request){
+        //SELECT DISTINCT COUNT(id_kendaraan) 
+                        //FROM transaksis WHERE id_kendaraan = 12 
+                        //AND (tgl_pesan BETWEEN '2018-04-26' 
+                        //AND '2018-04-29' 
+                        //OR tgl_rencanakembali BETWEEN '2018-04-26' AND '2018-04-29')
+//$pesanTgl = strtotime($pesanTgl);
+                       //$kembaliTgl = strtotime($kembaliTgl);
+       
+        //Sdd($pesanTgl);
+        $pesanTgl = $request->tgl_pesan;
+        $kembaliTgl = $request->tgl_rencanakembali;
+        $mobil = DB::table('transaksis')
+            ->where('id_kendaraan',$mobilId)    
+            -> where(function ($query)use($pesanTgl,$kembaliTgl){
+                // $query  ->whereBetween('tgl_pesan',['2018-04-26','2018-04-29' ])
+                //         ->orWhereBetween('tgl_rencanakembali',['2018-04-26','2018-04-29']);
+
+                $query->whereBetween('tgl_pesan', [$pesanTgl,$kembaliTgl])
+                ->orWhereBetween('tgl_rencanakembali',[$pesanTgl,$kembaliTgl]);
+            })
+            ->get()->count();
+   
+            if($mobil ==  0 ){
+                return true;
+            }else{
+                return false;
+            }
+
     }
 
         // return view transaksi
@@ -30,7 +79,7 @@ class TransaksiController extends Controller
             $foto = auth::guard()->user()->ktp;
        
 
-       
+        //$this->validasiTransaksi();
         return view('transaksi.transaksiform',compact('foto','kendaraan'));
     }
 
@@ -46,7 +95,7 @@ class TransaksiController extends Controller
      
     }
     
-    public function storetransaksi(Request $request,kendaraan $kendaraan, user $user)
+    public function storetransaksi(Request $request,kendaraan $kendaraan,transaksi $transaksi)
     {
         //
         $transaksi = new Transaksi;
@@ -67,36 +116,35 @@ class TransaksiController extends Controller
 
 
         ]);
-  
-
-        // dd($request);
-        // if($request->tgl_pesan < $tgl_sekarang  && $request->tgl_pesan > $request->tgl_rencanakembali  ){
-
-        //     return "salah kentod";
-
-        // }
-
-
-
-        if($checkKtp == false){
-            $user = auth::guard()->user();
-            $foto_ktp =time().$request->foto_ktp->getClientOriginalName();
-            $request->foto_ktp->storeAs('public/gambar_ktp/user',$foto_ktp);
-            //$request->gambar_kendaraan->storeAs('public/gambar_mobil',$gambar_kendaraan);
-            $user->ktp = $foto_ktp;
-            //$dir = public_path('storage/gambar_mobil/'.$foto_ktp);
-            // Image::make($request->gambar_kendaraan)->resize(600,400)->save($dir);
-
-            $user->save();
-        }
-        $transaksi->id_kendaraan = $kendaraan->id;
-        $transaksi->id_user = auth::guard()->user()->id;
-        $transaksi->tgl_transaksi = Carbon::now();
-        $transaksi->tgl_pesan = $request->tgl_pesan;
-        $transaksi->tgl_rencanakembali = $request->tgl_rencanakembali;
-        $transaksi->save();
         
-        return redirect()->route('pembayaran.formview',$kendaraan->id);
+        $valid_tanggal =  $this->validasiMobilTersedia($kendaraan->id,$request);
+        //dd($valid_tanggal);
+        if($valid_tanggal){
+
+            if($checkKtp == false){
+                $user = auth::guard()->user();
+                $foto_ktp =time().$request->foto_ktp->getClientOriginalName();
+                $request->foto_ktp->storeAs('public/gambar_ktp/user',$foto_ktp);
+                $user->ktp = $foto_ktp;
+                $user->save();
+            }
+            $transaksi->id_kendaraan = $kendaraan->id;
+            $transaksi->id_user = auth::guard()->user()->id;
+            $transaksi->tgl_transaksi = Carbon::now();
+            $transaksi->tgl_pesan = $request->tgl_pesan;
+            $transaksi->tgl_rencanakembali = $request->tgl_rencanakembali;
+            $transaksi->save();
+    
+     
+         
+            
+            return view('transaksi.pembayaran',compact('kendaraan','transaksi')); 
+
+        }else{
+            return "mobil tidak tersedia";
+        }
+        
+
         
     }
 
@@ -141,6 +189,7 @@ class TransaksiController extends Controller
      * @param  \App\Transaksi  $transaksi
      * @return \Illuminate\Http\Response
      */
+    
     public function destroy(Transaksi $transaksi)
     {
         //
