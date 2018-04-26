@@ -134,7 +134,7 @@ input#textkendaraan2{
       <div class="col-md-3"></div>
       <div class="col-md-6">
         <div class="row justify-content-center" style="margin-top: 30px">
-        <a class="navbar-brand" href="{{ url('/menu') }}">
+        <a class="navbar-brand" href="{{ url('/') }}">
           <img  src="{{asset('img/logo.png')}}" alt="homepage')}}" class="dark-logo" style="" />
               </a>
         </div></div>
