@@ -11,9 +11,9 @@ class ValidasiPemilikController extends Controller
     public function __construct(){
 
     }
-
+    // melihat daftar pembayaran pada dashboard pemilik
     public function showDaftarPembayaran(){
-        $pemilikParam = $this->guard()->user()->id;
+        
         $pembayarans = DB::table('pembayaran')
                         ->join('transaksis','pembayarans.id_transaksi','=','transaksis.id')
                         ->join('kendaraans','transaksis.id_kendaraan','=','kendaraans.id')
@@ -26,8 +26,9 @@ class ValidasiPemilikController extends Controller
     }
 
 
-
+    //melihat detail pembayaran pada dashboard pemilik
     public function detailDaftarPembayaran($id_kendaraan){
+        $pemilikParam = $this->guard()->user()->id;
         $pembayaran_detail = DB::table('pembayaran')
         ->join('transaksis','pembayarans.id_transaksi','=','transaksis.id')
         ->join('kendaraans','transaksis.id_kendaraan','=','kendaraans.id')
@@ -40,7 +41,8 @@ class ValidasiPemilikController extends Controller
         return $pembayaran_detail;
 
     }
-
+    
+    //pemilik melakukan validasi pembayaran
     public function validate(Pembayaran $pembayaran){
        $pembayaran->id_status_validasi = 2;
        $pembayaran->save();

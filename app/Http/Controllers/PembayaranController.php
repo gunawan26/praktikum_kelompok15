@@ -6,6 +6,7 @@ use App\Pembayaran;
 use Illuminate\Http\Request;
 use App\Transaksi;
 use App\kendaraan;
+use DB;
 class PembayaranController extends Controller
 {
     /**
@@ -41,15 +42,24 @@ class PembayaranController extends Controller
     public function store(Request $request,kendaraan $kendaraan,Transaksi $transaksi)
     {
         //
-        $pembayaran = new Pembayaran;
+        $validasiPembayaran = DB::table('pembayarans')
+                            ->where('id_transaksi','=',$transaksi->id)
+                            ->get()->count();
+
+        if($validasiPembayaran == 0){
+            $pembayaran = new Pembayaran;
+            $not_valid = 1;
+            $pembayaran->id_transaksi = $transaksi->id;
+            $pembayaran->tanggal_bayar = NULL;
+            $pembayaran->tgl_batasbayar = $transaksi->tgl_transaksi->addDays(7);
+            $pembayaran->id_status_validasi = $not_valid;
+            $pembayaran->save();
+            return redirect()->route('pembayaran.checkout',[$kendaraan,$transaksi]);
 
 
-        $not_valid = 1;
-        $pembayaran->id_transaksi = $transaksi->id;
-        $pembayaran->tgl_batasbayar = $transaksi->tgl_transaksi->addDays(7);
-        $pembayaran->id_status_validasi = $not_valid;
-        $pembayaran->save();
-        return view('transaksi.checkout',compact($kendaraan,$transaksi));
+        }
+        return "silakan lanjut ke pembayaran";
+
 
     }
 
@@ -66,7 +76,7 @@ class PembayaranController extends Controller
         //
 
         //return redirect()->view('pembayaran.checkout')
-        return view('pembayaran.checkout',compact($pembayaran));
+        return view('transaksi.checkout',compact($pembayaran));
     }
 
     /**
@@ -121,6 +131,6 @@ class PembayaranController extends Controller
 
     }
     public function showDaftarBayarPemilik(){
-
+            
     }
 }

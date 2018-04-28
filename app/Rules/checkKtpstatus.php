@@ -29,7 +29,7 @@ class checkKtpstatus implements Rule
         $foto_ktp = auth::guard()->user()->ktp;
        
         if($foto_ktp == 'null'){
-            dd($value);
+          
             if (is_null($value)) {
                 return false;
             } elseif (is_string($value) && trim($value) === '') {

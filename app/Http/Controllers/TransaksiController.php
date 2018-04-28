@@ -45,8 +45,7 @@ class TransaksiController extends Controller
                         //AND (tgl_pesan BETWEEN '2018-04-26' 
                         //AND '2018-04-29' 
                         //OR tgl_rencanakembali BETWEEN '2018-04-26' AND '2018-04-29')
-//$pesanTgl = strtotime($pesanTgl);
-                       //$kembaliTgl = strtotime($kembaliTgl);
+
        
         //Sdd($pesanTgl);
         $pesanTgl = $request->tgl_pesan;
