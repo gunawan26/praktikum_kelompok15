@@ -49,7 +49,8 @@
                 <div class="container mt-4" style="width: 70%; height: 70px;background-color: #6E6E6E; padding-top: 10px; padding-bottom: 10px;" >
                   <div class="input-group" style="height: 50px;">
                    <input type="text" class="form-control" placeholder="Semua merk mobil" aria-label="" aria-describedby="basic-addon1">
-                   <input type="date" class="form-control" placeholder="Semua merk mobil" aria-label="" aria-describedby="basic-addon1">
+                   <input placeholder="Tanggal Sewa" type="text" class="form-control" onfocus="(this.type='date')" onblur="(this.type='text')" id="date">
+                 <input placeholder="Tanggal Kembali" type="text" class="form-control" onfocus="(this.type='date')" onblur="(this.type='text')" id="date">
                   <select class="custom-select" id="inputGroupSelect04" style="height: 50px;">
                     <option selected>Kabupaten</option>
                     <option value="1">Bandung</option>
