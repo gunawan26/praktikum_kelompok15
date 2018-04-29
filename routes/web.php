@@ -11,8 +11,8 @@
 |
 */
 
-Route::get('/', function () {
-    return view('Menu');
+Route::get('/a', function () {
+    return view('pemilik.dashboard.home');
 });
 
 Route::get('/', 'HomeController@index')->name('menu');
