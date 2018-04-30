@@ -29,5 +29,6 @@ class Validasipembayarantableseeder extends Seeder
             'status_validasi' =>'batal',
 
         ]);
+        //php artisan db:seed --class=UsersTableSeeder
     }
 }

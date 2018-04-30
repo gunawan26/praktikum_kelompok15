@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Input;
 use Image;
 use App\Jenis_bahanbakar;
 use App\provinsi;
+use DB;
 class KendaraanController extends Controller
 {
     
@@ -27,14 +28,64 @@ class KendaraanController extends Controller
         
 
     }
+
+    public function home(){
+        $pemilik = $this->pemilikId();
+        $transaksis = DB::table('transaksis')
+                    ->join('kendaraans','transaksis.id_kendaraan','=','kendaraans.id')
+                    ->join('pembayarans','transaksis.id','=','pembayarans.id_transaksi')
+                    ->where('kendaraans.id_pemilik',$pemilik)
+                    ->where('pembayarans.id_status_validasi',1)
+              
+                    ->get();
+        $jumlahTrans = DB::table('transaksis')
+                ->join('kendaraans','transaksis.id_kendaraan','=','kendaraans.id')
+                ->join('pembayarans','transaksis.id','=','pembayarans.id_transaksi')
+                ->where('kendaraans.id_pemilik',$pemilik)
+                ->where('pembayarans.id_status_validasi',1)
+                ->get()->count();
+
+        $totalTrans = DB::table('transaksis')
+                ->join('kendaraans','transaksis.id_kendaraan','=','kendaraans.id')
+                ->join('pembayarans','transaksis.id','=','pembayarans.id_transaksi')
+                ->where('kendaraans.id_pemilik',$pemilik)
+                ->get()->count();
+
+        $transSukses = DB::table('transaksis')
+                ->join('kendaraans','transaksis.id_kendaraan','=','kendaraans.id')
+                ->join('pembayarans','transaksis.id','=','pembayarans.id_transaksi')
+                ->where('kendaraans.id_pemilik',$pemilik)
+                ->where('pembayarans.id_status_validasi',2)
+                ->get()->count();
+
+        $transGagal =DB::table('transaksis')
+                ->join('kendaraans','transaksis.id_kendaraan','=','kendaraans.id')
+                ->join('pembayarans','transaksis.id','=','pembayarans.id_transaksi')
+                ->where('kendaraans.id_pemilik',$pemilik)
+                ->where('pembayarans.id_status_validasi',3)
+                ->get()->count();
+
+     
+
+        
+        return view('pemilik.dashboard.home',compact('transaksis','jumlahTrans','totalTrans','transSukses','transGagal'));
+    }
     
     public function index()
     {
         $pemilik = Auth::guard('web_pemiliks')->user()->id; 
         $kendaraans = kendaraan::where([['id_pemilik',$pemilik],['id_status','<>','3'],])->get();
 
-        return view('pemilik.kendaraan.dashboard',compact('kendaraans'));
+        return view('pemilik.dashboard.kendaraan',compact('kendaraans'));
     }
+
+
+
+    public function riwayat(){
+
+        return view('pemilik.dashboard.riwayat');
+    }
+
 
     /**
      * Show the form for creating a new resource.
@@ -49,7 +100,7 @@ class KendaraanController extends Controller
         $kabupatenkotas = kabupatenkota::all();
         $bahanbakars = jenis_bahanbakar::all();
 
-        return view('pemilik.kendaraan.register',compact('kabupatenkotas','kategoris','bahanbakars')); 
+        return view('pemilik.dashboard.tambahkendaraan',compact('kabupatenkotas','kategoris','bahanbakars')); 
     }
 
     /**
@@ -135,7 +186,7 @@ class KendaraanController extends Controller
         // dd($pemilik);
         if($kendaraan->id_pemilik == $pemilik ){
 
-            return view('pemilik.kendaraan.edit',compact('kabupatenkotas','kategoris','kendaraan','bahanbakars'));
+            return view('pemilik.dashboard.editkendaraan',compact('kabupatenkotas','kategoris','kendaraan','bahanbakars'));
         }else{
             return 'you dont have acess';
         }
@@ -237,6 +288,12 @@ class KendaraanController extends Controller
         $kendaraan->id_status = '3';
         $kendaraan->save();
         return redirect()->route('kendaraan.index');
+    }
+
+    protected function pemilikId(){
+        $pemilik = Auth::guard('web_pemiliks')->user()->id; 
+
+        return $pemilik;
     }
 
 

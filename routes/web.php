@@ -14,6 +14,9 @@
 Route::get('/a', function () {
     return view('pemilik.dashboard.home');
 });
+Route::get('/b', function () {
+    return view('pemilik.dashboard.kendaraan');
+});
 
 Route::get('/', 'HomeController@index')->name('menu');
 
@@ -28,9 +31,11 @@ Route::post('pemilik/register','RegisterpemilikController@register');
 Route::post('pemilik/logout','LoginPemilikController@logout'); 
 
 Route::group(['prefix'=>'pemilik','middleware'=> ['auth:web_pemiliks'] ],function(){
+    Route::get('dashboard/home','KendaraanController@home')->name('dashboard.home');
+    Route::get('dashboard/riwayat','KendaraanController@riwayat')->name('dashboard.riwayat');
 
-    Route::patch('kendaraan/hapus/{kendaraan}','KendaraanController@hapus')->name('kendaraan.hapus');
-    Route::resource('kendaraan', 'KendaraanController');    
+    Route::patch('dashboard/hapus/{kendaraan}','KendaraanController@hapus')->name('dashboard.hapus');
+    Route::resource('dashboard', 'KendaraanController');    
     
 });
 

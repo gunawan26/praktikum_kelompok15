@@ -29,7 +29,7 @@
                         <a href="{{route('kendaraan.edit',$kendaraan->id)}}" class="btn btn-primary" role="button">edit kendaraan</a>
                         
 
-                        <form method="post" action="{{route('kendaraan.hapus',$kendaraan->id)}}">
+                        <form method="post" action="{{route('dashboard.hapus',$kendaraan->id)}}">
                             @csrf
                             @method('patch')
                             <button type="submit" class="btn btn-danger">hapus</button>
