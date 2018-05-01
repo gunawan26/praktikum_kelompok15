@@ -25,8 +25,18 @@
       <nav class="navbar navbar-dark navbar-expand-lg">
         <ul class=" navbar-nav col-md-2">
           <a class="navbar-brand" href="index.html"><img src="{{asset('img/logo.png')}}" class="img-fluid" alt="logo"></a> </ul>
-
-          <ul class=" navbar-nav col-md-7">
+          <ul class="navbar-nav col-md-2">
+      <li class="nav-item active">
+        <a class="nav-link text-success" href="#">HOME <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link text-secondary" href="#">PARTNER</a>
+      </li>
+      <li class="nav-item ">
+        <a class="nav-link text-secondary" href="#">ABOUT</a>
+      </li>
+    </ul>
+          <ul class=" navbar-nav col-md-5">
             
           </ul>
           <ul class="navbar-nav col-md-1"></ul>
