@@ -25,7 +25,7 @@
 
       <nav class="navbar navbar-dark navbar-expand-lg">
         <ul class=" navbar-nav col-md-2">
-<<<<<<< HEAD
+
           <a class="navbar-brand" href="index.html"><img src="{{asset('img/logo.png')}}" class="img-fluid" alt="logo"></a> </ul>
           <ul class="navbar-nav col-md-2">
       <li class="nav-item active">
@@ -57,68 +57,7 @@
    <!-- End Nav Menu -->
 
 
-   <header class="bg-gradient" id="home">
-                <div class="container mt-4" style="width: 70%; height: 70px;background-color: #6E6E6E; padding-top: 10px; padding-bottom: 10px;" >
-                  <div class="input-group" style="height: 50px;">
-                   <input type="text" class="form-control" placeholder="Semua merk mobil" aria-label="" aria-describedby="basic-addon1">
-                   <input placeholder="Tanggal Sewa" type="text" class="form-control" onfocus="(this.type='date')" onblur="(this.type='text')" id="date">
-                 <input placeholder="Tanggal Kembali" type="text" class="form-control" onfocus="(this.type='date')" onblur="(this.type='text')" id="date">
-                  <select class="custom-select" id="inputGroupSelect04" style="height: 50px;">
-                    <option selected>Kabupaten</option>
-                    <option value="1">Bandung</option>
-                    <option value="2">Buleleng</option>
-                    <option value="3">Karangasem</option>
-                  </select>
-                  <div class="input-group-append" >
-                    <button class="btn btn-success" type="button">Cari</button>
-                  </div>
-                </div>
-              </div>
-
-              <div class="container mt-4">
-                <h1 class="text-secondary">Website Rentcar Terbaik Di indonesia </h1>
-                <p class="tagline text-secondary">Sewa aman, jalan aman</p>
-              </div>
-
-            </header>
   
-=======
-          <a class="navbar-brand" href="index.html">
-            <img src="{{asset('img/logo.png')}}" class="img-fluid" alt="logo">
-          </a>
-        </ul>
-        <ul class="navbar-nav col-md-2">
-          <li class="nav-item active">
-            <a class="nav-link text-success" href="#">HOME
-              <span class="sr-only">(current)</span>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link text-secondary" href="#">PARTNER</a>
-          </li>
-          <li class="nav-item ">
-            <a class="nav-link text-secondary" href="#">ABOUT</a>
-          </li>
-        </ul>
-        <ul class=" navbar-nav col-md-5">
-
-        </ul>
-        <ul class="navbar-nav col-md-1"></ul>
-        <ul class="navbar-nav col-md-2">
-          <li>
-            <a href="#" class="btn btn-link-success my-3 my-sm-0 ml-lg-3" role="button" aria-pressed="true">Daftar</a>
-          </li>
-          <li>
-            <a href="#" class="btn btn-outline-success my-3 my-sm-0 ml-lg-3" role="button" aria-pressed="true">Masuk</a>
-          </li>
-
-        </ul>
-
-      </nav>
-
-    </div>
-  </div>
-  <!-- End Nav Menu -->
 
 
   <header class="bg-gradient" id="home">
@@ -152,23 +91,12 @@
         <p class="tagline text-secondary">Sewa aman, jalan aman</p>
         <hr class="featurette-divider">
       </div>
-
+  </form>
+  
   </header>
 
 
-
-
-
-
-
-
-
-  </form>
-
-
->>>>>>> 9a287fc4a279625750053c5f4fa92b9fe03093e1
-
-
+  
 
 
   <main>
