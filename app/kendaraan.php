@@ -41,6 +41,7 @@ class kendaraan extends Model
         return $this->belongsTo(kategori::class,'id_kategori');
     }
 
+
     public function namakabupaten(){
         return $this->belongsTo(kabupatenkota::class,'id_kabupatenkota');
     }

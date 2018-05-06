@@ -135,16 +135,7 @@
 
                 <div class="form-group row">
                     <label for="gambar_kendaraan" class="col-md-4 col-form-label text-md-right">{{ __('foto kendaraan') }}</label>
-                    {{-- <div class="col-md-6">
-                        <img src="{{asset('storage/gambar_mobil/'.$kendaraan->gambar_kendaraan)}}" alt="gambar" class="img-thumbnail" style="max-width:200px">      
-                        <input type="file" class="form-control-file" id="gambar_kendaraan" aria-describedby="fileHelp">
-                        
-                        @if($errors->has('gambar_kendaraan'))
-                            <small id="fileHelp" class="form-text text-muted">error</small>
 
-                        @endif
-                        
-                    </div> --}}
                     <div class="col-md-6">
                           <img src="{{asset('storage/gambar_mobil/'.$kendaraan->gambar_kendaraan)}}" alt="gambar" class="img-thumbnail" style="max-width:200px">   
                         <input id="gambar_kendaraan" type="file" class="form-control{{ $errors->has('gambar_kendaraan') ? ' is-invalid' : '' }}" name="gambar_kendaraan"  value="{{ $kendaraan->gambar_kendaraan }}">

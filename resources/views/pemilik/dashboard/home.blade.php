@@ -97,6 +97,7 @@
                               $kembali = strtotime($transaksi->tgl_rencanakembali);
                               $diff =$kembali - $pesan;
                               $total_biaya = (intval($diff)/(60*60*24))*$transaksi->harga_sewa;
+                              $t = count($transaksis);
                             @endphp
            
 
@@ -114,7 +115,7 @@
                               </td>
                             </tr>    
                           @endforeach
-                          
+                            
                         </tbody>
                       </table>
                     </div>
