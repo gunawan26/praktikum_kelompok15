@@ -1,11 +1,17 @@
-@extends('layouts.app')
+@extends('layouts.layouttransaksi')
 
 @section('content')
 
     <div class="container">
-      
-
-
+      <div class="row justify-content-center"> 
+<div class="col-md-8">
+            <div class="card">
+                <div class="card-header" style="text-align: center;background-color:#28a745"><h4 style="color: #fff">Transaksi</h4></div>
+<div class="card-body">
+  <p class="font-weight-bold">Nama mobil</p>
+  <p>{{$kendaraan->nama_kendaraan}}</p>
+  <p class="font-weight-bold">Harga</p>
+  <p>Rp.{{$kendaraan->harga_sewa}} / hari</p>
           <form method="post" enctype="multipart/form-data" action="{{route('transaksi.store',$kendaraan->id)}}">
             @csrf
 
@@ -22,7 +28,8 @@
               <div id="previewImage"></div>
             </div>
             
-
+<p class="font-weight-bold">Total harga :</p>
+  
                   
           
             
@@ -33,7 +40,7 @@
             @else
           
             @endif
-            <button type="submit">Submit</button>
+            <button class="btn btn-success btn-block" type="submit">Sewa</button>
 
           </form>
 
@@ -45,7 +52,8 @@
 
 
     </div>
-    
+  </div>
+  </div> </div> 
     
 @endsection
 

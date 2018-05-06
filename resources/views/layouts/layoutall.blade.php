@@ -41,9 +41,9 @@
           </ul>
           <ul class="navbar-nav col-md-1"></ul>
           <ul class="navbar-nav col-md-2">
-            <li><a href="#" class="btn btn-link-success my-3 my-sm-0 ml-lg-3" role="button" aria-pressed="true">Daftar</a></li>
+            <button type="button" class="btn btn-outline-secondary" data-toggle="modal" data-target="#Daftar">Daftar</button></li>
             <li>
-             <a href="#" class="btn btn-outline-success my-3 my-sm-0 ml-lg-3" role="button" aria-pressed="true">Masuk</a>
+             <button type="button" class="btn btn-outline-success my-3 my-sm-0 ml-lg-3" data-toggle="modal" data-target="#Masuk">Masuk</button>
            </li>
 
          </ul> 
@@ -76,7 +76,6 @@
               <div class="container mt-4">
                 <h1 class="text-secondary">Website Rentcar Terbaik Di indonesia </h1>
                 <p class="tagline text-secondary">Sewa aman, jalan aman</p>
-                <hr class="featurette-divider">
               </div>
 
             </header>
@@ -107,10 +106,48 @@
     </small>
   </footer>
 
+<!-- Modal Daftar -->
+<div class="modal fade" id="Daftar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Daftar</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body text-center">
+        <div class="btn-group btn-group-lg " role="group" aria-label="Basic example">
+  <a href="{{ url('/pemilik/register') }}" class="btn btn-primary" > Pemilik</a>
+  <a href="{{ url('/register') }}" class="btn btn-success" > Penyewa</a>
+</div>
+      </div>
+    </div>
+  </div>
+</div>
 
+<!-- Modal Masuk -->
+<div class="modal fade" id="Masuk" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Login</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body text-center">
+        <div class="btn-group btn-group-lg " role="group" aria-label="Basic example">
+  <a href="{{ url('/pemilik/login') }}" class="btn btn-primary" > Pemilik</a>
+  <a href="{{ url('/login') }}" class="btn btn-success" > Penyewa</a>
+</div>
+      </div>
+    </div>
+  </div>
+</div>
 
   <!-- Scripts -->
- '' <script src="{{ asset('js/jquery-3.2.1.min.js') }}"></script>''
+  <script src="{{ asset('js/jquery-3.2.1.min.js') }}"></script>
   <script src="{{ asset('js/bootstrap.bundle.min.js') }}"></script>
   <script src="{{ asset('js/script.js') }}"></script>
   <script src="{{ asset('js/app.js') }}"></script>

@@ -7,7 +7,7 @@
 			<img src="{{asset('storage/gambar_mobil/'.$kendaraan->gambar_kendaraan)}}" width="500">
 			<div class="row">
 				<div class="col-md-6"><h3>{{$kendaraan->nama_kendaraan}}</h3>
-					<p class="text-warning"><strong>Rp 10.000.000</strong></p></div>
+					<p class="text-warning"><strong>Rp.{{$kendaraan->harga_sewa}} / hari</strong></p></div>
 					<a href="{{route('transaksi.formview',$kendaraan->id)}}" class="btn btn-block btn-success">Lanjut ke transaksi</a>
 				</div>
 				<hr class="featurette-divider">
