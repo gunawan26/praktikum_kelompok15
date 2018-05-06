@@ -52,7 +52,7 @@
                     <h5 class="sidenav-heading">Menu</h5>
                     <ul id="side-main-menu" class="side-menu list-unstyled">                  
                       <li><a href="{{route('dashboard.home')}}"> <i class="icon-home"></i>Home                             </a></li>
-                      <li><a href="{{route('dashboard.index')}}"> <i class="icon-form"></i>Kendaraan                             </a></li>
+                      <li><a href="{{route('kendaraan.index')}}"> <i class="icon-form"></i>Kendaraan                             </a></li>
                       <li><a href="{{route('dashboard.riwayat')}}"> <i class="icon-grid"></i>Riwayat Transaksi                             </a></li>
                       <li><a href="#exampledropdownDropdown" aria-expanded="false" data-toggle="collapse"> <i class="icon-interface-windows"></i>Dropdown</a>
                         <ul id="exampledropdownDropdown" class="collapse list-unstyled ">

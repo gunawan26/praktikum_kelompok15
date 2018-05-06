@@ -14,6 +14,7 @@ use Image;
 use App\Jenis_bahanbakar;
 use App\provinsi;
 use DB;
+use DateTime;
 class KendaraanController extends Controller
 {
     
@@ -36,34 +37,34 @@ class KendaraanController extends Controller
                     ->join('pembayarans','transaksis.id','=','pembayarans.id_transaksi')
                     ->where('kendaraans.id_pemilik',$pemilik)
                     ->where('pembayarans.id_status_validasi',1)
-              
+                
                     ->get();
         $jumlahTrans = DB::table('transaksis')
-                ->join('kendaraans','transaksis.id_kendaraan','=','kendaraans.id')
-                ->join('pembayarans','transaksis.id','=','pembayarans.id_transaksi')
-                ->where('kendaraans.id_pemilik',$pemilik)
-                ->where('pembayarans.id_status_validasi',1)
-                ->get()->count();
+                    ->join('kendaraans','transaksis.id_kendaraan','=','kendaraans.id')
+                    ->join('pembayarans','transaksis.id','=','pembayarans.id_transaksi')
+                    ->where('kendaraans.id_pemilik',$pemilik)
+                    ->where('pembayarans.id_status_validasi',1)
+                    ->get()->count();
 
         $totalTrans = DB::table('transaksis')
-                ->join('kendaraans','transaksis.id_kendaraan','=','kendaraans.id')
-                ->join('pembayarans','transaksis.id','=','pembayarans.id_transaksi')
-                ->where('kendaraans.id_pemilik',$pemilik)
-                ->get()->count();
+                    ->join('kendaraans','transaksis.id_kendaraan','=','kendaraans.id')
+                    ->join('pembayarans','transaksis.id','=','pembayarans.id_transaksi')
+                    ->where('kendaraans.id_pemilik',$pemilik)
+                    ->get()->count();
 
         $transSukses = DB::table('transaksis')
-                ->join('kendaraans','transaksis.id_kendaraan','=','kendaraans.id')
-                ->join('pembayarans','transaksis.id','=','pembayarans.id_transaksi')
-                ->where('kendaraans.id_pemilik',$pemilik)
-                ->where('pembayarans.id_status_validasi',2)
-                ->get()->count();
+                    ->join('kendaraans','transaksis.id_kendaraan','=','kendaraans.id')
+                    ->join('pembayarans','transaksis.id','=','pembayarans.id_transaksi')
+                    ->where('kendaraans.id_pemilik',$pemilik)
+                    ->where('pembayarans.id_status_validasi',2)
+                    ->get()->count();
 
         $transGagal =DB::table('transaksis')
-                ->join('kendaraans','transaksis.id_kendaraan','=','kendaraans.id')
-                ->join('pembayarans','transaksis.id','=','pembayarans.id_transaksi')
-                ->where('kendaraans.id_pemilik',$pemilik)
-                ->where('pembayarans.id_status_validasi',3)
-                ->get()->count();
+                    ->join('kendaraans','transaksis.id_kendaraan','=','kendaraans.id')
+                    ->join('pembayarans','transaksis.id','=','pembayarans.id_transaksi')
+                    ->where('kendaraans.id_pemilik',$pemilik)
+                    ->where('pembayarans.id_status_validasi',3)
+                    ->get()->count();
 
      
 
@@ -82,8 +83,18 @@ class KendaraanController extends Controller
 
 
     public function riwayat(){
+        $now = new DateTime();
+        
+        $riwayats = DB::table('transaksis')
+        ->join('kendaraans','transaksis.id_kendaraan','=','kendaraans.id')
+        ->join('pembayarans','transaksis.id','=','pembayarans.id_transaksi')
+        ->join('validasipembayarans','pembayarans.id_status_validasi','=','validasipembayarans.id')
+        ->where('transaksis.tgl_pesan','<',$now)
 
-        return view('pemilik.dashboard.riwayat');
+        ->orderBy('pembayarans.id')
+        ->get();
+      
+        return view('pemilik.dashboard.riwayat',compact('riwayats'));
     }
 
 
@@ -113,7 +124,7 @@ class KendaraanController extends Controller
     public function store(Request $request)
     {
         $kendaraan = new kendaraan;
-
+        
        $this->validate($request,[
         
             'nama_kendaraan'=>'required|string|max:100',
@@ -122,7 +133,7 @@ class KendaraanController extends Controller
             'harga_sewa'=>'required',
             'id_kategori'=>'required',
             'id_kabupatenkota'=>'required',
-            'id_status'=>'required', 
+         
             'warna_kendaraan' => 'required',
             'gambar_kendaraan' => 'required|image|mimes:jpeg,jpg,png,bmp',
             'foto_stnk' => 'required|image|mimes:jpeg,jpg,png,bmp',
@@ -144,7 +155,7 @@ class KendaraanController extends Controller
         $kendaraan->harga_sewa = $request->harga_sewa;
         $kendaraan->id_kategori = $request->id_kategori;
         $kendaraan->id_kabupatenkota = $request->id_kabupatenkota;
-        $kendaraan->id_status = $request->id_status;
+        $kendaraan->id_status = 1;
         $kendaraan->gambar_kendaraan =$gambar_kendaraan;
         $kendaraan->foto_stnk =$foto_stnk;
         $kendaraan->transmisi = $request->transmisi;
@@ -188,7 +199,7 @@ class KendaraanController extends Controller
 
             return view('pemilik.dashboard.editkendaraan',compact('kabupatenkotas','kategoris','kendaraan','bahanbakars'));
         }else{
-            return 'you dont have acess';
+            return abort(403, 'Unauthorized action.');
         }
         
     }
@@ -202,7 +213,8 @@ class KendaraanController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, kendaraan $kendaraan)
-    {
+    {   
+       // dd($request);
         $this->validate($request,[
          
              'nama_kendaraan'=>'required|string|max:100',
@@ -213,8 +225,9 @@ class KendaraanController extends Controller
              'id_kabupatenkota'=>'required',
              'id_status'=>'required', 
              'warna_kendaraan' => 'required',
-             'gambar_kendaraan' => 'image|mimes:jpeg,jpg,png,bmp',
-             'foto_stnk' => 'image|mimes:jpeg,jpg,png,bmp',
+             'gambar_kendaraan' => 'sometimes|image|mimes:jpeg,jpg,png,bmp',
+             
+             'foto_stnk' => 'sometimes|image|mimes:jpeg,jpg,png,bmp',
              'transmisi' =>'required',
              'id_bahan_bakar' => 'required',
          ]);

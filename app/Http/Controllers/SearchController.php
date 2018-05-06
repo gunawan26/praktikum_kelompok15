@@ -24,7 +24,7 @@ class SearchController extends Controller
                     })->where(function($q){
                         $q->whereBetween('tgl_pesan', [$pesanTgl,$kembaliTgl])
                         ->orWhereBetween('tgl_rencanakembali',[$pesanTgl,$kembaliTgl]);
-                    })->get();
+                    })->paginate(15);
                     
         return view('home',compact('kendaraans'));
 

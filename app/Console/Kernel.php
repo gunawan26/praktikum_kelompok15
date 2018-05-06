@@ -13,6 +13,7 @@ class Kernel extends ConsoleKernel
      * @var array
      */
     protected $commands = [
+        'App\Console\Commands\UpdateStatusPembayaran',
         //
     ];
 
@@ -24,6 +25,7 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
+        $schedule->command('UpdateStatusPembayaran:updatepembayarans')->everyMinute();
         // $schedule->command('inspire')
         //          ->hourly();
     }
