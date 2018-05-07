@@ -91,6 +91,20 @@
                             </div>
                         </div>
 
+                        <div class="form-group row">
+                            <label for="ktp" class="col-md-4 col-form-label text-md-right">{{ __('Ktp') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="Ktp" type="file" class="form-control{{ $errors->has('Ktp') ? ' is-invalid' : '' }}" name="no_telp" value="{{ old('Ktp') }}" required autofocus>
+
+                                @if ($errors->has('ktp'))
+                                    <span class="invalid-feedback">
+                                        <strong>{{ $errors->first('ktp') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
 
                         <div class="form-group row">
                             <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>

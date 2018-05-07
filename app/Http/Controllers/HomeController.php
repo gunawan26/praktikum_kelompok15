@@ -33,8 +33,18 @@ class HomeController extends Controller
         ->join('provinsis','kabupatenkotas.provinsi_id','=','provinsis.id')
         ->select('kendaraans.*','kabupatenkotas.nama_kabupaten','provinsis.nama_provinsi')
         ->where('id_status','1')
-        ->paginate(15);
+        ->get();
+
+        //pagenation
+        $kendaraans = DB::table('kendaraans')
+        ->join('kabupatenkotas','kendaraans.id_kabupatenkota','=','kabupatenkotas.id')
+        ->join('provinsis','kabupatenkotas.provinsi_id','=','provinsis.id')
+        ->select('kendaraans.*','kabupatenkotas.nama_kabupaten','provinsis.nama_provinsi')
+        ->where('id_status','1')
+        ->paginate(5);
+       
         return view('Menu',compact('kendaraans','kabupatens'));
+
     }
 
 

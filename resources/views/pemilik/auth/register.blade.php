@@ -1,13 +1,16 @@
-@extends('pemilik.layout')
+@extends('layouts.loginlayout')
 
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
+                 <p>Sudah punya Akun pemilik ? Masuk <a href="{{ url('pemilik/login') }}">di sini</a></p>
+            </div>
+    <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Register') }}</div>
+                <div class="card-header" style="text-align: center;background-color:#28a745"><h4 style="color: #fff">{{ __('Register') }}</div>
 
-                <div class="card-body">
+                <div class="card-body" >
                     <form method="POST" action="{{ url('/pemilik/register') }}">
                         @csrf
 
@@ -71,7 +74,7 @@
                             <label for="ktp" class="col-md-4 col-form-label text-md-right">{{ __('ktp') }}</label>
 
                             <div class="col-md-6">
-                                <input id="ktp" type="text" class="form-control{{ $errors->has('ktp') ? ' is-invalid' : '' }}" name="ktp" value="{{ old('ktp') }}" required autofocus>
+                                <input id="ktp" type="file" class="form-control{{ $errors->has('ktp') ? ' is-invalid' : '' }}" name="ktp" value="{{ old('ktp') }}" required autofocus>
 
                                 @if ($errors->has('ktp'))
                                     <span class="invalid-feedback">
@@ -123,7 +126,7 @@
 
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
+                                <button type="submit" class="btn btn-success">
                                     {{ __('Register') }}
                                 </button>
                             </div>

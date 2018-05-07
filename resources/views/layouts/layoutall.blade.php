@@ -25,42 +25,39 @@
 
       <nav class="navbar navbar-dark navbar-expand-lg">
         <ul class=" navbar-nav col-md-2">
-          <a class="navbar-brand" href="index.html">
-            <img src="{{asset('img/logo.png')}}" class="img-fluid" alt="logo">
-          </a>
-        </ul>
-        <ul class="navbar-nav col-md-2">
-          <li class="nav-item active">
-            <a class="nav-link text-success" href="#">HOME
-              <span class="sr-only">(current)</span>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link text-secondary" href="#">PARTNER</a>
-          </li>
-          <li class="nav-item ">
-            <a class="nav-link text-secondary" href="#">ABOUT</a>
-          </li>
-        </ul>
-        <ul class=" navbar-nav col-md-5">
 
-        </ul>
-        <ul class="navbar-nav col-md-1"></ul>
-        <ul class="navbar-nav col-md-2">
-          <li>
-            <a href="#" class="btn btn-link-success my-3 my-sm-0 ml-lg-3" role="button" aria-pressed="true">Daftar</a>
-          </li>
-          <li>
-            <a href="#" class="btn btn-outline-success my-3 my-sm-0 ml-lg-3" role="button" aria-pressed="true">Masuk</a>
-          </li>
+          <a class="navbar-brand" href="index.html"><img src="{{asset('img/logo.png')}}" class="img-fluid" alt="logo"></a> </ul>
+          <ul class="navbar-nav col-md-2">
+      <li class="nav-item active">
+        <a class="nav-link text-success" href="#">HOME <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link text-secondary" href="#">PARTNER</a>
+      </li>
+      <li class="nav-item ">
+        <a class="nav-link text-secondary" href="#">ABOUT</a>
+      </li>
+    </ul>
+          <ul class=" navbar-nav col-md-5">
+            
+          </ul>
+          <ul class="navbar-nav col-md-1"></ul>
+          <ul class="navbar-nav col-md-2">
+            <button type="button" class="btn btn-outline-secondary" data-toggle="modal" data-target="#Daftar">Daftar</button></li>
+            <li>
+             <button type="button" class="btn btn-outline-success my-3 my-sm-0 ml-lg-3" data-toggle="modal" data-target="#Masuk">Masuk</button>
+           </li>
 
-        </ul>
+         </ul> 
 
-      </nav>
+       </nav>
 
-    </div>
-  </div>
-  <!-- End Nav Menu -->
+     </div>
+   </div>
+   <!-- End Nav Menu -->
+
+
+  
 
 
   <header class="bg-gradient" id="home">
@@ -94,22 +91,12 @@
         <p class="tagline text-secondary">Sewa aman, jalan aman</p>
         <hr class="featurette-divider">
       </div>
-
+  </form>
+  
   </header>
 
 
-
-
-
-
-
-
-
-  </form>
-
-
-
-
+  
 
 
   <main>
@@ -137,7 +124,45 @@
     </small>
   </footer>
 
+<!-- Modal Daftar -->
+<div class="modal fade" id="Daftar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Daftar</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body text-center">
+        <div class="btn-group btn-group-lg " role="group" aria-label="Basic example">
+  <a href="{{ url('/pemilik/register') }}" class="btn btn-primary" > Pemilik</a>
+  <a href="{{ url('/register') }}" class="btn btn-success" > Penyewa</a>
+</div>
+      </div>
+    </div>
+  </div>
+</div>
 
+<!-- Modal Masuk -->
+<div class="modal fade" id="Masuk" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Login</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body text-center">
+        <div class="btn-group btn-group-lg " role="group" aria-label="Basic example">
+  <a href="{{ url('/pemilik/login') }}" class="btn btn-primary" > Pemilik</a>
+  <a href="{{ url('/login') }}" class="btn btn-success" > Penyewa</a>
+</div>
+      </div>
+    </div>
+  </div>
+</div>
 
   <!-- Scripts -->
   <script src="{{ asset('js/jquery-3.2.1.min.js') }}"></script>
