@@ -70,9 +70,9 @@
         <div class="input-group" style="height: 50px;">
           <input type="text" class="form-control" placeholder="Semua merk mobil" aria-label="" aria-describedby="basic-addon1" name="nama_kendaraan" id="nama_kendaraan">
           <input placeholder="Tanggal Sewa" type="text" class="form-control" onfocus="(this.type='date')" onblur="(this.type='text')"
-            id="date" name="tgl_pesan">
+            id="tgl_pesan" name="tgl_pesan" value="">
           <input placeholder="Tanggal Kembali" type="text" class="form-control" onfocus="(this.type='date')" onblur="(this.type='text')"
-            id="date" name="tgl_kembali">
+            id="tgl_kembali" name="tgl_kembali" value="">
          
           
           <select class="custom-select" id="" style="height: 50px;">
@@ -149,13 +149,22 @@
       $('#submit_search').click(function(event){
 
         $value=$('#nama_kendaraan').val();
+        $tgl_pesan_val = $('#tgl_pesan').val();
+        $tgl_kembali_val = $('#tgl_kembali').val();
         $.ajax({
 
           type:'get',
           url:'{{URL::to('home/search')}}',
-          data:{'nama_kendaraan':$value},
+          data:{'nama_kendaraan':$value,
+                'tgl_pesan':$tgl_pesan_val,
+                'tgl_kembali':$tgl_kembali_val
+          
+          
+          },
           success:function(data){
-            console.log(data);
+            $('.kendaraan-list').html(data);
+            
+            console.log(data);  
           }
 
 

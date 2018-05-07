@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\kendaraan;
 use DB;
 use App\kabupatenkota;
+use Illuminate\Support\Facades\Validator;
 class HomeController extends Controller
 {
     /**
@@ -46,40 +47,84 @@ class HomeController extends Controller
     }
     public function searchAjax(Request $request){
 
-        if($request->ajax()){
-           
-        
-        $this->validate($request,[
+            $validator = Validator::make($request->all(),[
 
-            'nama_kendaraan' => 'sometimes|string|max:30',
-            'tgl_pesan' => 'sometimes|date|after_or_equal:now|required_with:tgl_kembali',
-            'tgl_kembali' => 'sometimes|date|after:tgl_pesan|required_with:tgl_pesan',
-        ]);
-        
-       
-        $pesanTgl = $request->tgl_pesan;
-        $kembaliTgl = $request->tgl_kembali;
-        $kendaraans =  DB::table('kendaraans')
-                    ->leftJoin('transaksis as t1','kendaraans.id','=','t1.id_kendaraan')
-                    ->where('kendaraans.nama_kendaraan','like','%'.$request->nama_kendaraan.'%')
-       
-                    ->whereNotExists(function($query)use($pesanTgl,$kembaliTgl){
+                'tgl_pesan' => 'nullable|required_with:tgl_kembali|date',
+                'tgl_kembali' => 'nullable||required_with:tgl_pesan|date',
+                'nama_kendaraan' => 'nullable|string|max:50',
+    
+    
+            ]);
+            if ($validator->fails())
+            {
+                return response()->json(['errors'=>$validator->errors()->all()]);
+            }
+            
+            
+    
+           if(!$request->tgl_pesan){
+    
+                $kendaraans = DB::table('kendaraans')
+                            ->join('kabupatenkotas','kendaraans.id_kabupatenkota','=','kabupatenkotas.id')
+                            ->join('provinsis','kabupatenkotas.provinsi_id','=','provinsis.id')
+                            ->where('kendaraans.nama_kendaraan','like','%'.$request->nama_kendaraan.'%')
+                            ->select('kendaraans.*','kabupatenkotas.*','provinsis.*')
+                            ->get();
+    
+                
+           }else{
+                $pesanTgl = $request->tgl_pesan;
+                $kembaliTgl = $request->tgl_kembali;
+                $kendaraans =  DB::table('kendaraans')
+                        ->join('kabupatenkotas','kendaraans.id_kabupatenkota','=','kabupatenkotas.id')
+                        ->join('provinsis','kabupatenkotas.provinsi_id','=','provinsis.id')
+                        ->leftJoin('transaksis as t1','kendaraans.id','=','t1.id_kendaraan')
+                        ->where('kendaraans.nama_kendaraan','like','%'.$request->nama_kendaraan.'%')
                         
-                        $query->select('*')
-                            ->from('transaksis as t2')
-                            ->where('t2.id','=','t1.id')
-                            ->where(function($q)use($pesanTgl,$kembaliTgl){
-                                $q->whereBetween('t2.tgl_pesan', [$pesanTgl,$kembaliTgl])
-                                ->orWhereBetween('t2.tgl_rencanakembali',[$pesanTgl,$kembaliTgl]);
-                            });
-                    
-                    })->pluck('kendaraans.id');
+                        ->whereNotExists(function($query)use($pesanTgl,$kembaliTgl){
+                            
+                            $query->select('*')
+                                ->groupBy('kendaraans.id')
+                                ->from('transaksis as t2')
+                                ->where('t2.id','=','t1.id')
+                                ->where('t2.tgl_pesan','<',$kembaliTgl)
+                                ->orWhereNull('t2.tgl_pesan')
+                                ->where('t2.tgl_rencanakembali','<',$kembaliTgl)
+                                ->orWhereNull('t2.tgl_rencanakembali')
+                                ->where(function($q)use($pesanTgl,$kembaliTgl){
+                                    $q->whereBetween('t2.tgl_pesan', [$pesanTgl,$kembaliTgl])
+                                    ->orWhereBetween('t2.tgl_rencanakembali',[$pesanTgl,$kembaliTgl]);
+                                });
+                        
+                        })->select('kendaraans.*','kabupatenkotas.*','provinsis.*')
+                        ->get();
+               // dd($kendaraans);
+                
+                       
+                
+          
+           }
+         
+           $returnHtml = view('pemilik.dashboard.ajax.result',compact('kendaraans'));
+           return (String) $returnHtml;
+        
+            
+           
 
-                   return response($kendaraans);
+
+
+
+
+
+
+
+
+
+
       
-        }else{
-            redirect('/home');
-        }
+
+        
+
 
 
 

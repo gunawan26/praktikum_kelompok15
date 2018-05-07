@@ -7,7 +7,7 @@
       
   <div class="container">
       <hr class="featurette-divider">
-      <div class="row">
+      <div class="row kendaraan-list">
         @foreach ($kendaraans as $kendaraan)
         <div class="col-md-3">
           
