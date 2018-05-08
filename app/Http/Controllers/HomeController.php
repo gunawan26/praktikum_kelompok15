@@ -56,7 +56,7 @@ class HomeController extends Controller
 
     }
     public function searchAjax(Request $request){
-
+        if($request->ajax()){
             $validator = Validator::make($request->all(),[
 
                 'tgl_pesan' => 'nullable|required_with:tgl_kembali|date',
@@ -72,7 +72,7 @@ class HomeController extends Controller
             
             
     
-           if(!$request->tgl_pesan){
+           if(!$request->tgl_pesan || !$request->tgl_kembali){
     
                 $kendaraans = DB::table('kendaraans')
                             ->join('kabupatenkotas','kendaraans.id_kabupatenkota','=','kabupatenkotas.id')
@@ -108,53 +108,15 @@ class HomeController extends Controller
                         
                         })->select('kendaraans.*','kabupatenkotas.*','provinsis.*')
                         ->get();
-               // dd($kendaraans);
-                
-                       
-                
-          
-           }
-         
+           } 
            $returnHtml = view('pemilik.dashboard.ajax.result',compact('kendaraans'));
            return (String) $returnHtml;
-        
-            
-           
-
-
-
-
-
-
-
-
-
-
-
-      
-
-        
-
-
-
-
-
         }
-        
-
-
-    public function s(Request $request){
-      
-            $kendaraans =  DB::table('kendaraans')
-                    ->leftJoin('transaksis as t1','kendaraans.id','=','t1.id_kendaraan')
-                    // ->where('kendaraans.nama_kendaraan','like','%'.$request->nama_kendaraan.'%')
-                   ->get();
-   
-
-      
-            return response($kendaraans);
-        
     }
+        
+
+
+
 /*
 SELECT DISTINCT 
   * 

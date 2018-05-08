@@ -24,40 +24,62 @@
     <div class="container">
 
       <nav class="navbar navbar-dark navbar-expand-lg">
-        <ul class=" navbar-nav col-md-2">
+        <ul class="navbar-nav mr-auto">
+          <a class="navbar-brand" href="index.html">
+            <img src="{{asset('img/logo.png')}}" class="img-fluid" alt="logo">
+          </a>
+          <li class="nav-item active">
+            <a class="nav-link text-success" href="#">HOME
+              <span class="sr-only">(current)</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-secondary" href="#">PARTNER</a>
+          </li>
+          <li class="nav-item ">
+            <a class="nav-link text-secondary" href="#">ABOUT</a>
+          </li>
+        </ul>
+        <ul class="navbar-nav">
+          @guest
 
-          <a class="navbar-brand" href="index.html"><img src="{{asset('img/logo.png')}}" class="img-fluid" alt="logo"></a> </ul>
-          <ul class="navbar-nav col-md-2">
-      <li class="nav-item active">
-        <a class="nav-link text-success" href="#">HOME <span class="sr-only">(current)</span></a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link text-secondary" href="#">PARTNER</a>
-      </li>
-      <li class="nav-item ">
-        <a class="nav-link text-secondary" href="#">ABOUT</a>
-      </li>
-    </ul>
-          <ul class=" navbar-nav col-md-5">
+
+          <li>
+          <button type="button" class="btn btn-outline-secondary" data-toggle="modal" data-target="#Daftar">Daftar</button>
+          </li>
+          <li>
+            <button type="button" class="btn btn-outline-success my-3 my-sm-0 ml-lg-3" data-toggle="modal" data-target="#Masuk">Masuk</button>
+          </li>
+          @else
+          <li class="nav-item">
+            <div class="nav-link text-secondary">
+                Welcome {{Auth::user()->nama_depan}}
+            </div>
             
-          </ul>
-          <ul class="navbar-nav col-md-1"></ul>
-          <ul class="navbar-nav col-md-2">
-            <button type="button" class="btn btn-outline-secondary" data-toggle="modal" data-target="#Daftar">Daftar</button></li>
-            <li>
-             <button type="button" class="btn btn-outline-success my-3 my-sm-0 ml-lg-3" data-toggle="modal" data-target="#Masuk">Masuk</button>
-           </li>
-
-         </ul> 
-
-       </nav>
-
-     </div>
-   </div>
-   <!-- End Nav Menu -->
+          </li>
+          <li class="nav-item">
+            <form action="{{route('logout')}}" method="post" class="nav-link">
+              @csrf
 
 
-  
+              <button type="submit" class="btn btn-outline-success my-3 my-sm-0" >Logout</button>
+         
+            </form>
+              
+          </li>
+
+
+          @endguest
+        </ul>
+
+      </nav>
+
+    </div>
+  </div>
+  <!-- End Nav Menu -->
+
+
+
 
 
   <header class="bg-gradient" id="home">
@@ -65,13 +87,14 @@
       @csrf
       <div class="container mt-4" style="width: 70%; height: 70px;background-color: #6E6E6E; padding-top: 10px; padding-bottom: 10px;">
         <div class="input-group" style="height: 50px;">
-          <input type="text" class="form-control" placeholder="Semua merk mobil" aria-label="" aria-describedby="basic-addon1" name="nama_kendaraan" id="nama_kendaraan">
+          <input type="text" class="form-control" placeholder="Semua merk mobil" aria-label="" aria-describedby="basic-addon1" name="nama_kendaraan"
+            id="nama_kendaraan">
           <input placeholder="Tanggal Sewa" type="text" class="form-control" onfocus="(this.type='date')" onblur="(this.type='text')"
             id="tgl_pesan" name="tgl_pesan" value="">
           <input placeholder="Tanggal Kembali" type="text" class="form-control" onfocus="(this.type='date')" onblur="(this.type='text')"
             id="tgl_kembali" name="tgl_kembali" value="">
-         
-          
+
+
           <select class="custom-select" id="" style="height: 50px;">
             @foreach ($kabupatens as $kabupaten)
             <option selected value="{{$kabupaten->id}}">{{$kabupaten->nama_kabupaten}}</option>
@@ -80,23 +103,23 @@
 
           </select>
           <div class="input-group-append">
-           <div class="btn btn-success"  id="submit_search">Cari</div>
-           
+            <div class="btn btn-success" id="submit_search">Cari</div>
+
           </div>
         </div>
       </div>
     </form>
-      <div class="container mt-4">
-        <h1 class="text-secondary">Website Rentcar Terbaik Di indonesia </h1>
-        <p class="tagline text-secondary">Sewa aman, jalan aman</p>
-        <hr class="featurette-divider">
-      </div>
-  </form>
-  
+    <div class="container mt-4">
+      <h1 class="text-secondary">Website Rentcar Terbaik Di indonesia </h1>
+      <p class="tagline text-secondary">Sewa aman, jalan aman</p>
+      <hr class="featurette-divider">
+    </div>
+    </form>
+
   </header>
 
 
-  
+
 
 
   <main>
@@ -124,45 +147,45 @@
     </small>
   </footer>
 
-<!-- Modal Daftar -->
-<div class="modal fade" id="Daftar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Daftar</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body text-center">
-        <div class="btn-group btn-group-lg " role="group" aria-label="Basic example">
-  <a href="{{ url('/pemilik/register') }}" class="btn btn-primary" > Pemilik</a>
-  <a href="{{ url('/register') }}" class="btn btn-success" > Penyewa</a>
-</div>
+  <!-- Modal Daftar -->
+  <div class="modal fade" id="Daftar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Daftar</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body text-center">
+          <div class="btn-group btn-group-lg " role="group" aria-label="Basic example">
+            <a href="{{ url('/pemilik/register') }}" class="btn btn-primary"> Pemilik</a>
+            <a href="{{ url('/register') }}" class="btn btn-success"> Penyewa</a>
+          </div>
+        </div>
       </div>
     </div>
   </div>
-</div>
 
-<!-- Modal Masuk -->
-<div class="modal fade" id="Masuk" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Login</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body text-center">
-        <div class="btn-group btn-group-lg " role="group" aria-label="Basic example">
-  <a href="{{ url('/pemilik/login') }}" class="btn btn-primary" > Pemilik</a>
-  <a href="{{ url('/login') }}" class="btn btn-success" > Penyewa</a>
-</div>
+  <!-- Modal Masuk -->
+  <div class="modal fade" id="Masuk" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Login</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body text-center">
+          <div class="btn-group btn-group-lg " role="group" aria-label="Basic example">
+            <a href="{{ url('/pemilik/login') }}" class="btn btn-primary"> Pemilik</a>
+            <a href="{{ url('/login') }}" class="btn btn-success"> Penyewa</a>
+          </div>
+        </div>
       </div>
     </div>
   </div>
-</div>
 
   <!-- Scripts -->
   <script src="{{ asset('js/jquery-3.2.1.min.js') }}"></script>
@@ -170,32 +193,36 @@
   <script src="{{ asset('js/script.js') }}"></script>
   <script src="{{ asset('js/app.js') }}"></script>
   <script type="text/javascript">
+    $('#submit_search').click(function (event) {
 
-      $('#submit_search').click(function(event){
+      $value = $('#nama_kendaraan').val();
+      $tgl_pesan_val = $('#tgl_pesan').val();
+      $tgl_kembali_val = $('#tgl_kembali').val();
+      $.ajax({
 
-        $value=$('#nama_kendaraan').val();
-        $tgl_pesan_val = $('#tgl_pesan').val();
-        $tgl_kembali_val = $('#tgl_kembali').val();
-        $.ajax({
+        type: 'get',
+        url: '{{URL::to('
+        home / search ')}}',
+        data: {
+          'nama_kendaraan': $value,
+          'tgl_pesan': $tgl_pesan_val,
+          'tgl_kembali': $tgl_kembali_val
 
-          type:'get',
-          url:'{{URL::to('home/search')}}',
-          data:{'nama_kendaraan':$value,
-                'tgl_pesan':$tgl_pesan_val,
-                'tgl_kembali':$tgl_kembali_val
-          
-          
-          },
-          success:function(data){
-            $('.kendaraan-list').html(data);
-            
-            console.log(data);  
-          }
+
+        },
+        success: function (data) {
 
 
 
+          $('.kendaraan-list').html(data);
 
-        });
+          console.log(data);
+        }
+
+
+
+
+      });
       //  $.ajax({
       //    type   :'get',
       //    url    :'home/search',
@@ -207,21 +234,20 @@
       //  });
 
       // $.get("{{URL::to('home/search')}}",function(data){
- 
+
       //   console.log(data);
 
       // });
 
 
-      });
-  
-  
-  
-  
+    });
   </script>
   <script>
-    
-    $.ajaxSetup({ headers: { 'csrftoken' : '{{ csrf_token() }}' } });
+    $.ajaxSetup({
+      headers: {
+        'csrftoken': '{{ csrf_token() }}'
+      }
+    });
   </script>
 
 </body>
