@@ -42,5 +42,5 @@ Route::group(['prefix' => 'home','middleware'=>['auth']], function () {
     Route::post('kendaraan/detail/{kendaraan}/transaksi','TransaksiController@storetransaksi')->name('transaksi.store');
     Route::get('kendaraan/detail/{kendaraan}/pembayaran/{transaksi}','PembayaranController@index')->name('pembayaran.formview');
     Route::post('kendaraan/detail/{kendaraan}/pembayaran/{transaksi}','PembayaranController@store')->name('pembayaran.store');
-    Route::get('kendaraan/detail/{kendaraan}/pembayaran/{transaksi}/checkout','PembayaranController@show')->name('pembayaran.checkout');
+    Route::get('kendaraan/detail/{kendaraan}/pembayaran/{transaksi}/checkout/{pembayaran}','PembayaranController@show')->name('pembayaran.checkout');
 });

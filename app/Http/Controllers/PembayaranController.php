@@ -6,6 +6,7 @@ use App\Pembayaran;
 use Illuminate\Http\Request;
 use App\Transaksi;
 use App\kendaraan;
+use Carbon\carbon;
 use DB;
 class PembayaranController extends Controller
 {
@@ -39,7 +40,7 @@ class PembayaranController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request,kendaraan $kendaraan,Transaksi $transaksi)
+    public function store(Request $request,kendaraan $kendaraan,Transaksi $transaksi,Pembayaran $pembayaran)
     {
         //
         $validasiPembayaran = DB::table('pembayarans')
@@ -54,7 +55,7 @@ class PembayaranController extends Controller
             $pembayaran->tgl_batasbayar = $transaksi->tgl_transaksi->addDays(7);
             $pembayaran->id_status_validasi = $not_valid;
             $pembayaran->save();
-            return redirect()->route('pembayaran.checkout',[$kendaraan,$transaksi]);
+            return redirect()->route('pembayaran.checkout',[$kendaraan,$transaksi,$pembayaran]);
 
 
         }
@@ -71,12 +72,21 @@ class PembayaranController extends Controller
      */
 
      
-    public function show(Pembayaran $pembayaran)
+    public function show(kendaraan $kendaraan,Transaksi $transaksi,Pembayaran $pembayaran)
     {
         //
+        //dd($pembayaran->id);
+        $tanggal_sekarang = carbon::now();
 
+
+        $tanggal_bts_bayar = $pembayaran->tgl_batasbayar;
+        $conv_tgl_bts_bayar = strtotime($tanggal_bts_bayar);
+        $conv_tanggal_skrng = Carbon::parse($tanggal_bts_bayar);
         //return redirect()->view('pembayaran.checkout')
-        return view('transaksi.checkout',compact($pembayaran));
+        $sisa_waktu = $tanggal_sekarang->diffInSeconds($conv_tanggal_skrng);
+       //    dd($sisa_waktu);
+  
+        return view('transaksi.checkout',compact('pembayaran','sisa_waktu'));
     }
 
     /**

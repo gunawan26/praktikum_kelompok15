@@ -76,7 +76,7 @@
 
 @section('custom-js')
     <script>
-
+        var batas_bayar = JSON.parse("{{ json_encode($sisa_waktu) }}");
         var one_day=1000*60*60*24;
 
         function getTimeRemaining(endtime) {
@@ -117,8 +117,8 @@
             updateClock();
             var timeinterval = setInterval(updateClock, 1000);
             }
-
-            var deadline = new Date(Date.parse(new Date()) + 15 * 24 * 60 * 60 * 1000);
+            console.log(batas_bayar);
+            var deadline = new Date(Date.parse(new Date()) + batas_bayar * 1000);
             initializeClock('clockdiv', deadline);
                 
     
