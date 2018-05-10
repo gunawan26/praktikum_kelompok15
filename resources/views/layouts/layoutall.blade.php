@@ -12,9 +12,10 @@
   <title>Rentcar</title>
 
   <!-- Styles -->
+  <link rel="stylesheet" href="{{asset('css/font-awesome.min.css')}}">
   <link href="{{ asset('css/app.css') }}" rel="stylesheet">
   <link href="{{ asset('css/bootstrap.css') }}" rel="stylesheet">
-  <link href="{{ asset('css/style.css') }}" rel="stylesheet">
+  <link href="{{ asset('css/style.css') }}" rel="stylesheet"> @yield('custom-css')
 </head>
 
 <body data-spy="scroll" data-target="#navbar" data-offset="30">
@@ -62,7 +63,7 @@
               @csrf
 
 
-              <button type="submit" class="btn btn-outline-success my-3 my-sm-0" >Logout</button>
+              <button type="submit" class="btn btn-outline-success my-3 my-sm-0">Logout</button>
          
             </form>
               
@@ -124,6 +125,7 @@
 
   <main>
     @yield('content')
+    
   </main>
   <div class="client-logos mt-5">
     <div class="container text-center">
@@ -223,21 +225,7 @@
 
 
       });
-      //  $.ajax({
-      //    type   :'get',
-      //    url    :'home/search',
-      //    data:'',
-      //          success:function(data){
-      //           console.log($data)
-      //          }
 
-      //  });
-
-      // $.get("{{URL::to('home/search')}}",function(data){
-
-      //   console.log(data);
-
-      // });
 
 
     });

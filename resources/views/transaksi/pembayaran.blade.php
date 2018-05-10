@@ -8,7 +8,7 @@
     <h2>pilih metode pembayaran</h2>
 
 
-    <form action="{{route('pembayaran.store',['kendaraan' => $kendaraan,'transaksi'=>$transaksi])}}" method="POST">
+    <form action="{{route('pembayaran.store',[$kendaraan,$transaksi])}}" method="POST">
         @CSRF
         <button type="submit">Cash On Delivery</button>
     </form>
