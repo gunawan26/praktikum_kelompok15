@@ -22,38 +22,63 @@
   <body data-spy="scroll" data-target="#navbar" data-offset="30">
    <!-- Nav Menu -->
 
-   <div class="nav-menu fixed-top">
+  <div class="nav-menu fixed-top">
     <div class="container">
 
       <nav class="navbar navbar-dark navbar-expand-lg">
-        <ul class=" navbar-nav col-md-2">
-          <a class="navbar-brand" href="index.html"><img src="{{asset('img/logo.png')}}" class="img-fluid" alt="logo"></a> </ul>
+        <ul class="navbar-nav mr-auto">
+          <a class="navbar-brand" href="index.html">
+            <img src="{{asset('img/logo.png')}}" class="img-fluid" alt="logo">
+          </a>
+          <li class="nav-item active">
+            <a class="nav-link text-success" href="#">HOME
+              <span class="sr-only">(current)</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-secondary" href="#">PARTNER</a>
+          </li>
+          <li class="nav-item ">
+            <a class="nav-link text-secondary" href="#">ABOUT</a>
+          </li>
+        </ul>
+        <ul class="navbar-nav">
+          @guest
 
-          <ul class=" navbar-nav col-md-7">
-            <li class="nav-item active">
-        <a class="nav-link text-secondary" href="#">HOME <span class="sr-only">(current)</span></a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link text-secondary" href="#">PARTNER</a>
-      </li>
-      <li class="nav-item ">
-        <a class="nav-link text-secondary" href="#">ABOUT</a>
-      </li>
-          </ul>
-          <ul class="navbar-nav col-md-1"></ul>
-          <ul class="navbar-nav col-md-2">
-            <li><a href="{{ url('/register') }}" class="btn btn-link-success my-3 my-sm-0 ml-lg-3" role="button" aria-pressed="true">Daftar</a></li>
-            <li>
-             <a href="{{ url('/login') }}" class="btn btn-outline-success my-3 my-sm-0 ml-lg-3" role="button" aria-pressed="true">Masuk</a>
-           </li>
 
-         </ul> 
+          <li>
+          <button type="button" class="btn btn-outline-secondary" data-toggle="modal" data-target="#Daftar">Daftar</button>
+          </li>
+          <li>
+            <button type="button" class="btn btn-outline-success my-3 my-sm-0 ml-lg-3" data-toggle="modal" data-target="#Masuk">Masuk</button>
+          </li>
+          @else
+          <li class="nav-item">
+            <div class="nav-link text-secondary">
+                Welcome {{Auth::user()->nama_depan}}
+            </div>
+            
+          </li>
+          <li class="nav-item">
+            <form action="{{route('logout')}}" method="post" class="nav-link">
+              @csrf
 
-       </nav>
 
-     </div>
-   </div>
-   <!-- End Nav Menu -->
+              <button type="submit" class="btn btn-outline-success my-3 my-sm-0" >Logout</button>
+         
+            </form>
+              
+          </li>
+
+
+          @endguest
+        </ul>
+
+      </nav>
+
+    </div>
+  </div>
+  <!-- End Nav Menu -->
 
 
    <header class="bg-gradient" id="home">

@@ -86,7 +86,6 @@
     <div class="container mt-4">
       <h1 class="text-secondary">Website Rentcar Terbaik Di indonesia </h1>
       <p class="tagline text-secondary">Sewa aman, jalan aman</p>
-      <button class="btn btn-success">Daftar</button>
       <hr class="featurette-divider">
     </div>
 
