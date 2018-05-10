@@ -16,6 +16,7 @@
   <link href="{{ asset('css/bootstrap.css') }}" rel="stylesheet">
   <link href="{{ asset('css/style.css') }}" rel="stylesheet">
   <link href="{{ asset('css/fontawesome.css') }}" rel="stylesheet">
+  <link href="{{ asset('css/font-awesome.min.css') }}" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> @yield('custom-css')
 </head>
 
@@ -44,11 +45,28 @@
         </ul>
         <ul class="navbar-nav">
           @guest
-          <li>
-            <a href="{{ url('/register') }}" class="btn btn-link-success my-3 my-sm-0 ml-lg-3" role="button" aria-pressed="true">Daftar</a>
+            <li class="dropdown">
+          <button type="button" class="btn btn-outline-secondary dropdown"   id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Daftar</button>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <div class="card">
+  <div class="card-body">
+    <div class="btn-group " role="group" aria-label="Basic example">
+            <a href="{{ url('/pemilik/register') }}" class="btn btn-primary "> Pemilik</a>
+            <a href="{{ url('/register') }}" class="btn btn-success "> Penyewa</a>
+          </div></div></div>
+  </div>
           </li>
-          <li>
-            <a href="{{ url('/login') }}" class="btn btn-outline-success my-3 my-sm-0 ml-lg-3" role="button" aria-pressed="true">Masuk</a>
+          
+          <li class="dropdown ml-lg-3">
+          <button type="button" class="btn btn-outline-success dropdown"   id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Masuk</button>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <div class="card">
+  <div class="card-body">
+           <div class="btn-group " role="group" aria-label="Basic example">
+            <a href="{{ url('/pemilik/login') }}" class="btn btn-primary "> Pemilik</a>
+            <a href="{{ url('/login') }}" class="btn btn-success "> Penyewa</a>
+          </div></div></div>
+  </div>
           </li>
 
           @else

@@ -174,3 +174,12 @@ background: linear-gradient(90deg, rgba(218,218,218,1) 0%, rgba(255,255,255,1) 5
     }
 }
 
+
+.dropdown:hover>.dropdown-menu {
+  display: block;
+}
+
+.dropdown>.dropdown:active {
+  /*Without this, clicking will make it sticky*/
+    pointer-events: none;
+}

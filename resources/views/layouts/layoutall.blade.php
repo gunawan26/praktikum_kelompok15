@@ -44,11 +44,28 @@
           @guest
 
 
-          <li>
-          <button type="button" class="btn btn-outline-secondary" data-toggle="modal" data-target="#Daftar">Daftar</button>
+          <li class="dropdown">
+          <button type="button" class="btn btn-outline-secondary dropdown"   id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Daftar</button>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <div class="card">
+  <div class="card-body">
+    <div class="btn-group " role="group" aria-label="Basic example">
+            <a href="{{ url('/pemilik/register') }}" class="btn btn-primary "> Pemilik</a>
+            <a href="{{ url('/register') }}" class="btn btn-success "> Penyewa</a>
+          </div></div></div>
+  </div>
           </li>
-          <li>
-            <button type="button" class="btn btn-outline-success my-3 my-sm-0 ml-lg-3" data-toggle="modal" data-target="#Masuk">Masuk</button>
+          
+          <li class="dropdown ml-lg-3">
+          <button type="button" class="btn btn-outline-success dropdown"   id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Masuk</button>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <div class="card">
+  <div class="card-body">
+           <div class="btn-group " role="group" aria-label="Basic example">
+            <a href="{{ url('/pemilik/login') }}" class="btn btn-primary "> Pemilik</a>
+            <a href="{{ url('/login') }}" class="btn btn-success "> Penyewa</a>
+          </div></div></div>
+  </div>
           </li>
           @else
           <li class="nav-item">
@@ -188,10 +205,10 @@
   </div>
 
   <!-- Scripts -->
-  <script src="{{ asset('js/jquery-3.2.1.min.js') }}"></script>
-  <script src="{{ asset('js/bootstrap.bundle.min.js') }}"></script>
-  <script src="{{ asset('js/script.js') }}"></script>
-  <script src="{{ asset('js/app.js') }}"></script>
+  <script type="text/javascript" src="{{ asset('js/jquery-3.2.1.min.js') }}"></script>
+  <script type="text/javascript" src="{{ asset('js/bootstrap.min.js') }}"></script>
+  <script type="text/javascript" src="{{ asset('js/script.js') }}"></script>
+  
   <script type="text/javascript">
     $('#submit_search').click(function (event) {
 
