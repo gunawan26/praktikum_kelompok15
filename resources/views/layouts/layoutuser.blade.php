@@ -15,7 +15,17 @@
   <link rel="stylesheet" href="{{asset('css/font-awesome.min.css')}}">
   <link href="{{ asset('css/app.css') }}" rel="stylesheet">
   <link href="{{ asset('css/bootstrap.css') }}" rel="stylesheet">
-  <link href="{{ asset('css/style.css') }}" rel="stylesheet"> @yield('custom-css')
+  <link href="{{ asset('css/style.css') }}" rel="stylesheet">
+  <style>
+  
+  header{
+      padding: 73px 0 0 !important;
+  }
+  
+  
+  
+  </style>
+  @yield('custom-css')
 </head>
 
 <body data-spy="scroll" data-target="#navbar" data-offset="30">
@@ -45,28 +55,11 @@
           @guest
 
 
-          <li class="dropdown">
-          <button type="button" class="btn btn-outline-secondary dropdown"   id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Daftar</button>
-          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-            <div class="card">
-  <div class="card-body">
-    <div class="btn-group " role="group" aria-label="Basic example">
-            <a href="{{ url('/pemilik/register') }}" class="btn btn-primary "> Pemilik</a>
-            <a href="{{ url('/register') }}" class="btn btn-success "> Penyewa</a>
-          </div></div></div>
-  </div>
+          <li>
+          <button type="button" class="btn btn-outline-secondary" data-toggle="modal" data-target="#Daftar">Daftar</button>
           </li>
-          
-          <li class="dropdown ml-lg-3">
-          <button type="button" class="btn btn-outline-success dropdown"   id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Masuk</button>
-          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-            <div class="card">
-  <div class="card-body">
-           <div class="btn-group " role="group" aria-label="Basic example">
-            <a href="{{ url('/pemilik/login') }}" class="btn btn-primary "> Pemilik</a>
-            <a href="{{ url('/login') }}" class="btn btn-success "> Penyewa</a>
-          </div></div></div>
-  </div>
+          <li>
+            <button type="button" class="btn btn-outline-success my-3 my-sm-0 ml-lg-3" data-toggle="modal" data-target="#Masuk">Masuk</button>
           </li>
           @else
           <li class="nav-item">
@@ -80,7 +73,7 @@
               @csrf
 
 
-              <button type="submit" class="btn btn-outline-success my-3 my-sm-0">Logout</button>
+              <button type="submit" class="btn btn-outline-success my-3 my-sm-0" >Logout</button>
          
             </form>
               
@@ -100,39 +93,13 @@
 
 
 
-  <header class="bg-gradient" id="home">
-    <form method="get" action="{{route('home.search')}}" id="form_search">
-      @csrf
-      <div class="container mt-4" style="width: 70%; height: 70px;background-color: #6E6E6E; padding-top: 10px; padding-bottom: 10px;">
-        <div class="input-group" style="height: 50px;">
-          <input type="text" class="form-control" placeholder="Semua merk mobil" aria-label="" aria-describedby="basic-addon1" name="nama_kendaraan"
-            id="nama_kendaraan">
-          <input placeholder="Tanggal Sewa" type="text" class="form-control" onfocus="(this.type='date')" onblur="(this.type='text')"
-            id="tgl_pesan" name="tgl_pesan" value="">
-          <input placeholder="Tanggal Kembali" type="text" class="form-control" onfocus="(this.type='date')" onblur="(this.type='text')"
-            id="tgl_kembali" name="tgl_kembali" value="">
+  <header class="bg-gradient" id="home" >
 
-
-          <select class="custom-select" id="" style="height: 50px;">
-            @foreach ($kabupatens as $kabupaten)
-            <option selected value="{{$kabupaten->id}}">{{$kabupaten->nama_kabupaten}}</option>
-
-            @endforeach
-
-          </select>
-          <div class="input-group-append">
-            <div class="btn btn-success" id="submit_search">Cari</div>
-
-          </div>
-        </div>
-      </div>
-    </form>
     <div class="container mt-4">
-      <h1 class="text-secondary">Website Rentcar Terbaik Di indonesia </h1>
-      <p class="tagline text-secondary">Sewa aman, jalan aman</p>
-      <hr class="featurette-divider">
+     
+     
     </div>
-    </form>
+
 
   </header>
 
@@ -207,10 +174,10 @@
   </div>
 
   <!-- Scripts -->
-  <script type="text/javascript" src="{{ asset('js/jquery-3.2.1.min.js') }}"></script>
-  <script type="text/javascript" src="{{ asset('js/bootstrap.min.js') }}"></script>
-  <script type="text/javascript" src="{{ asset('js/script.js') }}"></script>
-  
+  <script src="{{ asset('js/jquery-3.2.1.min.js') }}"></script>
+  <script src="{{ asset('js/bootstrap.bundle.min.js') }}"></script>
+  <script src="{{ asset('js/script.js') }}"></script>
+  <script src="{{ asset('js/app.js') }}"></script>
   <script type="text/javascript">
     $('#submit_search').click(function (event) {
 
