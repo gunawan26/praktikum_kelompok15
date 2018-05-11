@@ -12,7 +12,9 @@
 */
 
 
-
+Route::get('/baru',function(){
+    return view('user.editakun');
+});
 Route::get('/', 'HomeController@index')->name('menu');
 
 Auth::routes();
@@ -43,4 +45,11 @@ Route::group(['prefix' => 'home','middleware'=>['auth']], function () {
     Route::get('kendaraan/detail/{kendaraan}/pembayaran/{transaksi}','PembayaranController@index')->name('pembayaran.formview');
     Route::post('kendaraan/detail/{kendaraan}/pembayaran/{transaksi}','PembayaranController@store')->name('pembayaran.store');
     Route::get('kendaraan/detail/{kendaraan}/pembayaran/{transaksi}/checkout/{pembayaran}','PembayaranController@show')->name('pembayaran.checkout');
+});
+
+Route::group(['prefix' => 'user'], function () {
+    Route::get('transaksi','UserController@transaksi')->name('user.transaksi');
+    Route::get('transaksi/baru','UserController@transBaru')->name('user.transaksiBaru');
+    Route::get('pembayaran','UserController@pembayaran')->name('user.pembayaran');
+    Route::get('edit','UserController@editakun')->name('user.edit');
 });

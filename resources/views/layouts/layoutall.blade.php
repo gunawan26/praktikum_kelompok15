@@ -15,7 +15,8 @@
   <link rel="stylesheet" href="{{asset('css/font-awesome.min.css')}}">
   <link href="{{ asset('css/app.css') }}" rel="stylesheet">
   <link href="{{ asset('css/bootstrap.css') }}" rel="stylesheet">
-  <link href="{{ asset('css/style.css') }}" rel="stylesheet"> @yield('custom-css')
+  <link href="{{ asset('css/style.css') }}" rel="stylesheet"> 
+  @yield('custom-css')
 </head>
 
 <body data-spy="scroll" data-target="#navbar" data-offset="30">
