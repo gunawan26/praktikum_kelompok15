@@ -15,6 +15,9 @@ use App\Jenis_bahanbakar;
 use App\provinsi;
 use DB;
 use DateTime;
+use Carbon\Carbon;
+use App\Pembayaran;
+
 class KendaraanController extends Controller
 {
     
@@ -32,13 +35,22 @@ class KendaraanController extends Controller
 
     public function home(){
         $pemilik = $this->pemilikId();
-        $transaksis = DB::table('transaksis')
-                    ->join('kendaraans','transaksis.id_kendaraan','=','kendaraans.id')
-                    ->join('pembayarans','transaksis.id','=','pembayarans.id_transaksi')
-                    ->where('kendaraans.id_pemilik',$pemilik)
-                    ->where('pembayarans.id_status_validasi',1)
+        // $transaksis = DB::table('transaksis')
+        //             ->join('kendaraans','transaksis.id_kendaraan','=','kendaraans.id')
+        //             ->join('pembayarans','transaksis.id','=','pembayarans.id_transaksi')
+        //             ->where('kendaraans.id_pemilik',$pemilik)
+        //             ->where('pembayarans.id_status_validasi',1)
                 
-                    ->get();
+        //             ->get();
+
+        $pembayarans = DB::table('pembayarans')
+                        ->join('transaksis','pembayarans.id_transaksi','=','transaksis.id')
+                        ->join('kendaraans','transaksis.id_kendaraan','=','kendaraans.id')
+                        ->where('kendaraans.id_pemilik',$pemilik)
+                        ->where('pembayarans.id_status_validasi','=',1)
+                        ->select('pembayarans.id as id_pembayaran','pembayarans.*','transaksis.id as id_trans','transaksis.*','kendaraans.*','kendaraans.id as id_kend')
+                        ->get();
+        
         $jumlahTrans = DB::table('transaksis')
                     ->join('kendaraans','transaksis.id_kendaraan','=','kendaraans.id')
                     ->join('pembayarans','transaksis.id','=','pembayarans.id_transaksi')
@@ -69,7 +81,27 @@ class KendaraanController extends Controller
      
 
         
-        return view('pemilik.dashboard.home',compact('transaksis','jumlahTrans','totalTrans','transSukses','transGagal'));
+        return view('pemilik.dashboard.home',compact('pembayarans','jumlahTrans','totalTrans','transSukses','transGagal'));
+    }
+
+    public function updatePembayaran(Pembayaran $pembayaran){
+    
+        $pembayaran->id_status_validasi = '2';
+        $pembayaran->tanggal_bayar = carbon::now();
+        $pembayaran->save();
+
+        return redirect()->route('dashboard.home');
+
+
+    }
+
+    public function pembatalanPembayaran(Pembayaran $pembayaran){
+        
+        $pembayaran->id_status_validasi = '3';
+        $pembayaran->tanggal_bayar = carbon::now();
+        $pembayaran->save();
+
+        return redirect()->route('dashboard.home');
     }
     
     public function index()
@@ -297,7 +329,7 @@ class KendaraanController extends Controller
 
     public function hapus(kendaraan $kendaraan)
     {
-
+        dd($kendaraan);
         $kendaraan->id_status = '3';
         $kendaraan->save();
         return redirect()->route('kendaraan.index');

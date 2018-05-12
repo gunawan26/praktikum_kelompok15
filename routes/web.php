@@ -30,6 +30,11 @@ Route::get('/home/search','HomeController@searchAjax')->name('home.search');
 
 Route::group(['prefix'=>'pemilik/dashboard','middleware'=> ['auth:web_pemiliks'] ],function(){
     Route::get('/home','KendaraanController@home')->name('dashboard.home');
+    /////////////////////////////////////////////////////////////////////////
+    Route::patch('/home/edit/{pembayaran}','KendaraanController@updatePembayaran')->name('pembayaran.update');
+    Route::patch('/home/batal/{pembayaran}','KendaraanController@pembatalanPembayaran')->name('pembayaran.batal');
+    
+    /////////////////////////////////////////////////////////////////////////
     Route::get('/riwayat','KendaraanController@riwayat')->name('dashboard.riwayat');
     Route::get('/kendaraan','KendaraanController@kendaraan')->name('dashboard.kendaraan');
     Route::patch('/hapus/{kendaraan}','KendaraanController@hapus')->name('kendaraan.hapus');
