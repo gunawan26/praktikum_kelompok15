@@ -114,7 +114,7 @@
             id="tgl_kembali" name="tgl_kembali" value="">
 
 
-          <select class="custom-select" id="" style="height: 50px;">
+          <select class="custom-select" id="kabupaten_asal" name="kabupaten_asal" style="height: 50px;">
             @foreach ($kabupatens as $kabupaten)
             <option selected value="{{$kabupaten->id}}">{{$kabupaten->nama_kabupaten}}</option>
 
@@ -218,15 +218,16 @@
       $value = $('#nama_kendaraan').val();
       $tgl_pesan_val = $('#tgl_pesan').val();
       $tgl_kembali_val = $('#tgl_kembali').val();
+      $kabupaten_asal = $('#kabupaten_asal').val();
       $.ajax({
 
         type: 'get',
-        url: '{{URL::to('
-        home / search ')}}',
+        url: '{{URL::to('home/search')}}',
         data: {
           'nama_kendaraan': $value,
           'tgl_pesan': $tgl_pesan_val,
-          'tgl_kembali': $tgl_kembali_val
+          'tgl_kembali': $tgl_kembali_val,
+          'kabupaten_asal':$kabupaten_asal
 
 
         },

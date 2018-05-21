@@ -31,19 +31,7 @@ class LoginPemilikController extends Controller
         return view('pemilik.auth.login');
     }
 
-    // public function login(Request $request){
-        
-    //     $this->attemptlogin();
-    // }
 
-
-    // protected function validateLogin(Request $request)
-    // {
-    //     $this->validate($request, [
-    //         'email'=> 'required|string',
-    //         'password' => 'required|string',
-    //     ]);
-    // }
 
     public function attemptlogin (Request $request){
         $this->validate($request, [
@@ -78,7 +66,7 @@ class LoginPemilikController extends Controller
 
         $request->session()->invalidate();
 
-        return redirect()->route('home');
+        return redirect('/');
     }
 
 

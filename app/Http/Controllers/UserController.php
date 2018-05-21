@@ -7,8 +7,6 @@ use DB;
 use Auth;
 class UserController extends Controller
 {
-    //
-
     public function transaksi()
     {
         $userId = $this->userId();
@@ -18,7 +16,7 @@ class UserController extends Controller
                     ->join('pembayarans','transaksis.id','=','pembayarans.id_transaksi')
                     ->where('transaksis.id_user',$userId)
                     ->get();
-        dd($transaksis);
+        
         
         return view('user.dataTransaksi');
     }
@@ -26,17 +24,21 @@ class UserController extends Controller
     public function transBaru()
     {   
         $userId = $this->userId();
-
         $transaksiBarus = DB::table('transaksis')
+                        ->select('*')
+                        ->join('kendaraans','transaksis.id_kendaraan','=','kendaraans.id')
+                        ->join('pemiliks','kendaraans.id_pemilik','=','pemiliks.id')
                         ->whereNotExists(function($q){
-
                             $q->select('pembayarans.id_transaksi')
-                            -> from('pembayarans');
+                            ->from('pembayarans')
+                            ->where('pembayarans.id_transaksi','=',DB::raw('transaksis.id'));
+                        })
+                        ->select('kendaraans.nama_kendaraan','pemiliks.nama_depan','transaksis.*')
+                        ->get();
+        $count = $transaksiBarus->count();
+   
 
-                        })->get();
-
-       // dd($transaksiBarus);
-        return view('user.transaksibaru');
+    return view('user.transaksibaru',compact('transaksiBarus'));
     }
 
     public function pembayaran()

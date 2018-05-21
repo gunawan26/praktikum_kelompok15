@@ -40,22 +40,11 @@ class TransaksiController extends Controller
     }
 
     public function validasiMobilTersedia($mobilId,Request $request){
-        //SELECT DISTINCT COUNT(id_kendaraan) 
-                        //FROM transaksis WHERE id_kendaraan = 12 
-                        //AND (tgl_pesan BETWEEN '2018-04-26' 
-                        //AND '2018-04-29' 
-                        //OR tgl_rencanakembali BETWEEN '2018-04-26' AND '2018-04-29')
-
-       
-        //Sdd($pesanTgl);
         $pesanTgl = $request->tgl_pesan;
         $kembaliTgl = $request->tgl_rencanakembali;
         $mobil = DB::table('transaksis')
             ->where('id_kendaraan',$mobilId)    
             -> where(function ($query)use($pesanTgl,$kembaliTgl){
-                // $query  ->whereBetween('tgl_pesan',['2018-04-26','2018-04-29' ])
-                //         ->orWhereBetween('tgl_rencanakembali',['2018-04-26','2018-04-29']);
-
                 $query->whereBetween('tgl_pesan', [$pesanTgl,$kembaliTgl])
                 ->orWhereBetween('tgl_rencanakembali',[$pesanTgl,$kembaliTgl]);
             })
@@ -70,11 +59,11 @@ class TransaksiController extends Controller
     }
 
         // return view transaksi
-    public function createtransaksi(kendaraan $kendaraan)
+    public function createtransaksi(kendaraan $kendaraan,Transaksi $transaksi)
     {
         //
         
-       
+
             $foto = auth::guard()->user()->ktp;
        
 
@@ -94,31 +83,25 @@ class TransaksiController extends Controller
      
     }
     
-    public function storetransaksi(Request $request,kendaraan $kendaraan,transaksi $transaksi)
+    public function storetransaksi(Request $request,kendaraan $kendaraan,Transaksi $transaksi)
     {
-        //
-        $transaksi = new Transaksi;
-        $foto_ktp = auth::guard()->user()->ktp;
-        //$user = new User;
-        
-       $checkKtp  = $this->getKtp();
-       //    dd($checkKtp);
-    //    if($checkKtp == true){
-    //        $request['foto_ktp'] = $foto_ktp;
-    //    }
-        $tgl_sekarang = Carbon::now();
-        $this->validate($request,[
-
-            'tgl_pesan' => 'required|date|after_or_equal:now',
-            'tgl_rencanakembali' => 'required|date|after:tgl_pesan',
-            'foto_ktp' => [new checkKtpstatus,'image','mimes:jpeg,jpg,png,bmp'],
-
-
-        ]);
-        
         $valid_tanggal =  $this->validasiMobilTersedia($kendaraan->id,$request);
         //dd($valid_tanggal);
         if($valid_tanggal){
+        
+            $transaksi = new Transaksi;
+            $foto_ktp = auth::guard()->user()->ktp;
+            $checkKtp  = $this->getKtp();
+            $tgl_sekarang = Carbon::now();
+            $this->validate($request,[
+    
+                'tgl_pesan' => 'required|date|after_or_equal:now',
+                'tgl_rencanakembali' => 'required|date|after:tgl_pesan',
+                'foto_ktp' => [new checkKtpstatus,'image','mimes:jpeg,jpg,png,bmp'],
+    
+    
+            ]);
+            
 
             if($checkKtp == false){
                 $user = auth::guard()->user();
@@ -135,62 +118,28 @@ class TransaksiController extends Controller
             $transaksi->save();
     
      
-         
-            
-            return view('transaksi.pembayaran',compact('kendaraan','transaksi')); 
+           
+            return redirect()->route('transaksi.detail',[$kendaraan,$transaksi]);
 
         }else{
-            return "mobil tidak tersedia";
+            
+            $foto = auth::guard()->user()->ktp;
+       
+
+            //$this->validasiTransaksi();
+            return view('transaksi.transaksiform',compact('foto','kendaraan'))->with('error','');
+  
         }
         
 
         
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Transaksi  $transaksi
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Transaksi $transaksi)
-    {
-        //
+    public function detailtransaksi(kendaraan $kendaraan,Transaksi $transaksi){
+
+
+        return view('transaksi.pembayaran',compact('kendaraan','transaksi'));
 
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Transaksi  $transaksi
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Transaksi $transaksi)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Transaksi  $transaksi
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Transaksi $transaksi)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Transaksi  $transaksi
-     * @return \Illuminate\Http\Response
-     */
-    
-    public function destroy(Transaksi $transaksi)
-    {
-        //
-    }
 }

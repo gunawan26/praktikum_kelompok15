@@ -111,19 +111,19 @@
                             <ul class="list-group list-group-flush custom-ul list-unstyled">
     
                                 <li class=" text-dark shadow-sm p-1 mb-2 bg-white rounded">
-                                    <a href="#">
+                                    <a href="{{route('user.transaksi')}}">
                                         <i class="fa fa-bar-chart"></i> Daftar Transaksi</a>
                                 </li>
                                 <li class=" text-dark shadow-sm p-1 mb-2 bg-white rounded">
-                                    <a href="#">
+                                    <a href="{{route('user.transaksiBaru')}}">
                                         <i class="fa fa-credit-card"></i> Transaksi Baru</a>
                                 </li>
                                 <li class=" text-dark shadow-sm p-1 mb-2 bg-white rounded">
-                                    <a href="#">
+                                    <a href="{{route('user.pembayaran')}}">
                                         <i class="fa fa-usd"></i> Pembayaran</a>
                                 </li>
                                 <li class=" text-dark shadow-sm p-1 mb-2 bg-white rounded">
-                                    <a href="#">
+                                    <a href="{{route('user.edit')}}">
                                         <i class="fa fa-cog"></i> Edit Akun</a>
                                 </li>
                             </ul>

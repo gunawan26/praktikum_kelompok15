@@ -155,7 +155,6 @@
                                             </select>
                                         </div>
                                     </div>
-
                                     <div class="form-group row">
                                         <label for="id_bahan_bakar" class="col-sm-2 form-control-label">{{ __('Bahan Bakar') }}</label>
                                         <div class="col-sm-10">
@@ -171,7 +170,6 @@
                                             </select>
                                         </div>
                                     </div>
-
                                     <div class="form-group row">
                                         <label for="foto_stnk" class="col-sm-2 form-control-label">{{ __('foto_stnk') }}</label>
 
@@ -191,24 +189,6 @@
                                     <div class="line"></div>
 
                                     <div class="line"></div>
-                                    {{--
-                                    <div class="container">
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label>Upload Avatar</label>
-                                                <div class="input-group">
-                                                    <span class="input-group-btn">
-                                                        <span class="btn btn-default btn-file">
-                                                            Browse…
-                                                            <input type="file" id="imgInp">
-                                                        </span>
-                                                    </span>
-                                                    <input type="text" class="form-control" readonly>
-                                                </div>
-                                                <img id='img-upload' />
-                                            </div>
-                                        </div>
-                                    </div> --}}
 
                                     <div class="form-group row">
                                         <div class="col-sm-4 offset-sm-2">

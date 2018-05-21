@@ -1,8 +1,20 @@
 @extends('layouts.layouttransaksi')
-
+@section('custom-css')
+    
+<script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+@endsection
 @section('content')
 
     <div class="container">
+        @if(session('status'))
+        <div class="container">
+            <div class="alert alert-danger" role="alert">
+               Maaf Mobil tersebut tidak tersedia pada tanggal tersebut
+              </div>
+        @endif
       <div class="row justify-content-center"> 
 <div class="col-md-8">
             <div class="card">
@@ -83,6 +95,14 @@
     previewImage(this);
   
   });
+  
+  $(function() {
+  $('input[name="tgl_pesan"]').daterangepicker({
+    opens: 'left'
+  }, function(start, end, label) {
+    console.log("A new date selection was made: " + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD'));
+  });
+});
 
 
 

@@ -75,8 +75,13 @@
                             <div class="navbar-header"><a id="toggle-btn" href="#" class="menu-btn"><i class="icon-bars"> </i></a><a href="index.html" class="navbar-brand">
                                 <div class="brand-text d-none d-md-inline-block"><span>Rental</span><strong class="text-primary">  Mobil</strong></div></a></div>
                             <ul class="nav-menu list-unstyled d-flex flex-md-row align-items-md-center">
-
-                            <li class="nav-item"><a href="login.html" class="nav-link logout"> <span class="d-none d-sm-inline-block">Logout</span><i class="fa fa-sign-out"></i></a></li>
+                            <form action="{{route('pemilik.logout')}}" method="POST">
+                                    @csrf
+                                    <button type="submit" class="btn btn-outline-success my-3 my-sm-0"><i class="fa fa-sign-out"></i>Logout</button>
+  
+                                       {{-- <li class="nav-item"><a href="login.html" > </a></li> --}}
+                           
+                                    </form>
                             </ul>
                         </div>
                         </div>

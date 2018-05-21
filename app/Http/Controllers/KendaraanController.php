@@ -35,13 +35,6 @@ class KendaraanController extends Controller
 
     public function home(){
         $pemilik = $this->pemilikId();
-        // $transaksis = DB::table('transaksis')
-        //             ->join('kendaraans','transaksis.id_kendaraan','=','kendaraans.id')
-        //             ->join('pembayarans','transaksis.id','=','pembayarans.id_transaksi')
-        //             ->where('kendaraans.id_pemilik',$pemilik)
-        //             ->where('pembayarans.id_status_validasi',1)
-                
-        //             ->get();
 
         $pembayarans = DB::table('pembayarans')
                         ->join('transaksis','pembayarans.id_transaksi','=','transaksis.id')
@@ -80,7 +73,7 @@ class KendaraanController extends Controller
 
      
 
-        
+        ###////
         return view('pemilik.dashboard.home',compact('pembayarans','jumlahTrans','totalTrans','transSukses','transGagal'));
     }
 

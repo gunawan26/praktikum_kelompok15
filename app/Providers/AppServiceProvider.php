@@ -16,7 +16,7 @@ class AppServiceProvider extends ServiceProvider
     {
         //
         Schema::defaultStringLength(191);
-        // \DB::listen(function ($event) {
+        // \DB::listen(function ($event) { 
         //     dump($event->sql);
         //     dump($event->bindings);
         // });

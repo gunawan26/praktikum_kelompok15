@@ -7,6 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 class kendaraan extends Model
 {
     //
+    //model kendaraan digunakan untuk menyimpan
+    //class php yang berhubungan langsung ke database dengan nama tabel
+    //kendaraans, tabel kendaraans menyimpan field id, dan nama_kendaraan, id_pemilik, plat_nomor, deskripsi, harga_sewa, id_kategori
+    //id_kabupatenkota, id_status, gambar_kendaraan, foto_stnk, warna_kendaraan, transmisi dan id_bahan_bakar
+    //yang berfungsi untuk menyimpan data kendaraan
     public $timestamps = false;
     protected $fillable = [
         'id_pemilik',
