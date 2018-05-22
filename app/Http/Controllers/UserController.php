@@ -7,6 +7,10 @@ use DB;
 use Auth;
 class UserController extends Controller
 {
+    /* Fungsi transaksi() untuk menampilkan data transaksi yang
+    sudah masuk ke pembayaran
+    yang dilakukan oleh user atau penyewa kendaraan
+    berdasarkan user yang loggin */
     public function transaksi()
     {
         $userId = $this->userId();
@@ -20,7 +24,14 @@ class UserController extends Controller
         
         return view('user.dataTransaksi');
     }
+    /*
+        Fungsi transBaru() untuk menampilkan data transaksi yang
+  belum masuk ke pembayaran
+    yang dilakukan oleh user atau penyewa kendaraan
+    berdasarkan user yang loggin */
 
+
+  
     public function transBaru()
     {   
         $userId = $this->userId();
@@ -41,6 +52,8 @@ class UserController extends Controller
     return view('user.transaksibaru',compact('transaksiBarus'));
     }
 
+
+
     public function pembayaran()
     {
         $userId = $this->userId();
@@ -56,6 +69,11 @@ class UserController extends Controller
         
         return view('user.editakun');
     }
+
+           /*
+        Fungsi userId() untuk mendapatkan id dari user
+        atau penyewa yang login
+        */
 
     protected function userId(){
         

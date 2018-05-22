@@ -15,6 +15,9 @@ class PembayaranController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    /* Fungsi index(Kendaraan $kendaraan,Transaksi $transaksi) untuk
+    menuju ke halaman pembayaran jika user sudah melakukan transaksi
+    */
     public function index(Kendaraan $kendaraan,Transaksi $transaksi)
     {
         //
@@ -22,24 +25,11 @@ class PembayaranController extends Controller
        
         return view('transaksi.pembayaran',compact('kendaraan','transaksi'));
     }
+/*  Fungsi store(Request $request,kendaraan $kendaraan,Transaksi $transaksi,Pembayaran $pembayaran)
+untuk melakukan penyimpanan data pembayaran yang dilakukan user setelah user melakukan transaksi
+*/
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
 
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request,kendaraan $kendaraan,Transaksi $transaksi,Pembayaran $pembayaran)
     {
         //
@@ -71,7 +61,11 @@ class PembayaranController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-     
+     /* Fungsi show(kendaraan $kendaraan,Transaksi $transaksi,Pembayaran $pembayaran)
+     untuk menampilkan sisa waktu batas pembayaran pada halaman checkout, jika user sudah
+     melanjutkan dari pembayaran
+     */
+
     public function show(kendaraan $kendaraan,Transaksi $transaksi,Pembayaran $pembayaran)
     {
         //
@@ -89,40 +83,10 @@ class PembayaranController extends Controller
         return view('transaksi.checkout',compact('pembayaran','sisa_waktu'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Pembayaran  $pembayaran
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Pembayaran $pembayaran)
-    {
-        //
-    }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Pembayaran  $pembayaran
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Pembayaran $pembayaran)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Pembayaran  $pembayaran
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Pembayaran $pembayaran)
-    {
-        //
-    }
-
+    /* Fungsi validasiTransaksi() untuk membatasi user yang melakukan transaksi namun tidak melanjutkan 
+    pembayaran, dengan batas transaksi tersebut sebanyak 5 transaksi
+    */
     public function validasiTransaksi(){
         $id = $user = auth::guard()->user()->id;
         //      select count(transaksis.id) from transaksis left join pembayarans on pembayarans.`id_transaksi` = transaksis.`id` where id_user = 2  and pembayarans.`id` is null or pembayarans.`id_status_validasi` = 1

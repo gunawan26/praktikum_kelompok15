@@ -22,16 +22,12 @@ class KendaraanController extends Controller
 {
     
    
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function __construct(){
-
-        
-
-    }
+/*
+Fungsi home() digunakan untuk menampilkan data pembayaran yang sudah dilakukan
+jumlah transaksi yang belum divalidasi, total keseluruhan transaksi,
+transaksi yang sudah melakukan pembayaran dan transaksi yang ditolak 
+pemilik kendaraan
+*/
 
     public function home(){
         $pemilik = $this->pemilikId();
@@ -76,7 +72,13 @@ class KendaraanController extends Controller
         ###////
         return view('pemilik.dashboard.home',compact('pembayarans','jumlahTrans','totalTrans','transSukses','transGagal'));
     }
+/*
 
+    Fungsi updatePembayaran(Pembayaran $pembayaran) untuk melakukan proses penerimaan penyewaan kendaraan
+    yang dilakukan oleh pemilik kendaraan kepada penyewa atau user
+
+
+*/
     public function updatePembayaran(Pembayaran $pembayaran){
     
         $pembayaran->id_status_validasi = '2';
@@ -87,7 +89,11 @@ class KendaraanController extends Controller
 
 
     }
+/*
+    Fungsi pembatalanPembayaran(Pembayaran $pembayaran) untuk melakukan proses pembatalan transaksi penyewaan kendaraan
+    yang dilakukan oleh pemilik kendaraan kepada penyewa atau user
 
+*/
     public function pembatalanPembayaran(Pembayaran $pembayaran){
         
         $pembayaran->id_status_validasi = '3';
@@ -97,6 +103,8 @@ class KendaraanController extends Controller
         return redirect()->route('dashboard.home');
     }
     
+    /* Fungsi index() untuk menampilkan keseluruhan kendaraan yang dimiliki oleh 
+    pemilik kendaraan yang tersedia*/
     public function index()
     {
         $pemilik = Auth::guard('web_pemiliks')->user()->id; 
@@ -105,7 +113,10 @@ class KendaraanController extends Controller
         return view('pemilik.dashboard.kendaraan',compact('kendaraans'));
     }
 
+/* Fungsi riwayat() untuk menampilkan riwayat transaksi kendaraan yang
+dimiliki oleh pemilik kendaraan pada tiap kendaraannya.
 
+*/
 
     public function riwayat(){
         $now = new DateTime();
@@ -128,6 +139,10 @@ class KendaraanController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+     /* Fungsi create() untuk menampilkan data kategori, kabupaten yang tersedia, dan jenis bahan bakar
+     untuk halaman tambahkendaraan pada dashboard pemilik
+     */
     public function create()
     {
         //
@@ -145,7 +160,8 @@ class KendaraanController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-
+    /* fungsi store(Request $request) untuk melakukan penyimpanan data kendaraan baru yang
+    diinputkan oleh pemilik kendaraan*/
     public function store(Request $request)
     {
         $kendaraan = new kendaraan;
@@ -191,24 +207,9 @@ class KendaraanController extends Controller
         //
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\kendaraan  $kendaraan
-     * @return \Illuminate\Http\Response
-     */
-    public function show(kendaraan $kendaraan)
-    {
-        //
-
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\kendaraan  $kendaraan
-     * @return \Illuminate\Http\Response
-     */
+/* fungsi edit(kendaraan $kendaraan) untuk menampilkan halaman editkendaraan
+yang ada di dashboard pemilik kendaraan
+*/
     public function edit(kendaraan $kendaraan)
     {
         //
@@ -230,13 +231,10 @@ class KendaraanController extends Controller
     }
 
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\kendaraan  $kendaraan
-     * @return \Illuminate\Http\Response
-     */
+/* fungsi update(Request $request, kendaraan $kendaraan) untuk melakukan
+perubahan data pada kendaraan yang dimiliki oleh pemilik 
+kendaraan
+*/
     public function update(Request $request, kendaraan $kendaraan)
     {   
        // dd($request);
@@ -319,15 +317,18 @@ class KendaraanController extends Controller
         
 
     }
-
+/* Fungsi hapus(kendaraan $kendaraan) untuk melakukan penghapusan data pada kendaraan 
+yang dimiliki pemilik kendaraan */
     public function hapus(kendaraan $kendaraan)
     {
-        dd($kendaraan);
+
         $kendaraan->id_status = '3';
         $kendaraan->save();
         return redirect()->route('kendaraan.index');
     }
 
+    /* fungsi pemilikId() untuk melakukan pengecekan id pada pemilik kendaraan
+    yang melakukan loggin*/
     protected function pemilikId(){
         $pemilik = Auth::guard('web_pemiliks')->user()->id; 
 

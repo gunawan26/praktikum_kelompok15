@@ -14,6 +14,11 @@ use DB;
 class TransaksiController extends Controller
 {
         //Return View detail mobil
+
+    /* Fungsi index(kendaraan $kendaraan) untuk menampilkan detail data kendaraan
+    yang akan disewa oleh user atau penyewa kendaraan
+    */
+
     public function index(kendaraan $kendaraan)
     {
         //
@@ -21,6 +26,9 @@ class TransaksiController extends Controller
         return view('transaksi.detailform',compact('kendaraan'));
     }
 
+    /* Fungsi validasiTransaksi() untuk membatasi user yang melakukan transaksi namun tidak melanjutkan 
+    pembayaran, dengan batas transaksi tersebut sebanyak 5 transaksi
+    */
     public function validasiTransaksi(){
         $id = auth::guard()->user()->id;
         //      select count(transaksis.id) from transaksis left join pembayarans on pembayarans.`id_transaksi` = transaksis.`id` where id_user = 2  and pembayarans.`id` is null or pembayarans.`id_status_validasi` = 1
@@ -38,6 +46,10 @@ class TransaksiController extends Controller
         }
 
     }
+    /* Fungsi validasiMobilTersedia($mobilId,Request $request) untuk melakukan validasi
+    mobil tersedia pada tanggal tertentu, ketika user ingin melakukan peminjaman 
+    kendaraan
+    */
 
     public function validasiMobilTersedia($mobilId,Request $request){
         $pesanTgl = $request->tgl_pesan;
@@ -59,6 +71,11 @@ class TransaksiController extends Controller
     }
 
         // return view transaksi
+    /* Fungsi createtransaksi(kendaraan $kendaraan,Transaksi $transaksi)
+    menampilkan halaman transaksi saat user ingin melakukan transaksi pada kendaraan
+    yang ditentukan.
+    */
+
     public function createtransaksi(kendaraan $kendaraan,Transaksi $transaksi)
     {
         //
@@ -74,6 +91,9 @@ class TransaksiController extends Controller
     
     // Get user KTP photos
     
+    /* Fungsi getKtp() untuk menampilkan data foto Ktp
+    user yang melakukan penyewaan kendaraan
+    */
     public function getKtp(){
         $foto_ktp = auth::guard()->user()->ktp;
         
@@ -83,6 +103,11 @@ class TransaksiController extends Controller
      
     }
     
+    /* Fungsi storetransaksi(Request $request,kendaraan $kendaraan,Transaksi $transaksi)
+    untuk menyimpan data transaksi setelah user memilih kendaraan, tanggal pesan dan 
+    tanggal kembali kendaraan
+    */
+
     public function storetransaksi(Request $request,kendaraan $kendaraan,Transaksi $transaksi)
     {
         $valid_tanggal =  $this->validasiMobilTersedia($kendaraan->id,$request);
@@ -135,7 +160,11 @@ class TransaksiController extends Controller
         
     }
 
-    public function detailtransaksi(kendaraan $kendaraan,Transaksi $transaksi){
+    /* Fungsi detailtransaksi(kendaraan $kendaraan,Transaksi $transaksi) untuk menampilakn
+    halaman pembayaran setelah user melakukan transaksi 
+    */
+    public function detailtransaksi(kendaraan $kendaraan,Transaksi $transaksi)
+    {
 
 
         return view('transaksi.pembayaran',compact('kendaraan','transaksi'));

@@ -4,7 +4,9 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\SendsPasswordResetEmails;
-
+/*Fungsi ForgotPasswordController untuk melakukan reset password
+pada user penyewa kendaraan
+*/
 class ForgotPasswordController extends Controller
 {
     /*

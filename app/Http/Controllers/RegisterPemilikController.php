@@ -14,12 +14,20 @@ class RegisterPemilikController extends Controller
 
     protected $redirectpath ='pemilik/kendaraan';
     
+
+    /* Fungsi ShowRegisterForm() untuk menampilkan halaman pendaftaran
+    pemilik
+
+    */
     public function ShowRegisterForm(){
 
         return view('pemilik.auth.register');
     }
 
-
+    /* fungsi register(Request $request) untuk menjalankan beberapa fungsi yang ada
+    seperti fungsi validator dan fungsi create, apabila semua data yang dimasukan benar
+    maka akan menuju halaman dashboard pemilik */
+    
     public function register(Request $request){
         //validasi data
         //dd($request);
@@ -40,7 +48,11 @@ class RegisterPemilikController extends Controller
 
     }
 
+    /* Fungsi validator(array $data) merupakan fungsi
+    untuk melakukan validasi pada tiap data pemilik 
+    kendaraan yang ada,tergantung dari data tersebut
 
+    */
     protected function validator(array $data)
     {
         return Validator::make($data, [
@@ -61,6 +73,10 @@ class RegisterPemilikController extends Controller
      * @param  array  $data
      * @return \App\Pemilk
      */
+    /* Fungsi create(array $data) untuk memasukan semua data request
+    kedalam variabel yang berada didalam array, yang nanti nilai tiap 
+    variabel akan masuk ke database dengan eloquent
+    */
     protected function create(array $data)
     {
         return Pemilik::create([
@@ -73,7 +89,9 @@ class RegisterPemilikController extends Controller
             'password' => bcrypt($data['password']),
         ]);
     }
-
+    /* Fungsi guard() untuk mengecek user yang melakukan login memilik role
+    pemilik kendaraan pada dashboard pemilik
+    */
     protected function guard(){
         return Auth::guard('web_pemiliks');
     }

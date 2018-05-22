@@ -5,7 +5,8 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
-
+/* Fungsi loginContorller untuk melakukan login user penyewa kendaraan
+*/
 class LoginController extends Controller
 {
     /*

@@ -7,7 +7,9 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
-
+/* Fungsi RegisterController untuk melakukan registrasi user agar
+bisa melakukan penyewaan kendaraan
+*/
 class RegisterController extends Controller
 {
     /*
