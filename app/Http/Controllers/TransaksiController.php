@@ -166,8 +166,9 @@ class TransaksiController extends Controller
     public function detailtransaksi(kendaraan $kendaraan,Transaksi $transaksi)
     {
 
+        $pembayaran_terakhir = $transaksi->tgl_transaksi->addDays(7);
 
-        return view('transaksi.pembayaran',compact('kendaraan','transaksi'));
+        return view('transaksi.pembayaran',compact('kendaraan','transaksi','pembayaran_terakhir'));
 
     }
 

@@ -19,7 +19,7 @@
 				<div class="card-header" style="text-align: center;background-color:#28a745"><h4 style="color: #fff">Pembayaran</h4></div>
 				<div class="card-body">
 					<p>Total pembayaran : Rp.{{$total_biaya}} / hari</p>
-					<p>Batas Pembayaran: 12/06/2018</p>
+					<p>Batas Pembayaran: {{$pembayaran_terakhir}}</p>
 					<hr class="featurette-divider">
 					<p>Metode pembayaran</p>
 					<form action="{{route('pembayaran.store',['kendaraan' => $kendaraan,'transaksi'=>$transaksi])}}" method="POST">

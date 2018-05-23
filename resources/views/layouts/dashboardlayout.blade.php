@@ -41,7 +41,7 @@
                   <!-- Sidebar Header    -->
                   <div class="sidenav-header d-flex align-items-center justify-content-center">
                     <!-- User Info-->
-                    <div class="sidenav-header-inner text-center"><img src="{{asset('img/avatar-5.jpg')}}" alt="person" class="img-fluid rounded-circle">
+                    <div class="sidenav-header-inner text-center"><img src="{{asset('img/account.png')}}" alt="person" class="img-fluid rounded-circle">
                       <h2 class="h6">Mitra Rentcar</h2><span>Pemilik Mobil</span>
                     </div>
                     <!-- Small Brand information, appears on minimized sidebar-->
@@ -54,13 +54,7 @@
                       <li><a href="{{route('dashboard.home')}}"> <i class="icon-home"></i>Home                             </a></li>
                       <li><a href="{{route('kendaraan.index')}}"> <i class="icon-form"></i>Kendaraan                             </a></li>
                       <li><a href="{{route('dashboard.riwayat')}}"> <i class="icon-grid"></i>Riwayat Transaksi                             </a></li>
-                      <li><a href="#exampledropdownDropdown" aria-expanded="false" data-toggle="collapse"> <i class="icon-interface-windows"></i>Dropdown</a>
-                        <ul id="exampledropdownDropdown" class="collapse list-unstyled ">
-                          <li><a href="#">Halaman</a></li>
-                          <li><a href="#">Halaman</a></li>
-                          <li><a href="#">Halaman</a></li>
-                        </ul>
-                      </li>
+
               
                     </ul>
                   </div>

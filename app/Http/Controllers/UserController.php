@@ -21,6 +21,7 @@ class UserController extends Controller
                     ->join('pemiliks','kendaraans.id_pemilik','=','pemiliks.id')
                     ->join('pembayarans','transaksis.id','=','pembayarans.id_transaksi')
                     ->where('transaksis.id_user',$userId)
+                    ->where('pembayarans.id_status_validasi','=','1')
                     ->select('nama_kendaraan','pemiliks.nama_depan','transaksis.tgl_transaksi','transaksis.tgl_pesan','tgl_rencanakembali')
                     ->get();
         
