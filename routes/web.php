@@ -15,6 +15,9 @@
 Route::get('/baru',function(){
     return view('user.editakun');
 });
+Route::get('/Landing', function(){
+    return view('Landing');
+});
 Route::get('/', 'HomeController@index')->name('menu');
 Route::get('/home','HomeController@index')->name('home');
 Auth::routes();
