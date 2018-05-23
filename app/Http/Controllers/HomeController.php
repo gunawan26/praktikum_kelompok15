@@ -31,7 +31,7 @@ class HomeController extends Controller
         //$kendaraans = kendaraan::where('id_status','1')->get();
         $kabupatens = kabupatenkota::all();
 
-
+        $user = $this->detailUser();
         //pagenation
         $kendaraans = DB::table('kendaraans')
         ->join('kabupatenkotas','kendaraans.id_kabupatenkota','=','kabupatenkotas.id')
@@ -40,7 +40,7 @@ class HomeController extends Controller
         ->where('id_status','1')
         ->paginate(5);
        
-        return view('Menu',compact('kendaraans','kabupatens'));
+        return view('Menu',compact('kendaraans','kabupatens','user'));
 
     }
 
@@ -110,6 +110,16 @@ class HomeController extends Controller
            return (String) $returnHtml;
         }
     }
+
+    public function detailUser(){
+        if(auth::guard()){
+            $dataUser = auth::guard()->user();
+
+            return $dataUser;
+        }
+    }
+
+
         
 
 

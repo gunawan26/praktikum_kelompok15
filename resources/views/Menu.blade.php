@@ -100,8 +100,8 @@
                                     <img src="{{asset('img/account.png')}}" width="35px" class="img-fluid" alt="logo">
                                 </div>
                                 <div class="name-acc">
-                                    <h6>Gunawan</h6>
-                                    <p>bergabung sejak: 2018-01-01</p>
+                                    <h6>{{Auth::user()->nama_depan}}</h6>
+                                    <p>Bergabung sejak :{{Auth::user()->created_at->format('d-m-Y')}}</p>
     
                                 </div>
     
@@ -122,10 +122,7 @@
                                     <a href="{{route('user.pembayaran')}}">
                                         <i class="fa fa-usd"></i> Pembayaran</a>
                                 </li>
-                                <li class=" text-dark shadow-sm p-1 mb-2 bg-white rounded">
-                                    <a href="{{route('user.edit')}}">
-                                        <i class="fa fa-cog"></i> Edit Akun</a>
-                                </li>
+
                             </ul>
     
     

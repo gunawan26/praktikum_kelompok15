@@ -1,5 +1,4 @@
-@extends('layouts.layoutuser') 
-@section('content')
+@extends('layouts.layoutuser') @section('content')
 <hr class="featurette-divider">
 <div class="col-lg-9">
     <div class="card mb-3 box-shadow">
@@ -15,44 +14,27 @@
                         </tr>
                     </thead>
                     <tbody>
+                        @foreach ($transaksis as $transaksi)
                         <tr>
-                            <td>
-                                <div class="media">
-                                    <h4>Daihatsu Terios</h4>
-                                    <p class="rent-car-name blued">Gunawan Rent Car</p>
-                                </div>
-                            </td>
-                            <td>
-                                <p class="rent-car-name">2018-01-01</p>
-                            </td>
-                            <td>
-                                <div class="sewa-tgl">
-                                    <p class="rent-car-name">2018-01-01
-                                        <span> / </span>
-                                        <span>2018-01-01</span>
-                                    </p>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <div class="media">
-                                    <h4>Daihatsu Terios</h4>
-                                    <p class="rent-car-name blued">Gunawan Rent Car</p>
-                                </div>
-                            </td>
-                            <td>
-                                <p class="rent-car-name">2018-01-01</p>
-                            </td>
-                            <td>
-                                <div class="sewa-tgl">
-                                    <p class="rent-car-name">2018-01-01
-                                        <span> / </span>
-                                        <span>2018-01-01</span>
-                                    </p>
-                                </div>
-                            </td>
-                        </tr>
+                                <td>
+                                    <div class="media">
+                                    <h4>{{$transaksi->nama_kendaraan}}</h4>
+                                        <p class="rent-car-name blued">{{$transaksi->nama_depan}} Rent Car</p>
+                                    </div>
+                                </td>
+                                <td>
+                                    <p class="rent-car-name">{{$transaksi->tgl_transaksi}}</p>
+                                </td>
+                                <td>
+                                    <div class="sewa-tgl">
+                                        <p class="rent-car-name">{{$transaksi->tgl_pesan}}
+                                            <span> / </span>
+                                            <span>{{$transaksi->tgl_rencanakembali}}</span>
+                                        </p>
+                                    </div>
+                                </td>
+                            </tr>                            
+                        @endforeach
                     </tbody>
                 </table>
             </div>

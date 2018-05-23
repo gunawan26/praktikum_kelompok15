@@ -33,12 +33,12 @@
             <img src="{{asset('img/logo.png')}}" class="img-fluid" alt="logo">
           </a>        
           <li class="nav-item ">
-            <a class="nav-link text-secondary" href="#">HOME
+            <a class="nav-link text-secondary" href="{{route('menu')}}">HOME
               
             </a>
           </li>
           <li class="nav-item active">
-            <a class="nav-link text-secondary" href="#">PARTNER</a>
+          <a class="nav-link text-secondary" href="{{url('/Landing')}}">PARTNER</a>
             <span class="sr-only">(current)</span>
           </li>
           <li class="nav-item ">
