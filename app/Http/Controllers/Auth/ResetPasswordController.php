@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ResetsPasswords;
 /*  Fungsi ResetPasswordController untuk melakukan handle permintaan
 reset password pada user penyewa kendaraan */
+
 class ResetPasswordController extends Controller
 {
     /*

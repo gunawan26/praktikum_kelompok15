@@ -78,8 +78,7 @@
                             <form action="{{route('pemilik.logout')}}" method="POST">
                                     @csrf
                                     <button type="submit" class="btn btn-outline-success my-3 my-sm-0"><i class="fa fa-sign-out"></i>Logout</button>
-  
-                                       {{-- <li class="nav-item"><a href="login.html" > </a></li> --}}
+
                            
                                     </form>
                             </ul>
@@ -96,7 +95,7 @@
                         </div>
                         <div class="col-sm-6 text-right">
                             <p>Rental<a href="https://bootstrapious.com" class="external">Mobil</a></p>
-                            <!-- Please do not remove the backlink to us unless you support further theme's development at https://bootstrapious.com/donate. It is part of the license conditions and it helps me to run Bootstrapious. Thank you for understanding :)-->
+                           
                         </div>
                         </div>
                     </div>
@@ -105,18 +104,11 @@
         </div>
   
     <script src="{{ asset('js/jquery-3.2.1.min.js') }}"></script>
-    {{-- <script src="vendor/popper.js/umd/popper.min.js"> </script> --}}
+
     <script src="{{ asset('js/bootstrap.bundle.min.js') }}"></script>
     <script src="{{ asset('js/app.js') }}"></script>
     <script src="{{ asset('js/popper.min.js') }}"></script>
     <script src="{{ asset('js/jquery.mCustomScrollbar.concat.min.js') }}"></script>
-    {{-- <script src="js/grasp_mobile_progress_circle-1.0.0.min.js"></script> --}}
-    {{-- <script src="vendor/jquery.cookie/jquery.cookie.js"> </script> --}}
-    {{-- <script src="vendor/chart.js/Chart.min.js"></script> --}}
-    {{-- <script src="vendor/jquery-validation/jquery.validate.min.js"></script> --}}
-    {{-- <script src="vendor/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js"></script> --}}
-    {{-- <script src="js/charts-home.js"></script> --}}
-    <!-- Main File-->
     <script src="{{ asset('js/front.js') }}"></script>
 
 </body>
