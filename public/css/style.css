@@ -23,13 +23,13 @@ h1 {
 h2 {
     font-size: 45px;
     font-weight: 300;
-    color: #633991;
+    color: #292929;
     letter-spacing: -1px;
     margin-bottom: 1rem;
 }
 
 h3 {
-    color: #633991;
+    color: #292929;
     font-size: 33px;
     font-weight: 500;
 }
@@ -47,14 +47,9 @@ h5 {
     margin-bottom: 0.7rem;
 }
 
-p {
-    color: #959094;
-}
 
-p.lead {
-    color: #e38cb7;
-    margin-bottom: 2rem;
-}
+
+
 
 .text-primary {
     color: #A9A9A9 !important;
