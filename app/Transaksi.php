@@ -12,7 +12,7 @@ class Transaksi extends Model
     //, id_user, email, tgl_transaksi,tgl_pesan, tgl_rencanakembali
     //yang berfungsi untuk  menyimpan data transaksi
     public $timestamps = false;
-    protected $dates = ['tgl_transaksi'];
+    protected $dates = ['tgl_transaksi','tgl_pesan','tgl_rencanakembali',];
     protected $fillable = [
         'id_kendaraan',
         'id_user',

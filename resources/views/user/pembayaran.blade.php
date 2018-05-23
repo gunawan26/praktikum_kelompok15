@@ -44,9 +44,9 @@
                                     </td>
                                     <td>
                                         <div class="sewa-tgl">
-                                            <p class="rent-car-name">{{$pembayaran->tgl_pesan}}
+                                            <p class="rent-car-name">{{ date('m-Y', strtotime($pembayaran->tgl_pesan)) }}
                                                 <span> / </span>
-                                                <span>{{$pembayaran->tgl_rencanakembali}}</span>
+                                                <span>{{ date('m-Y', strtotime($pembayaran->tgl_rencanakembali)) }}</span>
                                             </p>
                                         </div>
                                     </td>
@@ -71,9 +71,9 @@
                                 </td>
                                 <td>
                                     <div class="sewa-tgl">
-                                        <p class="rent-car-name">{{$pembayaran->tgl_pesan}}
+                                        <p class="rent-car-name">{{ date('m-Y', strtotime($pembayaran->tgl_pesan)) }}
                                             <span> / </span>
-                                            <span>{{$pembayaran->tgl_rencanakembali}}</span>
+                                            <span>{{ date('m-Y', strtotime($pembayaran->tgl_rencanakembali)) }}</span>
                                         </p>
                                     </div>
                                 </td>
@@ -97,9 +97,9 @@
                                 </td>
                                 <td>
                                     <div class="sewa-tgl">
-                                        <p class="rent-car-name">{{$pembayaran->tgl_pesan}}
+                                        <p class="rent-car-name">{{ date('m-Y', strtotime($pembayaran->tgl_pesan)) }}
                                             <span> / </span>
-                                            <span>{{$pembayaran->tgl_rencanakembali}}</span>
+                                            <span>{{ date('m-Y', strtotime($pembayaran->tgl_rencanakembali)) }}</span>
                                         </p>
                                     </div>
                                 </td>

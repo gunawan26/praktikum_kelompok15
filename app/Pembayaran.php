@@ -12,6 +12,8 @@ class Pembayaran extends Model
     //pembayarans, tabel pembayarans menyimpan field id, id_transaksi
     //tanggal_bayar, tgl_batasbayar, bukti_pembayaran,id_status_validasi,created_at, updated_at
     //yang berfungsi untuk menyimpan data pembayaran pelanggan
+  
+
     protected $fillable = [
 
         'id_transaksi',

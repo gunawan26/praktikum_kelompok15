@@ -65,10 +65,10 @@ class UserController extends Controller
                         ->join('kendaraans','transaksis.id_kendaraan','=','kendaraans.id')
                         ->join('pemiliks','kendaraans.id_pemilik','=','pemiliks.id')
                         ->where('transaksis.id_user','=',$userId)
-                        ->select('nama_kendaraan','pemiliks.nama_depan','transaksis.tgl_transaksi','transaksis.tgl_pesan','tgl_rencanakembali','id_status_validasi')
+                        ->select('nama_kendaraan','pemiliks.nama_depan','transaksis.tgl_transaksi','tgl_pesan','tgl_rencanakembali','id_status_validasi')
                         ->get();
 
-
+      
         return view('user.pembayaran',compact('pembayarans'));
     }
 
