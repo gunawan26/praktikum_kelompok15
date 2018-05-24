@@ -18,6 +18,9 @@ Route::get('/baru',function(){
 Route::get('/Landing', function(){
     return view('Landing');
 });
+Route::get('/about', function(){
+    return view('about');
+});
 Route::get('/', 'HomeController@index')->name('menu');
 Route::get('/home','HomeController@index')->name('home');
 Auth::routes();

@@ -39,7 +39,7 @@
             <a class="nav-link text-secondary" href="{{ url('/Landing') }}">PARTNER</a>
           </li>
           <li class="nav-item ">
-            <a class="nav-link text-secondary" href="#">ABOUT</a>
+            <a class="nav-link text-secondary" href="{{ url('/about') }}">ABOUT</a>
           </li>
         </ul>
         <ul class="navbar-nav">

@@ -17,7 +17,8 @@
   <link href="{{ asset('css/simple-line-icons.css" rel="stylesheet')}}" type="text/css">
   <link href="{{ asset('css/landing-page.min.css') }}" rel="stylesheet">
   <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
-  <link href="{{ asset('css/style.css') }}" rel="stylesheet">
+  <link href="{{ asset('css/style.css') }}"
+   rel="stylesheet">
   
 </head>
 
@@ -112,7 +113,7 @@
           </div>
           <div class="col-md-10 col-lg-8 col-xl-7 mx-auto">
                 <div class="col-12 ">
-                  <button type="submit" class="btn btn-block btn-lg btn-success">Daftar</button>
+                  <a href="{{ url('/pemilik/login') }}" class="btn btn-block btn-success">Daftar</a>
                 </div>
           </div>
         </div>
