@@ -31,7 +31,7 @@ class HomeController extends Controller
         //$kendaraans = kendaraan::where('id_status','1')->get();
         $kabupatens = kabupatenkota::all();
 
-
+        $user = $this->detailUser();
         //pagenation
         $kendaraans = DB::table('kendaraans')
         ->join('kabupatenkotas','kendaraans.id_kabupatenkota','=','kabupatenkotas.id')
@@ -40,7 +40,7 @@ class HomeController extends Controller
         ->where('id_status','1')
         ->paginate(5);
        
-        return view('Menu',compact('kendaraans','kabupatens'));
+        return view('Menu',compact('kendaraans','kabupatens','user'));
 
     }
 
@@ -50,7 +50,7 @@ class HomeController extends Controller
     tanggal peminjaman, tanggal kembali dan kabputen kendaraan asal 
     */
     public function searchAjax(Request $request){
-        if($request->ajax()){
+       if($request->ajax()){
             $validator = Validator::make($request->all(),[
 
                 'tgl_pesan' => 'nullable|required_with:tgl_kembali|date',
@@ -108,8 +108,18 @@ class HomeController extends Controller
            } 
            $returnHtml = view('pemilik.dashboard.ajax.result',compact('kendaraans'));
            return (String) $returnHtml;
+       }
+    }
+
+    public function detailUser(){
+        if(auth::guard()){
+            $dataUser = auth::guard()->user();
+
+            return $dataUser;
         }
     }
+
+
         
 
 

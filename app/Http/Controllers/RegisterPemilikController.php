@@ -12,7 +12,7 @@ use Auth;
 class RegisterPemilikController extends Controller
 {
 
-    protected $redirectpath ='pemilik/kendaraan';
+    protected $redirectpath ='pemilik/dashboard/home ';
     
 
     /* Fungsi ShowRegisterForm() untuk menampilkan halaman pendaftaran
@@ -30,7 +30,7 @@ class RegisterPemilikController extends Controller
     
     public function register(Request $request){
         //validasi data
-        //dd($request);
+        //dd(time());
         $this->validator($request->all())->validate();
         $foto_ktp = time().$request->ktp->getClientOriginalName();
         $request->ktp->storeAs('public/gambar_ktp',$foto_ktp);

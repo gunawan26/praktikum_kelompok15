@@ -109,8 +109,8 @@
                               <td class="text-center">{{$pembayaran->tgl_pesan}}</td>
                               <td class="text-center">{{$pembayaran->tgl_rencanakembali}}</td>
                               <td class="text-center">Rp. {{$total_biaya}}</td>
-                              <td align="center">  
-                                <button type="button" class="btn btn-outline-success" data-toggle="modal" data-target="#updatePembayaran{{$pembayaran->id_pembayaran}}">Approve</button>
+                              <td align="center" >  
+                                <button type="button"  class="btn btn-outline-success" data-toggle="modal" data-target="#updatePembayaran{{$pembayaran->id_pembayaran}}">Approve</button>
                                 <button type="button" class="btn btn-outline-warning" data-toggle="modal" data-target="#batalPembayaran{{$pembayaran->id_pembayaran}}">Batal</button>
                                 
                                 {{-- MODAL APPROVE--}}

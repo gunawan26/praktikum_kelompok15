@@ -31,7 +31,7 @@
             <img src="{{asset('img/logo.png')}}" class="img-fluid" alt="logo">
           </a>
           <li class="nav-item active">
-            <a class="nav-link text-success" href="#">HOME
+            <a class="nav-link text-success" href="{{route('menu')}}">HOME
               <span class="sr-only">(current)</span>
             </a>
           </li>
@@ -47,34 +47,40 @@
 
 
           <li class="dropdown">
-          <button type="button" class="btn btn-outline-secondary dropdown"   id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Daftar</button>
-          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-            <div class="card">
-  <div class="card-body">
-    <div class="btn-group " role="group" aria-label="Basic example">
-            <a href="{{ url('/pemilik/register') }}" class="btn btn-primary "> Pemilik</a>
-            <a href="{{ url('/register') }}" class="btn btn-success "> Penyewa</a>
-          </div></div></div>
-  </div>
+            <button type="button" class="btn btn-outline-secondary dropdown" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
+              aria-expanded="false">Daftar</button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+              <div class="card">
+                <div class="card-body">
+                  <div class="btn-group " role="group" aria-label="Basic example">
+                    <a href="{{ url('/pemilik/register') }}" class="btn btn-primary "> Pemilik</a>
+                    <a href="{{ url('/register') }}" class="btn btn-success "> Penyewa</a>
+                  </div>
+                </div>
+              </div>
+            </div>
           </li>
-          
+
           <li class="dropdown ml-lg-3">
-          <button type="button" class="btn btn-outline-success dropdown"   id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Masuk</button>
-          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-            <div class="card">
-  <div class="card-body">
-           <div class="btn-group " role="group" aria-label="Basic example">
-            <a href="{{ url('/pemilik/login') }}" class="btn btn-primary "> Pemilik</a>
-            <a href="{{ url('/login') }}" class="btn btn-success "> Penyewa</a>
-          </div></div></div>
-  </div>
+            <button type="button" class="btn btn-outline-success dropdown" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
+              aria-expanded="false">Masuk</button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+              <div class="card">
+                <div class="card-body">
+                  <div class="btn-group " role="group" aria-label="Basic example">
+                    <a href="{{ url('/pemilik/login') }}" class="btn btn-primary "> Pemilik</a>
+                    <a href="{{ url('/login') }}" class="btn btn-success "> Penyewa</a>
+                  </div>
+                </div>
+              </div>
+            </div>
           </li>
           @else
           <li class="nav-item">
             <div class="nav-link text-secondary">
-                Welcome {{Auth::user()->nama_depan}}
+              Welcome {{Auth::user()->nama_depan}}
             </div>
-            
+
           </li>
           <li class="nav-item">
             <form action="{{route('logout')}}" method="post" class="nav-link">
@@ -82,9 +88,9 @@
 
 
               <button type="submit" class="btn btn-outline-success my-3 my-sm-0">Logout</button>
-         
+
             </form>
-              
+
           </li>
 
 
@@ -122,8 +128,11 @@
 
           </select>
           <div class="input-group-append">
-            <div class="btn btn-success" id="submit_search">Cari</div>
-
+            {{--
+            <div class="btn btn-success " id="submit_search">
+              <div style="margin:auto;width:inherit;">Cari</div>
+            </div> --}}
+            <button type="button" class="btn btn-success" id="submit_search">Cari</button>
           </div>
         </div>
       </div>
@@ -143,7 +152,7 @@
 
   <main>
     @yield('content')
-    
+
   </main>
   <div class="client-logos mt-5">
     <div class="container text-center">
@@ -211,7 +220,7 @@
   <script type="text/javascript" src="{{ asset('js/jquery-3.2.1.min.js') }}"></script>
   <script type="text/javascript" src="{{ asset('js/bootstrap.min.js') }}"></script>
   <script type="text/javascript" src="{{ asset('js/script.js') }}"></script>
-  
+
   <script type="text/javascript">
     $('#submit_search').click(function (event) {
 
@@ -227,7 +236,7 @@
           'nama_kendaraan': $value,
           'tgl_pesan': $tgl_pesan_val,
           'tgl_kembali': $tgl_kembali_val,
-          'kabupaten_asal':$kabupaten_asal
+          'kabupaten_asal': $kabupaten_asal
 
 
         },

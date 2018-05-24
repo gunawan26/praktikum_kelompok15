@@ -284,7 +284,7 @@ kendaraan
 
             $kendaraan->foto_stnk = $foto_stnk;
 
-            Storege::disk('delete')->delete($old_stnk);
+            Storage::disk('delete')->delete($old_stnk);
 
 
 

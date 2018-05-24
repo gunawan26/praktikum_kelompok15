@@ -41,7 +41,7 @@
                   <!-- Sidebar Header    -->
                   <div class="sidenav-header d-flex align-items-center justify-content-center">
                     <!-- User Info-->
-                    <div class="sidenav-header-inner text-center"><img src="{{asset('img/avatar-5.jpg')}}" alt="person" class="img-fluid rounded-circle">
+                    <div class="sidenav-header-inner text-center"><img src="{{asset('img/account.png')}}" alt="person" class="img-fluid rounded-circle">
                       <h2 class="h6">Mitra Rentcar</h2><span>Pemilik Mobil</span>
                     </div>
                     <!-- Small Brand information, appears on minimized sidebar-->
@@ -54,13 +54,7 @@
                       <li><a href="{{route('dashboard.home')}}"> <i class="icon-home"></i>Home                             </a></li>
                       <li><a href="{{route('kendaraan.index')}}"> <i class="icon-form"></i>Kendaraan                             </a></li>
                       <li><a href="{{route('dashboard.riwayat')}}"> <i class="icon-grid"></i>Riwayat Transaksi                             </a></li>
-                      <li><a href="#exampledropdownDropdown" aria-expanded="false" data-toggle="collapse"> <i class="icon-interface-windows"></i>Dropdown</a>
-                        <ul id="exampledropdownDropdown" class="collapse list-unstyled ">
-                          <li><a href="#">Halaman</a></li>
-                          <li><a href="#">Halaman</a></li>
-                          <li><a href="#">Halaman</a></li>
-                        </ul>
-                      </li>
+
               
                     </ul>
                   </div>
@@ -78,8 +72,7 @@
                             <form action="{{route('pemilik.logout')}}" method="POST">
                                     @csrf
                                     <button type="submit" class="btn btn-outline-success my-3 my-sm-0"><i class="fa fa-sign-out"></i>Logout</button>
-  
-                                       {{-- <li class="nav-item"><a href="login.html" > </a></li> --}}
+
                            
                                     </form>
                             </ul>
@@ -96,7 +89,7 @@
                         </div>
                         <div class="col-sm-6 text-right">
                             <p>Rental<a href="https://bootstrapious.com" class="external">Mobil</a></p>
-                            <!-- Please do not remove the backlink to us unless you support further theme's development at https://bootstrapious.com/donate. It is part of the license conditions and it helps me to run Bootstrapious. Thank you for understanding :)-->
+                           
                         </div>
                         </div>
                     </div>
@@ -105,18 +98,11 @@
         </div>
   
     <script src="{{ asset('js/jquery-3.2.1.min.js') }}"></script>
-    {{-- <script src="vendor/popper.js/umd/popper.min.js"> </script> --}}
+
     <script src="{{ asset('js/bootstrap.bundle.min.js') }}"></script>
     <script src="{{ asset('js/app.js') }}"></script>
     <script src="{{ asset('js/popper.min.js') }}"></script>
     <script src="{{ asset('js/jquery.mCustomScrollbar.concat.min.js') }}"></script>
-    {{-- <script src="js/grasp_mobile_progress_circle-1.0.0.min.js"></script> --}}
-    {{-- <script src="vendor/jquery.cookie/jquery.cookie.js"> </script> --}}
-    {{-- <script src="vendor/chart.js/Chart.min.js"></script> --}}
-    {{-- <script src="vendor/jquery-validation/jquery.validate.min.js"></script> --}}
-    {{-- <script src="vendor/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js"></script> --}}
-    {{-- <script src="js/charts-home.js"></script> --}}
-    <!-- Main File-->
     <script src="{{ asset('js/front.js') }}"></script>
 
 </body>

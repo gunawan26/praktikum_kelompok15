@@ -17,12 +17,16 @@ class UserController extends Controller
 
         
         $transaksis = DB::table('transaksis')
+                    ->join('kendaraans','transaksis.id_kendaraan','=','kendaraans.id')
+                    ->join('pemiliks','kendaraans.id_pemilik','=','pemiliks.id')
                     ->join('pembayarans','transaksis.id','=','pembayarans.id_transaksi')
                     ->where('transaksis.id_user',$userId)
+                    ->where('pembayarans.id_status_validasi','=','1')
+                    ->select('nama_kendaraan','pemiliks.nama_depan','transaksis.tgl_transaksi','transaksis.tgl_pesan','tgl_rencanakembali')
                     ->get();
         
         
-        return view('user.dataTransaksi');
+        return view('user.dataTransaksi',compact('transaksis'));
     }
     /*
         Fungsi transBaru() untuk menampilkan data transaksi yang
@@ -59,9 +63,14 @@ class UserController extends Controller
         $userId = $this->userId();
         $pembayarans = DB::table('pembayarans')
                         ->join('transaksis','pembayarans.id_transaksi','=','transaksis.id')
+                        ->join('kendaraans','transaksis.id_kendaraan','=','kendaraans.id')
+                        ->join('pemiliks','kendaraans.id_pemilik','=','pemiliks.id')
                         ->where('transaksis.id_user','=',$userId)
+                        ->select('nama_kendaraan','pemiliks.nama_depan','transaksis.tgl_transaksi','tgl_pesan','tgl_rencanakembali','id_status_validasi')
                         ->get();
-        return view('user.pembayaran');
+
+      
+        return view('user.pembayaran',compact('pembayarans'));
     }
 
     public function editakun()

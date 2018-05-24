@@ -105,7 +105,7 @@
             <img src="{{asset('img/logo.png')}}" class="img-fluid" alt="logo">
           </a>
           <li class="nav-item active">
-            <a class="nav-link text-success" href="#">HOME
+          <a class="nav-link text-success" href="{{route('menu')}}">HOME
               <span class="sr-only">(current)</span>
             </a>
           </li>
@@ -208,10 +208,7 @@
                                     <a href="{{route('user.pembayaran')}}">
                                         <i class="fa fa-usd"></i> Pembayaran</a>
                                 </li>
-                                <li class=" text-dark shadow-sm p-1 mb-2 bg-white rounded">
-                                    <a href="{{route('user.edit')}}">
-                                        <i class="fa fa-cog"></i> Edit Akun</a>
-                                </li>
+
                             </ul>
     
     
