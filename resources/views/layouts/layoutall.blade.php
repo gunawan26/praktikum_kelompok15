@@ -231,8 +231,7 @@
       $.ajax({
 
         type: 'get',
-        url: '{{URL::to('
-        home / search ')}}',
+        url: '{{URL::to('home/search')}}',
         data: {
           'nama_kendaraan': $value,
           'tgl_pesan': $tgl_pesan_val,

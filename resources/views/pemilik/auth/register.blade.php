@@ -11,7 +11,7 @@
                 <div class="card-header" style="text-align: center;background-color:#28a745"><h4 style="color: #fff">{{ __('Register') }}</div>
 
                 <div class="card-body" >
-                    <form method="POST" action="{{ url('/pemilik/register') }}">
+                    <form method="POST"  enctype="multipart/form-data" action="{{ url('/pemilik/register') }}">
                         @csrf
 
                         <div class="form-group row">
