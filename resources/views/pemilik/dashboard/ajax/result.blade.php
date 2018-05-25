@@ -1,5 +1,5 @@
 @foreach ($kendaraans as $kendaraan)
-<div class="col-md-3">
+<div class="col-md-4">
           
     <div class="card mb-3 box-shadow">
       <img class="card-img-top" src="{{asset('storage/gambar_mobil/'.$kendaraan->gambar_kendaraan)}}" alt="Card image cap">

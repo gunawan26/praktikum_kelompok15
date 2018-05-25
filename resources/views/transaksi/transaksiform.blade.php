@@ -9,12 +9,11 @@
 @section('content')
 
     <div class="container">
-        @if(session('status'))
-        <div class="container">
-            <div class="alert alert-danger" role="alert">
-               Maaf Mobil tersebut tidak tersedia pada tanggal tersebut
-              </div>
-        @endif
+      @if (Session::has('error'))
+      <div class="alert alert-dismissible alert-danger">
+          {{ session::get('error') }}
+      </div>
+  @endif
       <div class="row justify-content-center"> 
 <div class="col-md-8">
             <div class="card">

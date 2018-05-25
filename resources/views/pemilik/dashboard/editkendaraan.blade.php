@@ -134,7 +134,7 @@
                                         <div class="col-sm-10">
                                             <img src="{{asset('storage/gambar_mobil/'.$kendaraan->gambar_kendaraan)}}" alt="gambar" class="img-thumbnail" style="max-width:200px">
 
-                                            <input id="gambar_kendaraan" type="file" class="form-control{{ $errors->has('warna_kendaraan') ? ' is-invalid' : '' }}" name="warna_kendaraan"
+                                            <input id="gambar_kendaraan" type="file" class="form-control{{ $errors->has('warna_kendaraan') ? ' is-invalid' : '' }}" name="gambar_kendaraan"
                                                 value="{{ $kendaraan->gambar_kendaraan }}"  autofocus> @if ($errors->has('warna_kendaraan'))
                                             <span class="invalid-feedback">
                                                 <strong>{{ $errors->first('gambar_kendaraan') }}</strong>

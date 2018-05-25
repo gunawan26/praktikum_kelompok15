@@ -11,6 +11,8 @@ use Auth;
 use Storage;
 use App\Rules\checkKtpstatus;
 use DB;
+use Session;
+
 class TransaksiController extends Controller
 {
         //Return View detail mobil
@@ -82,7 +84,7 @@ class TransaksiController extends Controller
         
 
             $foto = auth::guard()->user()->ktp;
-       
+        
 
         //$this->validasiTransaksi();
         return view('transaksi.transaksiform',compact('foto','kendaraan'));
@@ -112,6 +114,7 @@ class TransaksiController extends Controller
     {
         $valid_tanggal =  $this->validasiMobilTersedia($kendaraan->id,$request);
         //dd($valid_tanggal);
+        $error = false;
         if($valid_tanggal){
         
             $transaksi = new Transaksi;
@@ -146,15 +149,16 @@ class TransaksiController extends Controller
            
             return redirect()->route('transaksi.detail',[$kendaraan,$transaksi]);
 
-        }else{
+        }
             
             $foto = auth::guard()->user()->ktp;
-       
+            
 
             //$this->validasiTransaksi();
-            return view('transaksi.transaksiform',compact('foto','kendaraan'))->with('error','');
-  
-        }
+           // return redirect('transaksi.transaksiform',compact('foto','kendaraan','error'))->with('status', 'Profile updated!');
+            Session::flash('error','Maaf, kendaraan tidak tersedia');
+            return redirect()->route('transaksi.formview',[$kendaraan]);
+
         
 
         

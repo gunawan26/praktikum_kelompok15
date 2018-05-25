@@ -76,6 +76,7 @@ class HomeController extends Controller
                             ->where('kendaraans.nama_kendaraan','like','%'.$request->nama_kendaraan.'%')
                             ->where('kendaraans.id_kabupatenkota','=',$request->kabupaten_asal)
                             ->select('kendaraans.*','kabupatenkotas.*','provinsis.*')
+                            ->where('kendaraans.id_status','=','1')
                             ->get();
     
                 
@@ -87,12 +88,14 @@ class HomeController extends Controller
                         ->join('provinsis','kabupatenkotas.provinsi_id','=','provinsis.id')
                         ->leftJoin('transaksis as t1','kendaraans.id','=','t1.id_kendaraan')
                         ->where('kendaraans.nama_kendaraan','like','%'.$request->nama_kendaraan.'%')
-                        
+                        ->where('kendaraans.id_status','=','1')
+           
                         ->whereNotExists(function($query)use($pesanTgl,$kembaliTgl){
                             
                             $query->select('*')
-                                ->groupBy('kendaraans.id')
+                               
                                 ->from('transaksis as t2')
+                                ->groupBy('kendaraans.id')
                                 ->where('t2.id','=','t1.id')
                                 ->where('t2.tgl_pesan','<',$kembaliTgl)
                                 ->orWhereNull('t2.tgl_pesan')
@@ -103,7 +106,9 @@ class HomeController extends Controller
                                     ->orWhereBetween('t2.tgl_rencanakembali',[$pesanTgl,$kembaliTgl]);
                                 });
                         
-                        })->select('kendaraans.*','kabupatenkotas.*','provinsis.*')
+                        })
+                        ->select('kendaraans.*','kabupatenkotas.*','provinsis.*')
+                        ->groupBy('kendaraans.id')
                         ->get();
            } 
            $returnHtml = view('pemilik.dashboard.ajax.result',compact('kendaraans'));

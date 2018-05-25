@@ -11,6 +11,7 @@ class CreatePembayaransTable extends Migration
      *
      * @return void
      */
+    //
     public function up()
     {
         Schema::create('pembayarans', function (Blueprint $table) {

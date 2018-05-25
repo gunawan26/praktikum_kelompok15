@@ -11,6 +11,7 @@ class CreateKabupatenkotasTable extends Migration
      *
      * @return void
      */
+    //
     public function up()
     {
         Schema::create('kabupatenkotas', function (Blueprint $table) {

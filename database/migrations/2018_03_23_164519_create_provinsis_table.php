@@ -11,6 +11,7 @@ class CreateProvinsisTable extends Migration
      *
      * @return void
      */
+    //
     public function up()
     {
         Schema::create('provinsis', function (Blueprint $table) {

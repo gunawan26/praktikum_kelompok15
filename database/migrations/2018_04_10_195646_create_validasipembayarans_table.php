@@ -11,6 +11,7 @@ class CreateValidasipembayaransTable extends Migration
      *
      * @return void
      */
+    //
     public function up()
     {
         Schema::create('validasipembayarans', function (Blueprint $table) {

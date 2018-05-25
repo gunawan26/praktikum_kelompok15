@@ -18,7 +18,7 @@ class CreatePemiliksTable extends Migration
             $table->string('nama_depan',100);
             $table->string('nama_belakang',100);
             $table->string('email')->unique();
-            $table->bigInteger('ktp');
+            $table->string('ktp');
             $table->string('no_telp',20);
             $table->string('username',30);
             $table->string('password');

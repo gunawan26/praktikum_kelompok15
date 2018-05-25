@@ -120,7 +120,7 @@
                                         <label for="warna_kendaraan" class="col-sm-2 form-control-label">{{ __('warna_kendaraan') }}</label>
 
                                         <div class="col-sm-10">
-                                            <input id="warna_kendaraan" type="text" class="form-control{{ $errors->has('warna_kendaraan') ? ' is-invalid' : '' }}" name="warna_kendaraan"
+                                            <input id="warna_kendaraan" type="text" class="form-control{{ $errors->has('warna_kendaraan') ? ' is-invalid' : '' }}" name="warna_kendaraan" value="{{  old('warna_kendaraan')  }}"
                                                 required autofocus> 
                                                 @if($errors->has('warna_kendaraan'))
                                             <span class="invalid-feedback">

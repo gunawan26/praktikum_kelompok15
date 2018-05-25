@@ -11,6 +11,7 @@ class CreateTransaksisTable extends Migration
      *
      * @return void
      */
+    //
     public function up()
     {
         Schema::create('transaksis', function (Blueprint $table) {
